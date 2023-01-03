@@ -26,3 +26,12 @@ These methods are typically used to help present the game data to the player:
 -   Primary method of interaction is pressing buttons to make purchases and other choices,
 -   A message log, appended with in-game events as they happen,
 -   Elements are hidden or greyed out if they're not relevant right now.
+
+## User stories
+
+> _As someone with free time to spare, I want to play a browser game so that I'm entertained.
+
+-   What kind of game is this?
+-   What do the buttons mean?
+-   How do I start?
+-   What's the ultimate goal?
