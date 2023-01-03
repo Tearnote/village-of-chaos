@@ -29,9 +29,42 @@ These methods are typically used to help present the game data to the player:
 
 ## User stories
 
-> _As someone with free time to spare, I want to play a browser game so that I'm entertained.
+> _As someone with free time to spare, I want to play a browser game so that I'm entertained._
 
 -   What kind of game is this?
 -   What do the buttons mean?
 -   How do I start?
 -   What's the ultimate goal?
+
+## Scope
+
+These goals are neccessary for a MVP of the game:
+
+-   Resources:
+    -   Food,
+    -   Wood,
+    -   Stone,
+-   Buildings:
+    -   Tent (increases villager count),
+    -   Pier (increases food),
+    -   Quarry (increases stone),
+    -   Blacksmith (performs upgrades),
+    -   Academy (performs research),
+-   Villager roles:
+    -   Apprentice (more than one increases chaos if unmanaged),
+    -   Mentor (pairs up with an apprentice to manage them),
+    -   Manager (doesn't produce, but reduces chaos),
+    -   CEO (improves Managers' chaos reduction),
+-   A permanently visible listing of all owned resources,
+-   Tabbed interface for switching between sections:
+    -   A section that lists owned buildings and allows assigning villagers to them,
+    -   A section for upgrades,
+    -   A section for research,
+-   An interactive tutorial explaining the basics to the player,
+-   A building which causes the player to win the game when it's built.
+
+These goals aren't neccessary, but would provide additional value:
+
+-   A graphical view of the village, showing the field in the forest, alongside currently built buildings,
+-   Sound effects,
+-   Particle and shaking effects.
