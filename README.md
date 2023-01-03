@@ -83,3 +83,7 @@ Having two or more stray villagers doing the same task increases that building's
 The upgrade tab will have a mysterious upgrade, "Monolith", always available but requiring a prohibitive amount of resources. Buying this upgrade should become feasible after the player has enough upgrades. Buying this upgrade ends the game.
 
 Througout the player's first steps, tutorial pop-ups will appear at appropriate times. For example, once the game starts, a pop-up instructs the player to click on buttons to earn resources. When the player assigns two villagers to a single job, a pop-up will let them know about the chaos system.
+
+## Wireframe
+
+![Mock-up wireframe view of the game in a desktop browser](doc/wireframe.png)
