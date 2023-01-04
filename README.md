@@ -66,6 +66,7 @@ These goals are neccessary for a MVP of the game:
 
 These goals aren't neccessary, but would provide additional value:
 
+-   Saving and loading so that the game state survives browser refresh,
 -   A graphical view of the village, showing the field in the forest, alongside currently built buildings,
 -   Sound effects,
 -   Particle and shaking effects.
