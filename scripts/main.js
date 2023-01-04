@@ -1,6 +1,6 @@
 // Create core game objects
 const dom = new DOM();
-const game = new Game();
+const game = new Game(dom);
 const loop = new GameLoop();
 
 // Wire the game object to the main loop
@@ -8,7 +8,7 @@ loop.onUpdate = function (dt, t) {
 	game.update(dt);
 };
 loop.onRender = function (i) {
-	game.render(dom);
+	game.render();
 };
 loop.onPanic = function () {
 	// No lag handling at this time

@@ -71,6 +71,15 @@ a:visited {
 
 /* #endregion */
 
+/* #region Site style */
+
+body {
+	display: flex;
+	flex-flow: column;
+}
+
+/* #endregion */
+
 /* #region Header */
 
 header {
@@ -94,10 +103,27 @@ header {
 
 /* #endregion */
 
+/* #region Gathering */
+
+.gathering {
+	display: flex;
+	flex-flow: column;
+	width: fit-content;
+	margin: 2rem;
+}
+
+.gathering > button {
+	margin: 0.4rem;
+	padding: 0.2rem 0.5rem;
+}
+
+/* #endregion */
+
 /* #region Log */
 
 #log {
 	position: absolute;
+	top: 4rem;
 	right: 0;
 	width: 100%;
 	max-width: 24rem;

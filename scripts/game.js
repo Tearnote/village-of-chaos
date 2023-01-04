@@ -7,13 +7,35 @@ class Game {
 	wood = 0;
 	stone = 0;
 
-	update(dt) {
-		this.food += 0.01 * dt;
+	constructor(dom) {
+		this.dom = dom;
+		console.log(this.dom.gatherFood);
+		console.log(this.gatherFood);
+		this.dom.gatherFood.addEventListener(
+			"click",
+			this.gatherFood.bind(this)
+		);
+		this.dom.gatherWood.addEventListener(
+			"click",
+			this.gatherWood.bind(this)
+		);
 	}
 
-	render(dom) {
-		dom.food.textContent = Math.floor(this.food);
-		dom.wood.textContent = Math.floor(this.wood);
-		dom.stone.textContent = Math.floor(this.stone);
+	update(dt) {
+		// Empty
+	}
+
+	render() {
+		this.dom.food.textContent = Math.floor(this.food);
+		this.dom.wood.textContent = Math.floor(this.wood);
+		this.dom.stone.textContent = Math.floor(this.stone);
+	}
+
+	gatherFood() {
+		this.food += 1;
+	}
+
+	gatherWood() {
+		this.wood += 1;
 	}
 }

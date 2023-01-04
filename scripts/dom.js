@@ -8,6 +8,10 @@ class DOM {
 		this.wood = document.getElementById("wood-amount");
 		this.stone = document.getElementById("stone-amount");
 
+		// Gathering buttons
+		this.gatherFood = document.getElementById("gather-food");
+		this.gatherWood = document.getElementById("gather-wood");
+
 		this.log = document.getElementById("log");
 	}
 }
