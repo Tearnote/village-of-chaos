@@ -1,15 +1,19 @@
+// Create core game objects
+const dom = new DOM();
+const game = new Game();
 const loop = new GameLoop();
 
-let food = 0;
-loop.onUpdate = function(dt, t) {
-	food += 0.01 * dt;
+// Wire the game object to the main loop
+loop.onUpdate = function (dt, t) {
+	game.update(dt);
 };
-loop.onRender = function(i) {
-	document.getElementById("food-amount").textContent = Math.floor(food);
+loop.onRender = function (i) {
+	game.render(dom);
 };
-loop.onPanic = function() {
+loop.onPanic = function () {
 	// No lag handling at this time
 	this.timing.lag = 0;
 };
 
+// Start the game
 loop.start();
