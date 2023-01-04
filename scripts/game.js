@@ -26,7 +26,9 @@ class Game {
 	}
 
 	update(dt) {
-		// Nothing yet
+		// Mark upgrades that can't be bought
+		for (let upgrade of UPGRADES)
+			upgrade.updateElement(game);
 	}
 
 	render() {

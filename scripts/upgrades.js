@@ -39,15 +39,27 @@ class Upgrade {
 		return this.el;
 	}
 
-	clickHandler = (game) => {
-		// Pay the cost if possible
+	updateElement(game) {
+		if (!this.el) return;
+		if (this.canAfford(game))
+			this.el.classList.remove("inactive");
+		else
+			this.el.classList.add("inactive");
+	}
+
+	canAfford(game) {
 		if (
 			game.food < this.cost[0] ||
 			game.wood < this.cost[1] ||
-			game.stone < this.cost[2] ||
-			!this.active // Failsafe
+			game.stone < this.cost[2]
 		)
-			return;
+			return false;
+		return true;
+	}
+
+	clickHandler = (game) => {
+		// Pay the cost if possible
+		if (!this.canAfford(game) || !this.active) return;
 		game.food -= this.cost[0];
 		game.wood -= this.cost[1];
 		game.stone -= this.cost[2];
