@@ -15,14 +15,8 @@ class Game {
 		this.houses = 0;
 
 		// Register button clicks
-		this.dom.gatherFood.addEventListener(
-			"click",
-			this.gatherFood.bind(this)
-		);
-		this.dom.gatherWood.addEventListener(
-			"click",
-			this.gatherWood.bind(this)
-		);
+		this.dom.gatherFood.addEventListener("click", this.gatherFood);
+		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 
 		// Add available upgrades
 		for (let upgrade of UPGRADES) {
@@ -48,11 +42,11 @@ class Game {
 		this.dom.stone.textContent = Math.floor(this.stone);
 	}
 
-	gatherFood() {
+	gatherFood = () => {
 		this.food += 1;
-	}
+	};
 
-	gatherWood() {
+	gatherWood = () => {
 		this.wood += 1;
-	}
+	};
 }
