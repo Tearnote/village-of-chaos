@@ -3,16 +3,16 @@
 // into the DOM
 
 class Game {
-	// Resources
-	food = 0;
-	wood = 0;
-	stone = 0;
-
-	// Buildings
-	houses = 0;
-
 	constructor(dom) {
 		this.dom = dom;
+
+		// Resources
+		this.food = 0;
+		this.wood = 0;
+		this.stone = 0;
+
+		// Buildings
+		this.houses = 0;
 
 		// Register button clicks
 		this.dom.gatherFood.addEventListener(
@@ -28,14 +28,17 @@ class Game {
 		for (let upgrade of UPGRADES) {
 			let el = document.createElement("div");
 			el.classList.add("upgrade");
-			el.innerHTML = buildUpgradeEl(upgrade);
-			el.addEventListener("click", clickHandler.bind(null, this, upgrade, el));
+			el.innerHTML = upgrade.buildHtml();
+			el.addEventListener(
+				"click",
+				clickHandler.bind(null, this, upgrade, el)
+			);
 			this.dom.buildTab.appendChild(el);
 		}
 	}
 
 	update(dt) {
-		// Empty
+		// Nothing yet
 	}
 
 	render() {
