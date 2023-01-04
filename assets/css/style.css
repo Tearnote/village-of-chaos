@@ -56,6 +56,7 @@ a:visited {
 .tabs > label {
 	order: 20;
 	height: fit-content;
+	cursor: pointer;
 }
 
 .tabs > .tab {
@@ -79,6 +80,10 @@ body {
 	/* Placeholder */
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	background-color: antiquewhite;
+}
+
+button {
+	cursor: pointer;
 }
 
 /* #endregion */
@@ -184,6 +189,7 @@ header {
 	border: 1px solid black;
 	padding: 0.5rem 1rem;
 	background-color: white;
+	cursor: pointer;
 }
 
 .upgrade.inactive {
