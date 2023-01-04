@@ -12,6 +12,11 @@ class DOM {
 		this.gatherFood = document.getElementById("gather-food");
 		this.gatherWood = document.getElementById("gather-wood");
 
+		// Interface tabs
+		this.assignTab = document.getElementById("assign-tab");
+		this.buildTab = document.getElementById("build-tab");
+		this.researchTab = document.getElementById("research-tab");
+
 		this.log = document.getElementById("log");
 	}
 }
