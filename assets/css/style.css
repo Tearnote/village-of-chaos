@@ -78,6 +78,7 @@ body {
 	flex-flow: column;
 	/* Placeholder */
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	background-color: antiquewhite;
 }
 
 /* #endregion */
@@ -137,6 +138,8 @@ header {
 	margin: 2rem;
 	border: 2px solid brown;
 	padding: 1rem;
+	font-family: 'Courier New', Courier, monospace;
+	background-color: white;
 }
 
 /* #endregion */
@@ -161,7 +164,7 @@ header {
 
 #interface > label {
 	padding: 0.5rem 1rem;
-	background-color: gainsboro;
+	background-color: lavender;
 }
 
 #interface > label:first-of-type {
@@ -170,6 +173,17 @@ header {
 
 #interface > input[type="radio"]:checked + label {
 	background-color: gray;
+}
+
+/* #endregion */
+
+/* #region Upgrades */
+
+.upgrade {
+	margin: 0.5rem;
+	border: 1px solid black;
+	padding: 0.5rem 1rem;
+	background: white;
 }
 
 /* #endregion */
