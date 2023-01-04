@@ -13,5 +13,7 @@ class Game {
 
 	render(dom) {
 		dom.food.textContent = Math.floor(this.food);
+		dom.wood.textContent = Math.floor(this.wood);
+		dom.stone.textContent = Math.floor(this.stone);
 	}
 }
