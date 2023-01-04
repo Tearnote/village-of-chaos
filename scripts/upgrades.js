@@ -1,5 +1,6 @@
 class Upgrade {
 	constructor(params = {}) {
+		this.active = true;
 		this.name = params?.name;
 		this.cost = params?.cost; // Array of 3 integers: [food, wood, stone]
 		this.once = params?.once; // True if upgrade should disappear once bought
@@ -29,31 +30,43 @@ class Upgrade {
 		html += `</p>`;
 		return html;
 	}
-}
 
-function clickHandler(game, upgrade, el) {
-	// Pay the cost if possible
-	if (
-		game.food < upgrade.cost[0] ||
-		game.wood < upgrade.cost[1] ||
-		game.stone < upgrade.cost[2]
-	)
-		return;
-	game.food -= upgrade.cost[0];
-	game.wood -= upgrade.cost[1];
-	game.stone -= upgrade.cost[2];
-
-	// Perform upgrade effect and update the upgrade
-	upgrade.effect(game);
-	if (upgrade.once) {
-		el.remove();
-	} else {
-		for (let i in upgrade.cost) {
-			upgrade.cost[i] *= upgrade.scaling;
-			upgrade.cost[i] = Math.ceil(upgrade.cost[i]);
-		}
-		el.innerHTML = buildUpgradeEl(upgrade);
+	createElement(game) {
+		this.el = document.createElement("div");
+		this.el.classList.add("upgrade");
+		this.el.innerHTML = this.buildHtml();
+		this.el.addEventListener("click", this.clickHandler.bind(null, game));
+		return this.el;
 	}
+
+	clickHandler = (game) => {
+		// Pay the cost if possible
+		if (
+			game.food < this.cost[0] ||
+			game.wood < this.cost[1] ||
+			game.stone < this.cost[2] ||
+			!this.active // Failsafe
+		)
+			return;
+		game.food -= this.cost[0];
+		game.wood -= this.cost[1];
+		game.stone -= this.cost[2];
+
+		// Perform upgrade effect and update upgrade state
+		this.effect(game);
+		if (this.once) {
+			this.el.remove();
+			this.el = null;
+			this.active = false;
+		} else {
+			// Make element more expensive
+			for (let i in this.cost) {
+				this.cost[i] *= this.scaling;
+				this.cost[i] = Math.ceil(this.cost[i]);
+			}
+			this.el.innerHTML = this.buildHtml();
+		}
+	};
 }
 
 const UPGRADES = [
@@ -73,5 +86,5 @@ const UPGRADES = [
 		effect: function (game) {
 			game.food += 30;
 		},
-	})
+	}),
 ];

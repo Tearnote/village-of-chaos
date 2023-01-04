@@ -18,15 +18,9 @@ class Game {
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 
-		// Add available upgrades
+		// Add upgrades to the DOM
 		for (let upgrade of UPGRADES) {
-			let el = document.createElement("div");
-			el.classList.add("upgrade");
-			el.innerHTML = upgrade.buildHtml();
-			el.addEventListener(
-				"click",
-				clickHandler.bind(null, this, upgrade, el)
-			);
+			let el = upgrade.createElement(this);
 			this.dom.buildTab.appendChild(el);
 		}
 	}
