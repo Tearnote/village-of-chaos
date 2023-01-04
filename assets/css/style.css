@@ -40,6 +40,37 @@ a:visited {
 
 /* #endregion */
 
+/* #region Pure CSS tabs */
+/* Inspired by https://codepen.io/alvarotrigo/pen/RwLzvQz */
+
+.tabs {
+	display: flex;
+	flex-flow: row wrap;
+	align-content: flex-end;
+}
+
+.tabs > input[type="radio"] {
+	display: none;
+}
+
+.tabs > label {
+	order: 20;
+	height: fit-content;
+}
+
+.tabs > .tab {
+	order: 10;
+	width: 100%;
+	height: auto;
+	display: none;
+}
+
+.tabs > input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
+/* #endregion */
+
 /* #region Header */
 
 header {
@@ -78,6 +109,39 @@ header {
 	margin: 2rem;
 	border: 2px solid brown;
 	padding: 1rem;
+}
+
+/* #endregion */
+
+/* #region Tabbed interface */
+
+#interface {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	max-width: 32rem;
+	padding: 2rem;
+}
+
+#interface > .tab {
+	min-height: 24rem;
+	background-color: chartreuse;
+	border: 2px solid green;
+	padding: 1rem;
+}
+
+#interface > label {
+	padding: 0.5rem 1rem;
+	background-color: gainsboro;
+}
+
+#interface > label:first-of-type {
+	margin-left: 1rem;
+}
+
+#interface > input[type="radio"]:checked + label {
+	background-color: gray;
 }
 
 /* #endregion */
