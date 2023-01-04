@@ -1,0 +1,23 @@
+/* #region Header */
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	background-color: chocolate;
+}
+
+.resources {
+	display: flex;
+	flex-flow: row;
+}
+
+.resources > p {
+	margin: 1rem;
+}
+
+/* #endregion */
