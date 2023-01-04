@@ -5,9 +5,11 @@ header {
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: 4rem;
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
+	align-items: center;
 	background-color: chocolate;
 }
 
@@ -18,6 +20,22 @@ header {
 
 .resources > p {
 	margin: 1rem;
+}
+
+/* #endregion */
+
+/* #region Log */
+
+#log {
+	position: fixed;
+	top: 4rem;
+	right: 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	margin: 2rem;
+	border: 2px solid brown;
+	padding: 1rem;
 }
 
 /* #endregion */
