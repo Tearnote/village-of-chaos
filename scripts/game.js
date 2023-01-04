@@ -20,15 +20,13 @@ class Game {
 
 		// Add upgrades to the DOM
 		for (let upgrade of UPGRADES) {
-			let el = upgrade.createElement(this);
-			this.dom.buildTab.appendChild(el);
+			this.dom.buildTab.appendChild(upgrade.createElement(this));
 		}
 	}
 
 	update(dt) {
 		// Mark upgrades that can't be bought
-		for (let upgrade of UPGRADES)
-			upgrade.updateElement(game);
+		for (let upgrade of UPGRADES) upgrade.updateElement(game);
 	}
 
 	render() {
