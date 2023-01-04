@@ -1,10 +1,26 @@
 // An array of all available upgrades, stateless
 
 function buildUpgradeEl(upgrade) {
-	return `
-		<p>${upgrade.name}</p>
-		<p>Cost: ${upgrade.cost[0]} food, ${upgrade.cost[1]} wood, ${upgrade.cost[2]} stone</p>
-	`;
+	let html = "";
+	html += `<p>${upgrade.name}</p>`;
+	html += `<p>Cost: `;
+	let atLeastOne = false;
+	if (upgrade.cost[0] > 0) {
+		html += `${upgrade.cost[0]} food`;
+		atLeastOne = true;
+	}
+	if (upgrade.cost[1] > 0) {
+		if (atLeastOne) html += `, `;
+		html += `${upgrade.cost[1]} wood`;
+		atLeastOne = true;
+	}
+	if (upgrade.cost[2] > 0) {
+		if (atLeastOne) html += `, `;
+		html += `${upgrade.cost[2]} stone`;
+		atLeastOne = true;
+	}
+	html += `</p>`;
+	return html;
 }
 
 function clickHandler(game, upgrade, el) {
@@ -40,6 +56,14 @@ const UPGRADES = [
 		scaling: 1.5,
 		effect: function (game) {
 			game.houses += 1;
+		},
+	},
+	{
+		name: "Hunt down local wildlife",
+		cost: [5, 5, 0],
+		once: true,
+		effect: function (game) {
+			game.food += 30;
 		},
 	},
 ];
