@@ -93,7 +93,7 @@ class Game {
 				scaling: 2.5,
 				effect: function (game) {
 					this.name = "Expand the tent";
-					this.description = "Add space for an extra villager.";
+					this.description = "Add another bed to fit in an extra villager.";
 					if (game.tentLvl === 0) {
 						game.lumberjacks += 2;
 						game.logMessage(
@@ -188,7 +188,7 @@ class Game {
 					return game.tentLvl >= 1 ? true : false;
 				},
 				effect: function (game) {
-					this.name = "Expand the quarry";
+					this.name = "Develop the quarry";
 					this.description =
 						"Make more of the cliff surface available for mining.";
 					if (game.quarryLvl === 0)
