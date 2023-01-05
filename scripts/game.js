@@ -42,6 +42,7 @@ class Game {
 			miner: 0.001,
 			blacksmith: 0.6,
 			professor: 0.6,
+			mentorBoost: 1.5,
 		};
 		this.upgrades = this.createUpgrades();
 
@@ -322,15 +323,21 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.update(game, dt);
 
 		// Update chaos levels
-		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermanVillager - 1), 0);
-		this.quarryChaos = Math.max(1 - 0.8 ** (this.minerVillager - 1), 0);
-		this.smithyChaos = Math.max(
-			1 - 0.8 ** (this.blacksmithVillager - 1),
-			0
+		this.pierChaos = this.getChaosLevel(
+			this.fishermanVillager,
+			this.fishermanMentor
 		);
-		this.academyChaos = Math.max(
-			1 - 0.8 ** (this.professorVillager - 1),
-			0
+		this.quarryChaos = this.getChaosLevel(
+			this.minerVillager,
+			this.minerMentor
+		);
+		this.smithyChaos = this.getChaosLevel(
+			this.blacksmithVillager,
+			this.blacksmithMentor
+		);
+		this.academyChaos = this.getChaosLevel(
+			this.professorVillager,
+			this.professorMentor
 		);
 
 		// Generate resources
@@ -390,33 +397,44 @@ class Game {
 	}
 
 	getFoodProduction() {
-		return (
-			this.production.fisherman *
-			this.fishermanVillager *
-			(1 - this.pierChaos)
-		);
+		let contribution =
+			this.fishermanVillager +
+			this.fishermanMentor * this.production.mentorBoost;
+		return contribution * this.production.fisherman * (1 - this.pierChaos);
 	}
 
 	getStoneProduction() {
-		return (
-			this.production.miner * this.minerVillager * (1 - this.quarryChaos)
-		);
+		let contribution =
+			this.minerVillager + this.minerMentor * this.production.mentorBoost;
+		return this.production.miner * contribution * (1 - this.quarryChaos);
 	}
 
 	getCraftSpeedup() {
+		let contribution =
+			this.blacksmithVillager +
+			this.blacksmithMentor * this.production.mentorBoost;
 		return (
 			1 -
-			(1 - this.production.blacksmith ** this.blacksmithVillager) *
+			(1 - this.production.blacksmith ** contribution) *
 				(1 - this.smithyChaos)
 		);
 	}
 
 	getResearchSpeedup() {
+		let contribution =
+			this.professorVillager +
+			this.professorMentor * this.production.mentorBoost;
 		return (
 			1 -
-			(1 - this.production.professor ** this.professorVillager) *
+			(1 - this.production.professor ** contribution) *
 				(1 - this.academyChaos)
 		);
+	}
+
+	getChaosLevel(villagers, mentors) {
+		let unpairedVillagers = Math.max(villagers - mentors, 0);
+		let penalty = mentors + unpairedVillagers - 1;
+		return Math.max(1 - 0.8 ** penalty, 0);
 	}
 
 	gatherFood = () => {
