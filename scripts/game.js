@@ -27,9 +27,9 @@ class Game {
 
 		// Balance and content
 		this.production = {
-			lumberjack: 0.0005,
-			fisherman: 0.0005,
-			miner: 0.0005,
+			lumberjack: 0.001,
+			fisherman: 0.001,
+			miner: 0.001,
 		};
 		this.upgrades = [
 			new Upgrade({
@@ -180,8 +180,8 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
 		// Update chaos levels
-		this.pierChaos = Math.max(1 - 0.9 ** (this.fishermen - 1), 0);
-		this.quarryChaos = Math.max(1 - 0.9 ** (this.miners - 1), 0);
+		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermen - 1), 0);
+		this.quarryChaos = Math.max(1 - 0.8 ** (this.miners - 1), 0);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
