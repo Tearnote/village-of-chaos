@@ -145,6 +145,10 @@ class Game {
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
+		this.dom.fishermenUp.addEventListener("click", this.assignFisherman);
+		this.dom.fishermenDown.addEventListener("click", this.unassignFisherman);
+		this.dom.minersUp.addEventListener("click", this.assignMiner);
+		this.dom.minersDown.addEventListener("click", this.unassignMiner);
 
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
@@ -199,5 +203,31 @@ class Game {
 
 	gatherWood = () => {
 		this.wood += 1;
+	};
+
+	assignFisherman = () => {
+		if (this.lumberjacks == 0) return;
+		if (this.pierLvl == 0) return;
+		this.lumberjacks -= 1;
+		this.fishermen += 1;
+	};
+
+	unassignFisherman = () => {
+		if (this.fishermen == 0) return;
+		this.fishermen -= 1;
+		this.lumberjacks += 1;
+	};
+
+	assignMiner = () => {
+		if (this.lumberjacks == 0) return;
+		if (this.quarryLvl == 0) return;
+		this.lumberjacks -= 1;
+		this.miners += 1;
+	};
+
+	unassignMiner = () => {
+		if (this.miners == 0) return;
+		this.miners -= 1;
+		this.lumberjacks += 1;
 	};
 }
