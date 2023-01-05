@@ -250,6 +250,7 @@ class Game {
 		this.dom.stoneIncome.textContent = (
 			this.getStoneProduction() * 1000
 		).toFixed(1);
+		this.dom.craftSpeed.textContent = (1 / this.getCraftSpeedup()).toFixed(1);
 
 		// Update assignment counts
 		this.dom.lumberjacks.textContent = this.lumberjacks;

@@ -10,6 +10,7 @@ class DOM {
 		this.foodIncome = document.getElementById("food-income");
 		this.stone = document.getElementById("stone-amount");
 		this.stoneIncome = document.getElementById("stone-income");
+		this.craftSpeed = document.getElementById("craft-speed");
 
 		// Gathering buttons
 		this.gatherWood = document.getElementById("gather-wood");

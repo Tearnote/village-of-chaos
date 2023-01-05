@@ -52,7 +52,6 @@ class Upgrade {
 			// Progress the upgrade if started
 			if (this.started) {
 				let speedup = this.type == "craft"? game.getCraftSpeedup() : 1;
-				console.log(speedup);
 				this.progress += dt / (this.duration * 1000 * speedup);
 				if (this.progress >= 1) {
 					this.complete(game);
