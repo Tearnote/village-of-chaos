@@ -199,6 +199,19 @@ header {
 	background-color: gray;
 }
 
+#assign-tab > table {
+	text-align: center;
+}
+
+#assign-tab > table > thead > tr > th,
+#assign-tab > table > tbody > tr > td {
+	padding: 0.2rem 0.5rem;
+}
+
+#assign-tab > table > tbody > tr > td:first-child {
+	text-align: right;
+}
+
 /* #endregion */
 
 /* #region Upgrades */
