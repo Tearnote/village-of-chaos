@@ -25,11 +25,15 @@ class Game {
 		this.academyChaos = 0;
 
 		// Assignments
-		this.lumberjacks = 0;
-		this.fishermen = 0;
-		this.miners = 0;
-		this.blacksmiths = 0;
-		this.professors = 0;
+		this.lumberjack = 0;
+		this.fishermanVillager = 0;
+		this.minerVillager = 0;
+		this.blacksmithVillager = 0;
+		this.professorVillager = 0;
+		this.fishermanMentor = 0;
+		this.minerMentor = 0;
+		this.blacksmithMentor = 0;
+		this.professorMentor = 0;
 
 		// Balance and content
 		this.production = {
@@ -44,22 +48,69 @@ class Game {
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
-		this.dom.fishermenUp.addEventListener("click", this.assignFisherman);
-		this.dom.fishermenDown.addEventListener(
+		this.dom.fishermanVillagerUp.addEventListener(
 			"click",
-			this.unassignFisherman
+			this.assignFishermanVillager
 		);
-		this.dom.minersUp.addEventListener("click", this.assignMiner);
-		this.dom.minersDown.addEventListener("click", this.unassignMiner);
-		this.dom.blacksmithsUp.addEventListener("click", this.assignBlacksmith);
-		this.dom.blacksmithsDown.addEventListener(
+		this.dom.fishermanVillagerDown.addEventListener(
 			"click",
-			this.unassignBlacksmith
+			this.unassignFishermanVillager
 		);
-		this.dom.professorsUp.addEventListener("click", this.assignProfessor);
-		this.dom.professorsDown.addEventListener(
+		this.dom.minerVillagerUp.addEventListener(
 			"click",
-			this.unassignProfessor
+			this.assignMinerVillager
+		);
+		this.dom.minerVillagerDown.addEventListener(
+			"click",
+			this.unassignMinerVillager
+		);
+		this.dom.blacksmithVillagerUp.addEventListener(
+			"click",
+			this.assignBlacksmithVillager
+		);
+		this.dom.blacksmithVillagerDown.addEventListener(
+			"click",
+			this.unassignBlacksmithVillager
+		);
+		this.dom.professorVillagerUp.addEventListener(
+			"click",
+			this.assignProfessorVillager
+		);
+		this.dom.professorVillagerDown.addEventListener(
+			"click",
+			this.unassignProfessorVillager
+		);
+		this.dom.fishermanMentorUp.addEventListener(
+			"click",
+			this.assignFishermanMentor
+		);
+		this.dom.fishermanMentorDown.addEventListener(
+			"click",
+			this.unassignFishermanMentor
+		);
+		this.dom.minerMentorUp.addEventListener(
+			"click",
+			this.assignMinerMentor
+		);
+		this.dom.minerMentorDown.addEventListener(
+			"click",
+			this.unassignMinerMentor
+		);
+		this.dom.blacksmithMentorUp.addEventListener(
+			"click",
+			this.assignBlacksmithMentor
+		);
+		this.dom.blacksmithMentorDown.addEventListener(
+			"click",
+			this.unassignBlacksmithMentor
+		);
+		this.dom.professorMentorUp.addEventListener(
+			"click",
+			this.assignProfessorMentor
+		);
+		this.dom.professorMentorDown.addEventListener(
+			"click",
+			this.unassignProfessorMentor
 		);
 
 		// Add upgrades to the DOM
@@ -93,15 +144,16 @@ class Game {
 				scaling: 2.5,
 				effect: function (game) {
 					this.name = "Expand the tent";
-					this.description = "Add another bed to fit in an extra villager.";
+					this.description =
+						"Add another bed to fit in an extra villager.";
 					if (game.tentLvl === 0) {
-						game.lumberjacks += 2;
+						game.lumberjack += 2;
 						game.logMessage(
 							"event",
 							"Two villagers have joined your settlement."
 						);
 					} else {
-						game.lumberjacks += 1;
+						game.lumberjack += 1;
 						game.logMessage(
 							"event",
 							"One extra villager has joined your settlement."
@@ -222,10 +274,7 @@ class Game {
 					this.description =
 						"Get some new tools to unlock new upgrades and make them even faster to complete.";
 					if (game.smithyLvl === 0)
-						game.logMessage(
-							"event",
-							"You built a smithy! Nice!"
-						);
+						game.logMessage("event", "You built a smithy! Nice!");
 					else
 						game.logMessage(
 							"event",
@@ -237,7 +286,8 @@ class Game {
 			}),
 			new Upgrade({
 				name: "Build an academy",
-				description: "Unlock research into team management techniques, and assign professors to help speed it up.",
+				description:
+					"Unlock research into team management techniques, and assign professors to help speed it up.",
 				type: "craft",
 				cost: [0, 500, 500],
 				duration: 10,
@@ -248,15 +298,22 @@ class Game {
 				},
 				effect: function (game) {
 					this.name = "Grow the academy";
-					this.description = "Develop new teaching aids to discover new techniques and improve existing ones.";
+					this.description =
+						"Develop new teaching aids to discover new techniques and improve existing ones.";
 					if (game.academyLvl === 0)
-						game.logMessage("event", "Your academy is now standing, towering above all except the monolith.");
+						game.logMessage(
+							"event",
+							"Your academy is now standing, towering above all except the monolith."
+						);
 					else
-						game.logMessage("event", "You add another floor to the already imposing academy building.");
+						game.logMessage(
+							"event",
+							"You add another floor to the already imposing academy building."
+						);
 					game.academyLvl += 1;
 					if (game.academyLvl > 1) game.production.professor *= 0.6;
-				}
-			})
+				},
+			}),
 		];
 	}
 
@@ -265,10 +322,16 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.update(game, dt);
 
 		// Update chaos levels
-		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermen - 1), 0);
-		this.quarryChaos = Math.max(1 - 0.8 ** (this.miners - 1), 0);
-		this.smithyChaos = Math.max(1 - 0.8 ** (this.blacksmiths - 1), 0);
-		this.academyChaos = Math.max(1 - 0.8 ** (this.professors - 1), 0);
+		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermanVillager - 1), 0);
+		this.quarryChaos = Math.max(1 - 0.8 ** (this.minerVillager - 1), 0);
+		this.smithyChaos = Math.max(
+			1 - 0.8 ** (this.blacksmithVillager - 1),
+			0
+		);
+		this.academyChaos = Math.max(
+			1 - 0.8 ** (this.professorVillager - 1),
+			0
+		);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
@@ -298,11 +361,15 @@ class Game {
 		).toFixed(1);
 
 		// Update assignment counts
-		this.dom.lumberjacks.textContent = this.lumberjacks;
-		this.dom.fishermen.textContent = this.fishermen;
-		this.dom.miners.textContent = this.miners;
-		this.dom.blacksmiths.textContent = this.blacksmiths;
-		this.dom.professors.textContent = this.professors;
+		this.dom.lumberjack.textContent = this.lumberjack;
+		this.dom.fishermanVillager.textContent = this.fishermanVillager;
+		this.dom.minerVillager.textContent = this.minerVillager;
+		this.dom.blacksmithVillager.textContent = this.blacksmithVillager;
+		this.dom.professorVillager.textContent = this.professorVillager;
+		this.dom.fishermanMentor.textContent = this.fishermanMentor;
+		this.dom.minerMentor.textContent = this.minerMentor;
+		this.dom.blacksmithMentor.textContent = this.blacksmithMentor;
+		this.dom.professorMentor.textContent = this.professorMentor;
 
 		// Update chaos indicators
 		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
@@ -319,23 +386,27 @@ class Game {
 	}
 
 	getWoodProduction() {
-		return this.production.lumberjack * this.lumberjacks;
+		return this.production.lumberjack * this.lumberjack;
 	}
 
 	getFoodProduction() {
 		return (
-			this.production.fisherman * this.fishermen * (1 - this.pierChaos)
+			this.production.fisherman *
+			this.fishermanVillager *
+			(1 - this.pierChaos)
 		);
 	}
 
 	getStoneProduction() {
-		return this.production.miner * this.miners * (1 - this.quarryChaos);
+		return (
+			this.production.miner * this.minerVillager * (1 - this.quarryChaos)
+		);
 	}
 
 	getCraftSpeedup() {
 		return (
 			1 -
-			(1 - this.production.blacksmith ** this.blacksmiths) *
+			(1 - this.production.blacksmith ** this.blacksmithVillager) *
 				(1 - this.smithyChaos)
 		);
 	}
@@ -343,7 +414,7 @@ class Game {
 	getResearchSpeedup() {
 		return (
 			1 -
-			(1 - this.production.professor ** this.professors) *
+			(1 - this.production.professor ** this.professorVillager) *
 				(1 - this.academyChaos)
 		);
 	}
@@ -356,55 +427,111 @@ class Game {
 		this.wood += 1;
 	};
 
-	assignFisherman = () => {
-		if (this.lumberjacks == 0) return;
+	assignFishermanVillager = () => {
+		if (this.lumberjack == 0) return;
 		if (this.pierLvl == 0) return;
-		this.lumberjacks -= 1;
-		this.fishermen += 1;
+		this.lumberjack -= 1;
+		this.fishermanVillager += 1;
 	};
 
-	unassignFisherman = () => {
-		if (this.fishermen == 0) return;
-		this.fishermen -= 1;
-		this.lumberjacks += 1;
+	unassignFishermanVillager = () => {
+		if (this.fishermanVillager == 0) return;
+		this.fishermanVillager -= 1;
+		this.lumberjack += 1;
 	};
 
-	assignMiner = () => {
-		if (this.lumberjacks == 0) return;
+	assignMinerVillager = () => {
+		if (this.lumberjack == 0) return;
 		if (this.quarryLvl == 0) return;
-		this.lumberjacks -= 1;
-		this.miners += 1;
+		this.lumberjack -= 1;
+		this.minerVillager += 1;
 	};
 
-	unassignMiner = () => {
-		if (this.miners == 0) return;
-		this.miners -= 1;
-		this.lumberjacks += 1;
+	unassignMinerVillager = () => {
+		if (this.minerVillager == 0) return;
+		this.minerVillager -= 1;
+		this.lumberjack += 1;
 	};
 
-	assignBlacksmith = () => {
-		if (this.lumberjacks == 0) return;
+	assignBlacksmithVillager = () => {
+		if (this.lumberjack == 0) return;
 		if (this.smithyLvl == 0) return;
-		this.lumberjacks -= 1;
-		this.blacksmiths += 1;
+		this.lumberjack -= 1;
+		this.blacksmithVillager += 1;
 	};
 
-	unassignBlacksmith = () => {
-		if (this.blacksmiths == 0) return;
-		this.blacksmiths -= 1;
-		this.lumberjacks += 1;
+	unassignBlacksmithVillager = () => {
+		if (this.blacksmithVillager == 0) return;
+		this.blacksmithVillager -= 1;
+		this.lumberjack += 1;
 	};
 
-	assignProfessor = () => {
-		if (this.lumberjacks == 0) return;
+	assignProfessorVillager = () => {
+		if (this.lumberjack == 0) return;
 		if (this.academyLvl == 0) return;
-		this.lumberjacks -= 1;
-		this.professors += 1;
+		this.lumberjack -= 1;
+		this.professorVillager += 1;
 	};
 
-	unassignProfessor = () => {
-		if (this.professors == 0) return;
-		this.professors -= 1;
-		this.lumberjacks += 1;
+	unassignProfessorVillager = () => {
+		if (this.professorVillager == 0) return;
+		this.professorVillager -= 1;
+		this.lumberjack += 1;
+	};
+
+	assignFishermanMentor = () => {
+		if (this.lumberjack == 0) return;
+		if (this.pierLvl == 0) return;
+		if (this.academyLvl == 0) return;
+		this.lumberjack -= 1;
+		this.fishermanMentor += 1;
+	};
+
+	unassignFishermanMentor = () => {
+		if (this.fishermanMentor == 0) return;
+		this.fishermanMentor -= 1;
+		this.lumberjack += 1;
+	};
+
+	assignMinerMentor = () => {
+		if (this.lumberjack == 0) return;
+		if (this.quarryLvl == 0) return;
+		if (this.academyLvl == 0) return;
+		this.lumberjack -= 1;
+		this.minerMentor += 1;
+	};
+
+	unassignMinerMentor = () => {
+		if (this.minerMentor == 0) return;
+		this.minerMentor -= 1;
+		this.lumberjack += 1;
+	};
+
+	assignBlacksmithMentor = () => {
+		if (this.lumberjack == 0) return;
+		if (this.smithyLvl == 0) return;
+		if (this.academyLvl == 0) return;
+		this.lumberjack -= 1;
+		this.blacksmithMentor += 1;
+	};
+
+	unassignBlacksmithMentor = () => {
+		if (this.blacksmithMentor == 0) return;
+		this.blacksmithMentor -= 1;
+		this.lumberjack += 1;
+	};
+
+	assignProfessorMentor = () => {
+		if (this.lumberjack == 0) return;
+		if (this.academyLvl == 0) return;
+		if (this.academyLvl == 0) return;
+		this.lumberjack -= 1;
+		this.professorMentor += 1;
+	};
+
+	unassignProfessorMentor = () => {
+		if (this.professorMentor == 0) return;
+		this.professorMentor -= 1;
+		this.lumberjack += 1;
 	};
 }

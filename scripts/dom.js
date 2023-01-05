@@ -23,11 +23,17 @@ class DOM {
 		this.researchTab = document.getElementById("research-tab");
 
 		// Assignment counts
-		this.lumberjacks = document.getElementById("lumberjacks");
-		this.fishermen = document.getElementById("fishermen");
-		this.miners = document.getElementById("miners");
-		this.blacksmiths = document.getElementById("blacksmiths");
-		this.professors = document.getElementById("professors");
+		this.lumberjack = document.getElementById("lumberjack");
+		this.fishermanVillager = document.getElementById("fisherman-villager");
+		this.minerVillager = document.getElementById("miner-villager");
+		this.blacksmithVillager = document.getElementById(
+			"blacksmith-villager"
+		);
+		this.professorVillager = document.getElementById("professor-villager");
+		this.fishermanMentor = document.getElementById("fisherman-mentor");
+		this.minerMentor = document.getElementById("miner-mentor");
+		this.blacksmithMentor = document.getElementById("blacksmith-mentor");
+		this.professorMentor = document.getElementById("professor-mentor");
 
 		// Chaos indicators
 		this.pierChaos = document.getElementById("pier-chaos");
@@ -36,14 +42,46 @@ class DOM {
 		this.academyChaos = document.getElementById("academy-chaos");
 
 		// Assignment buttons
-		this.fishermenUp = document.getElementById("fishermen-up");
-		this.fishermenDown = document.getElementById("fishermen-down");
-		this.minersUp = document.getElementById("miners-up");
-		this.minersDown = document.getElementById("miners-down");
-		this.blacksmithsUp = document.getElementById("blacksmiths-up");
-		this.blacksmithsDown = document.getElementById("blacksmiths-down");
-		this.professorsUp = document.getElementById("professors-up");
-		this.professorsDown = document.getElementById("professors-down");
+		this.fishermanVillagerUp = document.getElementById(
+			"fisherman-villager-up"
+		);
+		this.fishermanVillagerDown = document.getElementById(
+			"fisherman-villager-down"
+		);
+		this.minerVillagerUp = document.getElementById("miner-villager-up");
+		this.minerVillagerDown = document.getElementById("miner-villager-down");
+		this.blacksmithVillagerUp = document.getElementById(
+			"blacksmith-villager-up"
+		);
+		this.blacksmithVillagerDown = document.getElementById(
+			"blacksmith-villager-down"
+		);
+		this.professorVillagerUp = document.getElementById(
+			"professor-villager-up"
+		);
+		this.professorVillagerDown = document.getElementById(
+			"professor-villager-down"
+		);
+		this.fishermanMentorUp = document.getElementById(
+			"fisherman-mentor-up"
+		);
+		this.fishermanMentorDown = document.getElementById(
+			"fisherman-mentor-down"
+		);
+		this.minerMentorUp = document.getElementById("miner-mentor-up");
+		this.minerMentorDown = document.getElementById("miner-mentor-down");
+		this.blacksmithMentorUp = document.getElementById(
+			"blacksmith-mentor-up"
+		);
+		this.blacksmithMentorDown = document.getElementById(
+			"blacksmith-mentor-down"
+		);
+		this.professorMentorUp = document.getElementById(
+			"professor-mentor-up"
+		);
+		this.professorMentorDown = document.getElementById(
+			"professor-mentor-down"
+		);
 
 		this.log = document.getElementById("log");
 	}
