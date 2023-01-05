@@ -200,6 +200,10 @@ header {
 }
 
 #assign-tab > table {
+	text-align: left;
+}
+
+#assign-tab > table > thead {
 	text-align: center;
 }
 
@@ -210,6 +214,10 @@ header {
 
 #assign-tab > table > tbody > tr > td:first-child {
 	text-align: right;
+}
+
+#assign-tab > table > tbody > tr > td:last-child {
+	text-align: center;
 }
 
 /* #endregion */
