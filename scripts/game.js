@@ -180,8 +180,8 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
 		// Update chaos levels
-		this.pierChaos = 1 - 0.9 ** (this.fishermen - 1);
-		this.quarryChaos = 1 - 0.9 ** (this.miners - 1);
+		this.pierChaos = Math.max(1 - 0.9 ** (this.fishermen - 1), 0);
+		this.quarryChaos = Math.max(1 - 0.9 ** (this.miners - 1), 0);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
@@ -208,6 +208,10 @@ class Game {
 		this.dom.lumberjacks.textContent = this.lumberjacks;
 		this.dom.fishermen.textContent = this.fishermen;
 		this.dom.miners.textContent = this.miners;
+
+		// Update chaos indicators
+		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
+		this.dom.quarryChaos.textContent = Math.ceil(this.quarryChaos * 100);
 	}
 
 	logMessage(type, msg) {
