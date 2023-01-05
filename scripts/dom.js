@@ -22,6 +22,12 @@ class DOM {
 		this.fishermen = document.getElementById("fishermen");
 		this.miners = document.getElementById("miners");
 
+		// Assignment buttons
+		this.fishermenUp = document.getElementById("fishermen-up");
+		this.fishermenDown = document.getElementById("fishermen-down");
+		this.minersUp = document.getElementById("miners-up");
+		this.minersDown = document.getElementById("miners-down");
+
 		this.log = document.getElementById("log");
 	}
 }
