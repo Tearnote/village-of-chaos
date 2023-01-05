@@ -11,6 +11,7 @@ class DOM {
 		this.stone = document.getElementById("stone-amount");
 		this.stoneIncome = document.getElementById("stone-income");
 		this.craftSpeed = document.getElementById("craft-speed");
+		this.researchSpeed = document.getElementById("research-speed");
 
 		// Gathering buttons
 		this.gatherWood = document.getElementById("gather-wood");
