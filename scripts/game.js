@@ -15,21 +15,25 @@ class Game {
 		this.tentLvl = 0;
 		this.pierLvl = 0;
 		this.quarryLvl = 0;
+		this.smithyLvl = 0;
 
 		// Chaos levels
 		this.pierChaos = 0;
 		this.quarryChaos = 0;
+		this.smithyChaos = 0;
 
 		// Assignments
 		this.lumberjacks = 0;
 		this.fishermen = 0;
 		this.miners = 0;
+		this.blacksmiths = 0;
 
 		// Balance and content
 		this.production = {
 			lumberjack: 0.001,
 			fisherman: 0.001,
 			miner: 0.001,
+			blacksmith: 0.6,
 		};
 		this.upgrades = this.createUpgrades();
 
@@ -43,6 +47,11 @@ class Game {
 		);
 		this.dom.minersUp.addEventListener("click", this.assignMiner);
 		this.dom.minersDown.addEventListener("click", this.unassignMiner);
+		this.dom.blacksmithsUp.addEventListener("click", this.assignBlacksmith);
+		this.dom.blacksmithsDown.addEventListener(
+			"click",
+			this.unassignBlacksmith
+		);
 
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
@@ -181,7 +190,7 @@ class Game {
 					game.quarryLvl += 1;
 					if (game.quarryLvl > 1) game.production.miner *= 1.5;
 				},
-			})
+			}),
 		];
 	}
 
@@ -192,6 +201,7 @@ class Game {
 		// Update chaos levels
 		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermen - 1), 0);
 		this.quarryChaos = Math.max(1 - 0.8 ** (this.miners - 1), 0);
+		this.smithyChaos = Math.max(1 - 0.8 ** (this.blacksmiths - 1), 0);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
@@ -218,10 +228,12 @@ class Game {
 		this.dom.lumberjacks.textContent = this.lumberjacks;
 		this.dom.fishermen.textContent = this.fishermen;
 		this.dom.miners.textContent = this.miners;
+		this.dom.blacksmiths.textContent = this.blacksmiths;
 
 		// Update chaos indicators
 		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
 		this.dom.quarryChaos.textContent = Math.ceil(this.quarryChaos * 100);
+		this.dom.smithyChaos.textContent = Math.ceil(this.smithyChaos * 100);
 	}
 
 	logMessage(type, msg) {
@@ -276,6 +288,19 @@ class Game {
 	unassignMiner = () => {
 		if (this.miners == 0) return;
 		this.miners -= 1;
+		this.lumberjacks += 1;
+	};
+
+	assignBlacksmith = () => {
+		if (this.lumberjacks == 0) return;
+		if (this.smithyLvl == 0) return;
+		this.lumberjacks -= 1;
+		this.blacksmiths += 1;
+	};
+
+	unassignBlacksmith = () => {
+		if (this.blacksmiths == 0) return;
+		this.blacksmiths -= 1;
 		this.lumberjacks += 1;
 	};
 }
