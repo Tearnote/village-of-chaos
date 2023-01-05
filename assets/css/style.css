@@ -139,8 +139,8 @@ header {
 	height: 100%;
 	max-height: 30rem;
 	display: flex;
-	flex-flow: column;
-	justify-content: flex-start;
+	flex-flow: column-reverse; /* Keeps container scrolled down */
+	overflow-y: scroll;
 	margin: 2rem;
 	border: 2px solid brown;
 	padding: 1rem;

@@ -3,10 +3,6 @@
 // into the DOM
 
 class Game {
-	static get MAX_LOG_MESSAGES() {
-		return 12;
-	}
-
 	constructor(dom) {
 		this.dom = dom;
 
@@ -105,6 +101,13 @@ class Game {
 			disembark.`
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
+		this.logMessage("info", "Welcome to Village of Chaos!");
+		this.logMessage("info", "Welcome to Village of Chaos!");
+		this.logMessage("info", "Welcome to Village of Chaos!");
+		this.logMessage("info", "Welcome to Village of Chaos!");
+		window.addEventListener("click", () => {
+			this.logMessage("info", "Welcome to Village of Chaos!");
+		});
 	}
 
 	update(dt) {
@@ -129,10 +132,7 @@ class Game {
 		let el = document.createElement("p");
 		el.textContent = msg;
 		el.classList.add(type);
-		this.dom.log.appendChild(el);
-
-		if (this.dom.log.children.length > Game.MAX_LOG_MESSAGES)
-			this.dom.log.children[0].remove();
+		this.dom.log.prepend(el); // Prepend instead of append because of flexbox direction
 	}
 
 	gatherFood = () => {
