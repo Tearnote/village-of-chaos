@@ -115,9 +115,12 @@ header {
 /* #region Gathering */
 
 .gathering {
-	display: flex;
-	flex-flow: column;
 	width: fit-content;
+	height: 100%;
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	flex-flow: column;
 	margin: 2rem;
 }
 
