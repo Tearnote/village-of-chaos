@@ -4,10 +4,14 @@ class Upgrade {
 		this.name = params?.name;
 		this.description = params?.description;
 		this.cost = params?.cost; // Array of 3 integers: [food, wood, stone]
+		this.duration = params?.duration; // Time it takes for the upgrade to complete (in seconds)
 		this.once = params?.once; // True if upgrade should disappear once bought
 		this.scaling = params.scaling; // Only required if once is false
 		this.requirement = params?.requirement; // Optional, upgrade will only be available if this function returns true
 		this.effect = params?.effect; // Function to run on buying
+
+		this.started = false;
+		this.progress = 0;
 	}
 
 	buildHtml() {
@@ -42,12 +46,22 @@ class Upgrade {
 		return this.el;
 	}
 
-	updateElement(game) {
-		if (!this.el) return;
-		if (this.requirement && !this.requirement(game)) this.el.classList.add("unavailable");
-		else this.el.classList.remove("unavailable");
-		if (this.canAfford(game)) this.el.classList.remove("inactive");
-		else this.el.classList.add("inactive");
+	update(game, dt) {
+		if (this.el) {
+			// Progress the upgrade if started
+			if (this.started) {
+				this.progress += dt / (this.duration * 1000);
+				if (this.progress >= 1) this.complete(game);
+				if (this.once) return; // The upgrade is finished forever
+			}
+
+			// Update the DOM element
+			if (this.requirement && !this.requirement(game))
+				this.el.classList.add("unavailable");
+			else this.el.classList.remove("unavailable");
+			if (this.canAfford(game)) this.el.classList.remove("inactive");
+			else this.el.classList.add("inactive");
+		}
 	}
 
 	canAfford(game) {
@@ -61,12 +75,15 @@ class Upgrade {
 	}
 
 	clickHandler = (game) => {
-		// Pay the cost if possible
+		// Pay the cost if possible and start the upgrade
 		if (!this.canAfford(game) || !this.active) return;
 		game.food -= this.cost[0];
 		game.wood -= this.cost[1];
 		game.stone -= this.cost[2];
+		this.started = true;
+	};
 
+	complete(game) {
 		// Perform upgrade effect and update upgrade state
 		this.effect(game);
 		if (this.once) {
@@ -80,6 +97,10 @@ class Upgrade {
 				this.cost[i] = Math.ceil(this.cost[i]);
 			}
 			this.el.innerHTML = this.buildHtml();
+
+			// Clean up
+			this.started = false;
+			this.progress = 0;
 		}
-	};
+	}
 }

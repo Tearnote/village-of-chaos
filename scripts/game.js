@@ -36,6 +36,7 @@ class Game {
 				name: "Build a tent",
 				description: "Has space for two villagers.",
 				cost: [20, 20, 0],
+				duration: 0.8,
 				once: false,
 				scaling: 2.5,
 				effect: function (game) {
@@ -62,6 +63,7 @@ class Game {
 				description:
 					"Catch the local fluffy bunny population for some food.",
 				cost: [5, 5, 0],
+				duration: 1.4,
 				once: true,
 				effect: function (game) {
 					game.food += 40;
@@ -76,6 +78,7 @@ class Game {
 				description:
 					"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
 				cost: [0, 20, 0],
+				duration: 2,
 				once: true,
 				requirement: function (game) {
 					return game.tentLvl >= 1 ? true : false;
@@ -93,6 +96,7 @@ class Game {
 				description:
 					"Construct a wooden pier for your villagers to fish from.",
 				cost: [0, 50, 0],
+				duration: 2.5,
 				once: false,
 				scaling: 2.5,
 				requirement: function (game) {
@@ -121,6 +125,7 @@ class Game {
 				description:
 					"Prepare a spot on the cliff for your villagers to mine for stone.",
 				cost: [0, 200, 0],
+				duration: 4,
 				once: false,
 				scaling: 2.5,
 				requirement: function (game) {
@@ -176,8 +181,8 @@ class Game {
 	}
 
 	update(dt) {
-		// Mark upgrades that can't be bought
-		for (let upgrade of this.upgrades) upgrade.updateElement(game);
+		// Update upgrade state and progress
+		for (let upgrade of this.upgrades) upgrade.update(game, dt);
 
 		// Update chaos levels
 		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermen - 1), 0);
