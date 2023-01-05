@@ -101,13 +101,6 @@ class Game {
 			disembark.`
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.logMessage("info", "Welcome to Village of Chaos!");
-		window.addEventListener("click", () => {
-			this.logMessage("info", "Welcome to Village of Chaos!");
-		});
 	}
 
 	update(dt) {
