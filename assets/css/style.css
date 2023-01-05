@@ -145,7 +145,20 @@ header {
 	border: 2px solid brown;
 	padding: 1rem;
 	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.8rem;
 	background-color: white;
+}
+
+.info {
+	color: blue;
+}
+
+.story {
+	color: darkgreen;
+}
+
+.event {
+	color: orangered;
 }
 
 /* #endregion */

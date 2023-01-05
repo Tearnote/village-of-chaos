@@ -39,12 +39,14 @@ class Game {
 					if (game.tentLvl === 0) {
 						game.unassigned += 2;
 						game.logMessage(
-							"Two villagers joined your settlement."
+							"event",
+							"Two villagers have joined your settlement."
 						);
 					} else {
 						game.unassigned += 1;
 						game.logMessage(
-							"One extra villager joined your settlement."
+							"event",
+							"One extra villager has joined your settlement."
 						);
 					}
 					game.tentLvl += 1;
@@ -59,6 +61,7 @@ class Game {
 				effect: (game) => {
 					game.food += 30;
 					game.logMessage(
+						"event",
 						"You eradicated all bunnies. The ecosystem might recover someday."
 					);
 				},
@@ -75,6 +78,7 @@ class Game {
 				effect: (game) => {
 					game.production.lumberjack *= 1.5;
 					game.logMessage(
+						"event",
 						"Your lumberjacks are now equipped with wooden axes."
 					);
 				},
@@ -91,6 +95,7 @@ class Game {
 		}
 
 		this.logMessage(
+			"story",
 			`It's a bright sunny day, and you are standing in the middle of a
 			forest clearing. To your left is a glistening river full of fish,
 			and the cliffs promise to provide bountiful building material. What
@@ -99,7 +104,7 @@ class Game {
 			black structure in the distance? Regardless of your reasons, you
 			disembark.`
 		);
-		this.logMessage("Welcome to Village of Chaos!");
+		this.logMessage("info", "Welcome to Village of Chaos!");
 	}
 
 	update(dt) {
@@ -120,9 +125,10 @@ class Game {
 		this.dom.stone.textContent = Math.floor(this.stone);
 	}
 
-	logMessage(msg) {
+	logMessage(type, msg) {
 		let el = document.createElement("p");
 		el.textContent = msg;
+		el.classList.add(type);
 		this.dom.log.appendChild(el);
 
 		if (this.dom.log.children.length > Game.MAX_LOG_MESSAGES)
