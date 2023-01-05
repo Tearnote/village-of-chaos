@@ -17,6 +17,9 @@ class DOM {
 		this.buildTab = document.getElementById("build-tab");
 		this.researchTab = document.getElementById("research-tab");
 
+		// Assignment counts
+		this.unassigned = document.getElementById("unassigned");
+
 		this.log = document.getElementById("log");
 	}
 }

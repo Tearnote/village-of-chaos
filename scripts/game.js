@@ -18,14 +18,18 @@ class Game {
 		// Buildings
 		this.houses = 0;
 
+		// Assignments
+		this.unassigned = 0;
+
 		this.upgrades = [
 			new Upgrade({
 				name: "Build a house",
 				cost: [20, 20, 0],
 				once: false,
-				scaling: 1.5,
+				scaling: 2.5,
 				effect: function (game) {
 					game.houses += 1;
+					game.unassigned += 2;
 				},
 			}),
 			new Upgrade({
@@ -42,9 +46,6 @@ class Game {
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 
-		// Build the villager assign table
-		
-
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
 			this.dom.buildTab.appendChild(upgrade.createElement(this));
@@ -54,6 +55,8 @@ class Game {
 	}
 
 	update(dt) {
+		this.dom.unassigned.textContent = this.unassigned;
+		
 		// Mark upgrades that can't be bought
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 	}
