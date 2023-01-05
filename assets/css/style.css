@@ -204,12 +204,14 @@ header {
 /* #region Upgrades */
 
 .upgrade {
+	position: relative;
 	margin: 0.5rem;
 	border: 1px solid black;
 	padding: 0.5rem 1rem;
 	background-color: white;
 	cursor: pointer;
 	user-select: none;
+	--progress: 0%;
 }
 
 .upgrade.inactive {
@@ -218,6 +220,17 @@ header {
 
 .upgrade.unavailable {
 	display: none;
+}
+
+.upgrade::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: var(--progress);
+	height: 100%;
+	background-color: rgba(152, 255, 160, 0.4);
 }
 
 /* #endregion */

@@ -51,8 +51,10 @@ class Upgrade {
 			// Progress the upgrade if started
 			if (this.started) {
 				this.progress += dt / (this.duration * 1000);
-				if (this.progress >= 1) this.complete(game);
-				if (this.once) return; // The upgrade is finished forever
+				if (this.progress >= 1) {
+					this.complete(game);
+					if (this.once) return;
+				}
 			}
 
 			// Update the DOM element
@@ -61,6 +63,8 @@ class Upgrade {
 			else this.el.classList.remove("unavailable");
 			if (this.canAfford(game)) this.el.classList.remove("inactive");
 			else this.el.classList.add("inactive");
+			// Progress bar
+			this.el.style.setProperty("--progress", this.progress * 100 + "%");
 		}
 	}
 
