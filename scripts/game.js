@@ -18,12 +18,14 @@ class Game {
 
 		// Assignments
 		this.unassigned = 0;
+		this.fishermen = 0;
 		this.miners = 0;
 
 		// Balance and content
 		this.production = {
 			lumberjack: 0.0005,
-			miner: 0.0005
+			fisherman: 0.0005,
+			miner: 0.0005,
 		};
 		this.upgrades = [
 			new Upgrade({
@@ -54,11 +56,11 @@ class Game {
 			new Upgrade({
 				name: "Hunt down local wildlife",
 				description:
-					"Decimate local fluffy bunny population for some food.",
+					"Catch the local fluffy bunny population for some food.",
 				cost: [5, 5, 0],
 				once: true,
 				effect: function (game) {
-					game.food += 30;
+					game.food += 40;
 					game.logMessage(
 						"event",
 						"You eradicated all bunnies. The ecosystem might recover someday."
@@ -69,7 +71,7 @@ class Game {
 				name: "Craft wooden axes",
 				description:
 					"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
-				cost: [0, 50, 0],
+				cost: [0, 20, 0],
 				once: true,
 				requirement: function (game) {
 					return game.tentLvl >= 1 ? true : false;
@@ -83,10 +85,38 @@ class Game {
 				},
 			}),
 			new Upgrade({
+				name: "Build a pier",
+				description:
+					"Construct a wooden pier for your villagers to fish from.",
+				cost: [0, 50, 0],
+				once: false,
+				scaling: 2.5,
+				requirement: function (game) {
+					return game.tentLvl >= 1 ? true : false;
+				},
+				effect: function (game) {
+					this.name = "Extend the pier";
+					this.description =
+						"A longer pier means access to bigger fish.";
+					if (game.pierLvl === 0)
+						game.logMessage(
+							"event",
+							"You built a pier, and can now assign fishermen."
+						);
+					else
+						game.logMessage(
+							"event",
+							"Your fishermen can now catch bigger fish."
+						);
+					game.pierLvl += 1;
+					if (game.pierLvl > 1) game.production.fisherman *= 1.5;
+				},
+			}),
+			new Upgrade({
 				name: "Build a quarry",
 				description:
 					"Prepare a spot on the cliff for your villagers to mine for stone.",
-				cost: [0, 100, 0],
+				cost: [0, 200, 0],
 				once: false,
 				scaling: 2.5,
 				requirement: function (game) {
@@ -107,8 +137,7 @@ class Game {
 							"Your quarry is now more efficient."
 						);
 					game.quarryLvl += 1;
-					if (game.quarryLvl > 1)
-							game.production.miner *= 1.5;
+					if (game.quarryLvl > 1) game.production.miner *= 1.5;
 				},
 			}),
 		];
@@ -143,6 +172,7 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
 		// Generate resources
+		this.food += dt * this.production.fisherman * this.fishermen;
 		this.wood += dt * this.production.lumberjack * this.unassigned;
 		this.stone += dt * this.production.miner * this.miners;
 	}
