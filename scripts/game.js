@@ -179,6 +179,10 @@ class Game {
 		// Mark upgrades that can't be bought
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
+		// Update chaos levels
+		this.pierChaos = 1 - 0.9 ** (this.fishermen - 1);
+		this.quarryChaos = 1 - 0.9 ** (this.miners - 1);
+
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
 		this.food += dt * this.getFoodProduction();
