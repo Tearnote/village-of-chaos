@@ -16,7 +16,8 @@ class Game {
 		this.stone = 0;
 
 		// Buildings
-		this.houses = 0;
+		this.tentLvl = 0;
+		this.pierLvl = 0;
 
 		// Assignments
 		this.unassigned = 0;
@@ -27,20 +28,21 @@ class Game {
 		};
 		this.upgrades = [
 			new Upgrade({
-				name: "Build a house",
+				name: "Build a tent",
 				cost: [20, 20, 0],
 				once: false,
 				scaling: 2.5,
-				effect: function (game) {
-					game.houses += 1;
-					game.unassigned += 2;
+				effect: (game) => {
+					this.name = "Expand the tent";
+					game.unassigned += (game.tentLvl === 0)? 2 : 1;
+					game.tentLvl += 1;
 				},
 			}),
 			new Upgrade({
 				name: "Hunt down local wildlife",
 				cost: [5, 5, 0],
 				once: true,
-				effect: function (game) {
+				effect: (game) => {
 					game.food += 30;
 				},
 			}),
@@ -48,10 +50,10 @@ class Game {
 				name: "Craft wooden axes",
 				cost: [0, 50, 0],
 				once: true,
-				effect: function (game) {
+				effect: (game) => {
 					game.production.lumberjack *= 1.5;
-				}
-			})
+				},
+			}),
 		];
 
 		// Register button clicks
