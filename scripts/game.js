@@ -31,7 +31,40 @@ class Game {
 			fisherman: 0.001,
 			miner: 0.001,
 		};
-		this.upgrades = [
+		this.upgrades = this.createUpgrades();
+
+		// Register button clicks
+		this.dom.gatherWood.addEventListener("click", this.gatherWood);
+		this.dom.gatherFood.addEventListener("click", this.gatherFood);
+		this.dom.fishermenUp.addEventListener("click", this.assignFisherman);
+		this.dom.fishermenDown.addEventListener(
+			"click",
+			this.unassignFisherman
+		);
+		this.dom.minersUp.addEventListener("click", this.assignMiner);
+		this.dom.minersDown.addEventListener("click", this.unassignMiner);
+
+		// Add upgrades to the DOM
+		for (let upgrade of this.upgrades) {
+			this.dom.buildTab.appendChild(upgrade.createElement(this));
+		}
+
+		// Add some flavor text
+		this.logMessage(
+			"story",
+			`It's a bright sunny day, and you are standing in the middle of a
+			forest clearing. To your left is a glistening river full of fish,
+			and the cliffs promise to provide bountiful building material. What
+			attracted you to this place? Was it the prospect of escaping the
+			hustle of city life? Or maybe you were curious about the giant
+			black structure in the distance? Regardless of your reasons, you
+			disembark.`
+		);
+		this.logMessage("info", "Welcome to Village of Chaos!");
+	}
+
+	createUpgrades() {
+		return [
 			new Upgrade({
 				name: "Build a tent",
 				description: "Has space for two villagers.",
@@ -148,36 +181,8 @@ class Game {
 					game.quarryLvl += 1;
 					if (game.quarryLvl > 1) game.production.miner *= 1.5;
 				},
-			}),
+			})
 		];
-
-		// Register button clicks
-		this.dom.gatherWood.addEventListener("click", this.gatherWood);
-		this.dom.gatherFood.addEventListener("click", this.gatherFood);
-		this.dom.fishermenUp.addEventListener("click", this.assignFisherman);
-		this.dom.fishermenDown.addEventListener(
-			"click",
-			this.unassignFisherman
-		);
-		this.dom.minersUp.addEventListener("click", this.assignMiner);
-		this.dom.minersDown.addEventListener("click", this.unassignMiner);
-
-		// Add upgrades to the DOM
-		for (let upgrade of this.upgrades) {
-			this.dom.buildTab.appendChild(upgrade.createElement(this));
-		}
-
-		this.logMessage(
-			"story",
-			`It's a bright sunny day, and you are standing in the middle of a
-			forest clearing. To your left is a glistening river full of fish,
-			and the cliffs promise to provide bountiful building material. What
-			attracted you to this place? Was it the prospect of escaping the
-			hustle of city life? Or maybe you were curious about the giant
-			black structure in the distance? Regardless of your reasons, you
-			disembark.`
-		);
-		this.logMessage("info", "Welcome to Village of Chaos!");
 	}
 
 	update(dt) {
