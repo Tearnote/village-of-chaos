@@ -36,7 +36,17 @@ class Game {
 				effect: (game) => {
 					this.name = "Expand the tent";
 					this.description = "Add space for an extra villager.";
-					game.unassigned += game.tentLvl === 0 ? 2 : 1;
+					if (game.tentLvl === 0) {
+						game.unassigned += 2;
+						game.logMessage(
+							"Two villagers joined your settlement."
+						);
+					} else {
+						game.unassigned += 1;
+						game.logMessage(
+							"One extra villager joined your settlement."
+						);
+					}
 					game.tentLvl += 1;
 				},
 			}),
@@ -48,6 +58,9 @@ class Game {
 				once: true,
 				effect: (game) => {
 					game.food += 30;
+					game.logMessage(
+						"You eradicated all bunnies. The ecosystem might recover someday."
+					);
 				},
 			}),
 			new Upgrade({
@@ -61,6 +74,9 @@ class Game {
 				},
 				effect: (game) => {
 					game.production.lumberjack *= 1.5;
+					game.logMessage(
+						"Your lumberjacks are now equipped with wooden axes."
+					);
 				},
 			}),
 		];
@@ -74,6 +90,15 @@ class Game {
 			this.dom.buildTab.appendChild(upgrade.createElement(this));
 		}
 
+		this.logMessage(
+			`It's a bright sunny day, and you are standing in the middle of a
+			forest clearing. To your left is a glistening river full of fish,
+			and the cliffs promise to provide bountiful building material. What
+			attracted you to this place? Was it the prospect of escaping the
+			hustle of city life? Or maybe you were curious about the giant
+			black structure in the distance? Regardless of your reasons, you
+			disembark.`
+		);
 		this.logMessage("Welcome to Village of Chaos!");
 	}
 
