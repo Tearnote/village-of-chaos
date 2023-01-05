@@ -16,17 +16,20 @@ class Game {
 		this.pierLvl = 0;
 		this.quarryLvl = 0;
 		this.smithyLvl = 0;
+		this.academyLvl = 0;
 
 		// Chaos levels
 		this.pierChaos = 0;
 		this.quarryChaos = 0;
 		this.smithyChaos = 0;
+		this.academyChaos = 0;
 
 		// Assignments
 		this.lumberjacks = 0;
 		this.fishermen = 0;
 		this.miners = 0;
 		this.blacksmiths = 0;
+		this.professors = 0;
 
 		// Balance and content
 		this.production = {
@@ -34,6 +37,7 @@ class Game {
 			fisherman: 0.001,
 			miner: 0.001,
 			blacksmith: 0.6,
+			professor: 0.6,
 		};
 		this.upgrades = this.createUpgrades();
 
@@ -51,6 +55,11 @@ class Game {
 		this.dom.blacksmithsDown.addEventListener(
 			"click",
 			this.unassignBlacksmith
+		);
+		this.dom.professorsUp.addEventListener("click", this.assignProfessor);
+		this.dom.professorsDown.addEventListener(
+			"click",
+			this.unassignProfessor
 		);
 
 		// Add upgrades to the DOM
@@ -198,7 +207,8 @@ class Game {
 			}),
 			new Upgrade({
 				name: "Build a smithy",
-				description: "Assign blacksmiths to help you complete upgrades faster.",
+				description:
+					"Assign blacksmiths to help you complete upgrades faster.",
 				type: "craft",
 				cost: [0, 100, 100],
 				duration: 4,
@@ -209,15 +219,22 @@ class Game {
 				},
 				effect: function (game) {
 					this.name = "Modernize the smithy";
-					this.description = "Get some new tools to make upgrades even faster.";
+					this.description =
+						"Get some new tools to make upgrades even faster.";
 					if (game.smithyLvl === 0)
-						game.logMessage("event", "You built a smithy to help speed up your upgrades!");
+						game.logMessage(
+							"event",
+							"You built a smithy to help speed up your upgrades!"
+						);
 					else
-						game.logMessage("event", "Your blacksmiths will now help you even more.");
+						game.logMessage(
+							"event",
+							"Your blacksmiths will now help you even more."
+						);
 					game.smithyLvl += 1;
 					if (game.smithyLvl > 1) game.production.blacksmith *= 0.6;
-				}
-			})
+				},
+			}),
 		];
 	}
 
@@ -229,6 +246,7 @@ class Game {
 		this.pierChaos = Math.max(1 - 0.8 ** (this.fishermen - 1), 0);
 		this.quarryChaos = Math.max(1 - 0.8 ** (this.miners - 1), 0);
 		this.smithyChaos = Math.max(1 - 0.8 ** (this.blacksmiths - 1), 0);
+		this.academyChaos = Math.max(1 - 0.8 ** (this.professors - 1), 0);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
@@ -250,18 +268,22 @@ class Game {
 		this.dom.stoneIncome.textContent = (
 			this.getStoneProduction() * 1000
 		).toFixed(1);
-		this.dom.craftSpeed.textContent = (1 / this.getCraftSpeedup()).toFixed(1);
+		this.dom.craftSpeed.textContent = (1 / this.getCraftSpeedup()).toFixed(
+			1
+		);
 
 		// Update assignment counts
 		this.dom.lumberjacks.textContent = this.lumberjacks;
 		this.dom.fishermen.textContent = this.fishermen;
 		this.dom.miners.textContent = this.miners;
 		this.dom.blacksmiths.textContent = this.blacksmiths;
+		this.dom.professors.textContent = this.professors;
 
 		// Update chaos indicators
 		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
 		this.dom.quarryChaos.textContent = Math.ceil(this.quarryChaos * 100);
 		this.dom.smithyChaos.textContent = Math.ceil(this.smithyChaos * 100);
+		this.dom.academyChaos.textContent = Math.ceil(this.academyChaos * 100);
 	}
 
 	logMessage(type, msg) {
@@ -286,7 +308,19 @@ class Game {
 	}
 
 	getCraftSpeedup() {
-		return 1 - (1 - this.production.blacksmith ** this.blacksmiths) * (1 - this.smithyChaos);
+		return (
+			1 -
+			(1 - this.production.blacksmith ** this.blacksmiths) *
+				(1 - this.smithyChaos)
+		);
+	}
+
+	getResearchSpeedup() {
+		return (
+			1 -
+			(1 - this.production.professor ** this.professors) *
+				(1 - this.academyChaos)
+		);
 	}
 
 	gatherFood = () => {
@@ -333,6 +367,19 @@ class Game {
 	unassignBlacksmith = () => {
 		if (this.blacksmiths == 0) return;
 		this.blacksmiths -= 1;
+		this.lumberjacks += 1;
+	};
+
+	assignProfessor = () => {
+		if (this.lumberjacks == 0) return;
+		if (this.academyLvl == 0) return;
+		this.lumberjacks -= 1;
+		this.professors += 1;
+	};
+
+	unassignProfessor = () => {
+		if (this.professors == 0) return;
+		this.professors -= 1;
 		this.lumberjacks += 1;
 	};
 }
