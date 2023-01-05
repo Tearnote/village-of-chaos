@@ -188,19 +188,19 @@ class Game {
 			this.production.lumberjack *
 			this.lumberjacks *
 			1000
-		).toFixed(2);
+		).toFixed(1);
 		this.dom.food.textContent = Math.floor(this.food);
 		this.dom.foodIncome.textContent = (
 			this.production.fisherman *
 			this.fishermen *
 			1000
-		).toFixed(2);
+		).toFixed(1);
 		this.dom.stone.textContent = Math.floor(this.stone);
 		this.dom.stoneIncome.textContent = (
 			this.production.miner *
 			this.miners *
 			1000
-		).toFixed(2);
+		).toFixed(1);
 
 		// Update assignment counts
 		this.dom.lumberjacks.textContent = this.lumberjacks;
