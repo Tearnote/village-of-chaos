@@ -4,13 +4,13 @@
 class DOM {
 	constructor() {
 		// Resource indicators
-		this.food = document.getElementById("food-amount");
 		this.wood = document.getElementById("wood-amount");
+		this.food = document.getElementById("food-amount");
 		this.stone = document.getElementById("stone-amount");
 
 		// Gathering buttons
-		this.gatherFood = document.getElementById("gather-food");
 		this.gatherWood = document.getElementById("gather-wood");
+		this.gatherFood = document.getElementById("gather-food");
 
 		// Interface tabs
 		this.assignTab = document.getElementById("assign-tab");
@@ -18,7 +18,9 @@ class DOM {
 		this.researchTab = document.getElementById("research-tab");
 
 		// Assignment counts
-		this.unassigned = document.getElementById("unassigned");
+		this.lumberjacks = document.getElementById("lumberjacks");
+		this.fishermen = document.getElementById("fishermen");
+		this.miners = document.getElementById("miners");
 
 		this.log = document.getElementById("log");
 	}

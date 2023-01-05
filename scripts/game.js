@@ -7,8 +7,8 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.food = 0;
 		this.wood = 0;
+		this.food = 0;
 		this.stone = 0;
 
 		// Buildings
@@ -17,7 +17,7 @@ class Game {
 		this.quarryLvl = 0;
 
 		// Assignments
-		this.unassigned = 0;
+		this.lumberjacks = 0;
 		this.fishermen = 0;
 		this.miners = 0;
 
@@ -38,13 +38,13 @@ class Game {
 					this.name = "Expand the tent";
 					this.description = "Add space for an extra villager.";
 					if (game.tentLvl === 0) {
-						game.unassigned += 2;
+						game.lumberjacks += 2;
 						game.logMessage(
 							"event",
 							"Two villagers have joined your settlement."
 						);
 					} else {
-						game.unassigned += 1;
+						game.lumberjacks += 1;
 						game.logMessage(
 							"event",
 							"One extra villager has joined your settlement."
@@ -143,8 +143,8 @@ class Game {
 		];
 
 		// Register button clicks
-		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
+		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
@@ -166,21 +166,23 @@ class Game {
 
 	update(dt) {
 		// Update assignment counts
-		this.dom.unassigned.textContent = this.unassigned;
+		this.dom.lumberjacks.textContent = this.lumberjacks;
+		this.dom.fishermen.textContent = this.fishermen;
+		this.dom.miners.textContent = this.miners;
 
 		// Mark upgrades that can't be bought
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
 		// Generate resources
+		this.wood += dt * this.production.lumberjack * this.lumberjacks;
 		this.food += dt * this.production.fisherman * this.fishermen;
-		this.wood += dt * this.production.lumberjack * this.unassigned;
 		this.stone += dt * this.production.miner * this.miners;
 	}
 
 	render() {
 		// Display resources
-		this.dom.food.textContent = Math.floor(this.food);
 		this.dom.wood.textContent = Math.floor(this.wood);
+		this.dom.food.textContent = Math.floor(this.food);
 		this.dom.stone.textContent = Math.floor(this.stone);
 	}
 
