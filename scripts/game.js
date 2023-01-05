@@ -21,6 +21,10 @@ class Game {
 		// Assignments
 		this.unassigned = 0;
 
+		// Balance and content
+		this.production = {
+			lumberjack: 0.0005,
+		};
 		this.upgrades = [
 			new Upgrade({
 				name: "Build a house",
@@ -40,6 +44,14 @@ class Game {
 					game.food += 30;
 				},
 			}),
+			new Upgrade({
+				name: "Craft wooden axes",
+				cost: [0, 50, 0],
+				once: true,
+				effect: function (game) {
+					game.production.lumberjack *= 1.5;
+				}
+			})
 		];
 
 		// Register button clicks
@@ -55,10 +67,14 @@ class Game {
 	}
 
 	update(dt) {
+		// Update assignment counts
 		this.dom.unassigned.textContent = this.unassigned;
-		
+
 		// Mark upgrades that can't be bought
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
+
+		// Generate resources
+		this.wood += dt * this.production.lumberjack * this.unassigned;
 	}
 
 	render() {
