@@ -146,7 +146,10 @@ class Game {
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 		this.dom.fishermenUp.addEventListener("click", this.assignFisherman);
-		this.dom.fishermenDown.addEventListener("click", this.unassignFisherman);
+		this.dom.fishermenDown.addEventListener(
+			"click",
+			this.unassignFisherman
+		);
 		this.dom.minersUp.addEventListener("click", this.assignMiner);
 		this.dom.minersDown.addEventListener("click", this.unassignMiner);
 
@@ -169,11 +172,6 @@ class Game {
 	}
 
 	update(dt) {
-		// Update assignment counts
-		this.dom.lumberjacks.textContent = this.lumberjacks;
-		this.dom.fishermen.textContent = this.fishermen;
-		this.dom.miners.textContent = this.miners;
-
 		// Mark upgrades that can't be bought
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
@@ -186,8 +184,28 @@ class Game {
 	render() {
 		// Display resources
 		this.dom.wood.textContent = Math.floor(this.wood);
+		this.dom.woodIncome.textContent = (
+			this.production.lumberjack *
+			this.lumberjacks *
+			1000
+		).toFixed(2);
 		this.dom.food.textContent = Math.floor(this.food);
+		this.dom.foodIncome.textContent = (
+			this.production.fisherman *
+			this.fishermen *
+			1000
+		).toFixed(2);
 		this.dom.stone.textContent = Math.floor(this.stone);
+		this.dom.stoneIncome.textContent = (
+			this.production.miner *
+			this.miners *
+			1000
+		).toFixed(2);
+
+		// Update assignment counts
+		this.dom.lumberjacks.textContent = this.lumberjacks;
+		this.dom.fishermen.textContent = this.fishermen;
+		this.dom.miners.textContent = this.miners;
 	}
 
 	logMessage(type, msg) {
