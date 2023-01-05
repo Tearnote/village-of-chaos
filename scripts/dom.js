@@ -26,11 +26,13 @@ class DOM {
 		this.fishermen = document.getElementById("fishermen");
 		this.miners = document.getElementById("miners");
 		this.blacksmiths = document.getElementById("blacksmiths");
+		this.professors = document.getElementById("professors");
 
 		// Chaos indicators
 		this.pierChaos = document.getElementById("pier-chaos");
 		this.quarryChaos = document.getElementById("quarry-chaos");
 		this.smithyChaos = document.getElementById("smithy-chaos");
+		this.academyChaos = document.getElementById("academy-chaos");
 
 		// Assignment buttons
 		this.fishermenUp = document.getElementById("fishermen-up");
@@ -39,6 +41,8 @@ class DOM {
 		this.minersDown = document.getElementById("miners-down");
 		this.blacksmithsUp = document.getElementById("blacksmiths-up");
 		this.blacksmithsDown = document.getElementById("blacksmiths-down");
+		this.professorsUp = document.getElementById("professors-up");
+		this.professorsDown = document.getElementById("professors-down");
 
 		this.log = document.getElementById("log");
 	}
