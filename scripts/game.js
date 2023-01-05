@@ -77,6 +77,7 @@ class Game {
 			new Upgrade({
 				name: "Build a tent",
 				description: "Has space for two villagers.",
+				type: "craft",
 				cost: [20, 20, 0],
 				duration: 0.8,
 				once: false,
@@ -104,6 +105,7 @@ class Game {
 				name: "Hunt down local wildlife",
 				description:
 					"Catch the local fluffy bunny population for some food.",
+				type: "craft",
 				cost: [5, 5, 0],
 				duration: 1.4,
 				once: true,
@@ -119,6 +121,7 @@ class Game {
 				name: "Craft wooden axes",
 				description:
 					"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
+				type: "craft",
 				cost: [0, 20, 0],
 				duration: 2,
 				once: true,
@@ -137,6 +140,7 @@ class Game {
 				name: "Build a pier",
 				description:
 					"Construct a wooden pier for your villagers to fish from.",
+				type: "craft",
 				cost: [0, 50, 0],
 				duration: 2.5,
 				once: false,
@@ -166,6 +170,7 @@ class Game {
 				name: "Build a quarry",
 				description:
 					"Prepare a spot on the cliff for your villagers to mine for stone.",
+				type: "craft",
 				cost: [0, 200, 0],
 				duration: 4,
 				once: false,
@@ -191,6 +196,28 @@ class Game {
 					if (game.quarryLvl > 1) game.production.miner *= 1.5;
 				},
 			}),
+			new Upgrade({
+				name: "Build a smithy",
+				description: "Assign blacksmiths to help you complete upgrades faster.",
+				type: "craft",
+				cost: [0, 100, 100],
+				duration: 4,
+				once: false,
+				scaling: 2.5,
+				requirement: function (game) {
+					return game.quarryLvl >= 1 ? true : false;
+				},
+				effect: function (game) {
+					this.name = "Modernize the smothy";
+					this.description = "Get some new tools to make upgrades even faster.";
+					if (game.smithyLvl === 0)
+						game.logMessage("event", "You built a smithy to help speed up your upgrades!");
+					else
+						game.logMessage("event", "Your blacksmiths will now help you even more.");
+					game.smithyLvl += 1;
+					if (game.smithyLvl > 1) game.production.blacksmith *= 0.6;
+				}
+			})
 		];
 	}
 
@@ -255,6 +282,10 @@ class Game {
 
 	getStoneProduction() {
 		return this.production.miner * this.miners * (1 - this.quarryChaos);
+	}
+
+	getCraftSpeedup() {
+		return 1 - (1 - this.production.blacksmith ** this.blacksmiths) * (1 - this.quarryChaos);
 	}
 
 	gatherFood = () => {

@@ -3,6 +3,7 @@ class Upgrade {
 		this.active = true;
 		this.name = params?.name;
 		this.description = params?.description;
+		this.type = params?.type; // "craft" or "research"
 		this.cost = params?.cost; // Array of 3 integers: [food, wood, stone]
 		this.duration = params?.duration; // Time it takes for the upgrade to complete (in seconds)
 		this.once = params?.once; // True if upgrade should disappear once bought
@@ -50,7 +51,9 @@ class Upgrade {
 		if (this.el) {
 			// Progress the upgrade if started
 			if (this.started) {
-				this.progress += dt / (this.duration * 1000);
+				let speedup = this.type == "craft"? game.getCraftSpeedup() : 1;
+				console.log(speedup);
+				this.progress += dt / (this.duration * 1000 * speedup);
 				if (this.progress >= 1) {
 					this.complete(game);
 					if (this.once) return;
