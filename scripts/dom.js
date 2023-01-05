@@ -25,6 +25,10 @@ class DOM {
 		this.fishermen = document.getElementById("fishermen");
 		this.miners = document.getElementById("miners");
 
+		// Chaos indicators
+		this.pierChaos = document.getElementById("pier-chaos");
+		this.quarryChaos = document.getElementById("quarry-chaos");
+
 		// Assignment buttons
 		this.fishermenUp = document.getElementById("fishermen-up");
 		this.fishermenDown = document.getElementById("fishermen-down");
