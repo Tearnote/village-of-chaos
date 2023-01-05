@@ -29,17 +29,20 @@ class Game {
 		this.upgrades = [
 			new Upgrade({
 				name: "Build a tent",
+				description: "Has space for two villagers.",
 				cost: [20, 20, 0],
 				once: false,
 				scaling: 2.5,
 				effect: (game) => {
 					this.name = "Expand the tent";
+					this.description = "Add space for an extra villager.";
 					game.unassigned += (game.tentLvl === 0)? 2 : 1;
 					game.tentLvl += 1;
 				},
 			}),
 			new Upgrade({
 				name: "Hunt down local wildlife",
+				description: "Decimate local fluffy bunny population for some food.",
 				cost: [5, 5, 0],
 				once: true,
 				effect: (game) => {
@@ -48,6 +51,7 @@ class Game {
 			}),
 			new Upgrade({
 				name: "Craft wooden axes",
+				description: "Your lumberjacks will be happy they don't have to use their bare fists anymore.",
 				cost: [0, 50, 0],
 				once: true,
 				effect: (game) => {

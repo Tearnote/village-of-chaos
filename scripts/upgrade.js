@@ -2,6 +2,7 @@ class Upgrade {
 	constructor(params = {}) {
 		this.active = true;
 		this.name = params?.name;
+		this.description = params?.description;
 		this.cost = params?.cost; // Array of 3 integers: [food, wood, stone]
 		this.once = params?.once; // True if upgrade should disappear once bought
 		this.scaling = params?.scaling; // Only required if once is false
@@ -10,7 +11,8 @@ class Upgrade {
 
 	buildHtml() {
 		let html = "";
-		html += `<p>${this.name}</p>`;
+		html += `<h2>${this.name}</h2>`;
+		html += `<p>${this.description}</p>`;
 		html += `<p>Cost: `;
 		let atLeastOne = false;
 		if (this.cost[0] > 0) {
