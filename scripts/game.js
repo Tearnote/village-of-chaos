@@ -14,13 +14,16 @@ class Game {
 		// Buildings
 		this.tentLvl = 0;
 		this.pierLvl = 0;
+		this.quarryLvl = 0;
 
 		// Assignments
 		this.unassigned = 0;
+		this.miners = 0;
 
 		// Balance and content
 		this.production = {
 			lumberjack: 0.0005,
+			miner: 0.0005
 		};
 		this.upgrades = [
 			new Upgrade({
@@ -79,6 +82,35 @@ class Game {
 					);
 				},
 			}),
+			new Upgrade({
+				name: "Build a quarry",
+				description:
+					"Prepare a spot on the cliff for your villagers to mine for stone.",
+				cost: [0, 100, 0],
+				once: false,
+				scaling: 2.5,
+				requirement: function (game) {
+					return game.tentLvl >= 1 ? true : false;
+				},
+				effect: function (game) {
+					this.name = "Expand the quarry";
+					this.description =
+						"Make more of the cliff surface available for mining.";
+					if (game.quarryLvl === 0)
+						game.logMessage(
+							"event",
+							"You built a quarry, and can now assign miners."
+						);
+					else
+						game.logMessage(
+							"event",
+							"Your quarry is now more efficient."
+						);
+					game.quarryLvl += 1;
+					if (game.quarryLvl > 1)
+							game.production.miner *= 1.5;
+				},
+			}),
 		];
 
 		// Register button clicks
@@ -112,6 +144,7 @@ class Game {
 
 		// Generate resources
 		this.wood += dt * this.production.lumberjack * this.unassigned;
+		this.stone += dt * this.production.miner * this.miners;
 	}
 
 	render() {
