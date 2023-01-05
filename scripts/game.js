@@ -33,7 +33,7 @@ class Game {
 				cost: [20, 20, 0],
 				once: false,
 				scaling: 2.5,
-				effect: (game) => {
+				effect: function (game) {
 					this.name = "Expand the tent";
 					this.description = "Add space for an extra villager.";
 					if (game.tentLvl === 0) {
@@ -58,7 +58,7 @@ class Game {
 					"Decimate local fluffy bunny population for some food.",
 				cost: [5, 5, 0],
 				once: true,
-				effect: (game) => {
+				effect: function (game) {
 					game.food += 30;
 					game.logMessage(
 						"event",
@@ -72,10 +72,10 @@ class Game {
 					"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
 				cost: [0, 50, 0],
 				once: true,
-				requirement: (game) => {
+				requirement: function (game) {
 					return game.tentLvl >= 1 ? true : false;
 				},
-				effect: (game) => {
+				effect: function (game) {
 					game.production.lumberjack *= 1.5;
 					game.logMessage(
 						"event",
