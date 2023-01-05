@@ -76,7 +76,7 @@ class Game {
 			attracted you to this place? Was it the prospect of escaping the
 			hustle of city life? Or maybe you were curious about the giant
 			black structure in the distance? Regardless of your reasons, you
-			disembark.`
+			disembark. It's time to begin work on your settlement.`
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
 	}
@@ -208,7 +208,7 @@ class Game {
 			new Upgrade({
 				name: "Build a smithy",
 				description:
-					"Assign blacksmiths to help you complete upgrades faster.",
+					"Unlock new upgrades, and assign blacksmiths to help you complete upgrades faster.",
 				type: "craft",
 				cost: [0, 100, 100],
 				duration: 4,
@@ -220,21 +220,43 @@ class Game {
 				effect: function (game) {
 					this.name = "Modernize the smithy";
 					this.description =
-						"Get some new tools to make upgrades even faster.";
+						"Get some new tools to unlock new upgrades and make them even faster to complete.";
 					if (game.smithyLvl === 0)
 						game.logMessage(
 							"event",
-							"You built a smithy to help speed up your upgrades!"
+							"You built a smithy! Nice!"
 						);
 					else
 						game.logMessage(
 							"event",
-							"Your blacksmiths will now help you even more."
+							"Your blacksmiths will now be even more helpful."
 						);
 					game.smithyLvl += 1;
 					if (game.smithyLvl > 1) game.production.blacksmith *= 0.6;
 				},
 			}),
+			new Upgrade({
+				name: "Build an academy",
+				description: "Unlock research into team management techniques, and assign professors to help speed it up.",
+				type: "craft",
+				cost: [0, 500, 500],
+				duration: 10,
+				once: false,
+				scaling: 2.5,
+				requirement: function (game) {
+					return game.smithyLvl >= 3 ? true : false;
+				},
+				effect: function (game) {
+					this.name = "Grow the academy";
+					this.description = "Develop new teaching aids to discover new techniques and improve existing ones.";
+					if (game.academyLvl === 0)
+						game.logMessage("event", "Your academy is now standing, towering above all except the monolith.");
+					else
+						game.logMessage("event", "You add another floor to the already imposing academy building.");
+					game.academyLvl += 1;
+					if (game.academyLvl > 1) game.production.professor *= 0.6;
+				}
+			})
 		];
 	}
 
@@ -271,6 +293,9 @@ class Game {
 		this.dom.craftSpeed.textContent = (1 / this.getCraftSpeedup()).toFixed(
 			1
 		);
+		this.dom.researchSpeed.textContent = (
+			1 / this.getResearchSpeedup()
+		).toFixed(1);
 
 		// Update assignment counts
 		this.dom.lumberjacks.textContent = this.lumberjacks;
