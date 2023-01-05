@@ -16,6 +16,10 @@ class Game {
 		this.pierLvl = 0;
 		this.quarryLvl = 0;
 
+		// Chaos levels
+		this.pierChaos = 0;
+		this.quarryChaos = 0;
+
 		// Assignments
 		this.lumberjacks = 0;
 		this.fishermen = 0;
@@ -176,30 +180,24 @@ class Game {
 		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 
 		// Generate resources
-		this.wood += dt * this.production.lumberjack * this.lumberjacks;
-		this.food += dt * this.production.fisherman * this.fishermen;
-		this.stone += dt * this.production.miner * this.miners;
+		this.wood += dt * this.getWoodProduction();
+		this.food += dt * this.getFoodProduction();
+		this.stone += dt * this.getStoneProduction();
 	}
 
 	render() {
 		// Display resources
 		this.dom.wood.textContent = Math.floor(this.wood);
 		this.dom.woodIncome.textContent = (
-			this.production.lumberjack *
-			this.lumberjacks *
-			1000
+			this.getWoodProduction() * 1000
 		).toFixed(1);
 		this.dom.food.textContent = Math.floor(this.food);
 		this.dom.foodIncome.textContent = (
-			this.production.fisherman *
-			this.fishermen *
-			1000
+			this.getFoodProduction() * 1000
 		).toFixed(1);
 		this.dom.stone.textContent = Math.floor(this.stone);
 		this.dom.stoneIncome.textContent = (
-			this.production.miner *
-			this.miners *
-			1000
+			this.getStoneProduction() * 1000
 		).toFixed(1);
 
 		// Update assignment counts
@@ -213,6 +211,20 @@ class Game {
 		el.textContent = msg;
 		el.classList.add(type);
 		this.dom.log.prepend(el); // Prepend instead of append because of flexbox direction
+	}
+
+	getWoodProduction() {
+		return this.production.lumberjack * this.lumberjacks;
+	}
+
+	getFoodProduction() {
+		return (
+			this.production.fisherman * this.fishermen * (1 - this.pierChaos)
+		);
+	}
+
+	getStoneProduction() {
+		return this.production.miner * this.miners * (1 - this.quarryChaos);
 	}
 
 	gatherFood = () => {
