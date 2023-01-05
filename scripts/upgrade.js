@@ -80,23 +80,3 @@ class Upgrade {
 		}
 	};
 }
-
-const UPGRADES = [
-	new Upgrade({
-		name: "Build a house",
-		cost: [20, 20, 0],
-		once: false,
-		scaling: 1.5,
-		effect: function (game) {
-			game.houses += 1;
-		},
-	}),
-	new Upgrade({
-		name: "Hunt down local wildlife",
-		cost: [5, 5, 0],
-		once: true,
-		effect: function (game) {
-			game.food += 30;
-		},
-	}),
-];

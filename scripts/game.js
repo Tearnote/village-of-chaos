@@ -18,12 +18,35 @@ class Game {
 		// Buildings
 		this.houses = 0;
 
+		this.upgrades = [
+			new Upgrade({
+				name: "Build a house",
+				cost: [20, 20, 0],
+				once: false,
+				scaling: 1.5,
+				effect: function (game) {
+					game.houses += 1;
+				},
+			}),
+			new Upgrade({
+				name: "Hunt down local wildlife",
+				cost: [5, 5, 0],
+				once: true,
+				effect: function (game) {
+					game.food += 30;
+				},
+			}),
+		];
+
 		// Register button clicks
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 
+		// Build the villager assign table
+		
+
 		// Add upgrades to the DOM
-		for (let upgrade of UPGRADES) {
+		for (let upgrade of this.upgrades) {
 			this.dom.buildTab.appendChild(upgrade.createElement(this));
 		}
 
@@ -32,7 +55,7 @@ class Game {
 
 	update(dt) {
 		// Mark upgrades that can't be bought
-		for (let upgrade of UPGRADES) upgrade.updateElement(game);
+		for (let upgrade of this.upgrades) upgrade.updateElement(game);
 	}
 
 	render() {
