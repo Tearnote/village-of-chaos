@@ -5,8 +5,11 @@ class DOM {
 	constructor() {
 		// Resource indicators
 		this.wood = document.getElementById("wood-amount");
+		this.woodIncome = document.getElementById("wood-income");
 		this.food = document.getElementById("food-amount");
+		this.foodIncome = document.getElementById("food-income");
 		this.stone = document.getElementById("stone-amount");
+		this.stoneIncome = document.getElementById("stone-income");
 
 		// Gathering buttons
 		this.gatherWood = document.getElementById("gather-wood");

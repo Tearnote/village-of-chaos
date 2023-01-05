@@ -93,7 +93,7 @@ button {
 
 header {
 	width: 100%;
-	height: 4rem;
+	height: 5rem;
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
@@ -106,8 +106,10 @@ header {
 	flex-flow: row;
 }
 
-.resources > p {
-	margin: 1rem;
+.resources > div {
+	min-width: 7rem;
+	text-align: center;
+	margin-left: 1rem;
 }
 
 /* #endregion */
