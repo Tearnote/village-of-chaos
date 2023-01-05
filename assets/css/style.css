@@ -198,4 +198,8 @@ header {
 	background-color: darkgray;
 }
 
+.upgrade.unavailable {
+	display: none;
+}
+
 /* #endregion */

@@ -5,7 +5,8 @@ class Upgrade {
 		this.description = params?.description;
 		this.cost = params?.cost; // Array of 3 integers: [food, wood, stone]
 		this.once = params?.once; // True if upgrade should disappear once bought
-		this.scaling = params?.scaling; // Only required if once is false
+		this.scaling = params.scaling; // Only required if once is false
+		this.requirement = params?.requirement; // Optional, upgrade will only be available if this function returns true
 		this.effect = params?.effect; // Function to run on buying
 	}
 
@@ -43,10 +44,10 @@ class Upgrade {
 
 	updateElement(game) {
 		if (!this.el) return;
-		if (this.canAfford(game))
-			this.el.classList.remove("inactive");
-		else
-			this.el.classList.add("inactive");
+		if (this.requirement && !this.requirement(game)) this.el.classList.add("unavailable");
+		else this.el.classList.remove("unavailable");
+		if (this.canAfford(game)) this.el.classList.remove("inactive");
+		else this.el.classList.add("inactive");
 	}
 
 	canAfford(game) {
