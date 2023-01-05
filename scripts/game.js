@@ -286,7 +286,7 @@ class Game {
 	}
 
 	getCraftSpeedup() {
-		return 1 - (1 - this.production.blacksmith ** this.blacksmiths) * (1 - this.quarryChaos);
+		return 1 - (1 - this.production.blacksmith ** this.blacksmiths) * (1 - this.smithyChaos);
 	}
 
 	gatherFood = () => {
