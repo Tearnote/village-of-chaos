@@ -208,7 +208,7 @@ class Game {
 					return game.quarryLvl >= 1 ? true : false;
 				},
 				effect: function (game) {
-					this.name = "Modernize the smothy";
+					this.name = "Modernize the smithy";
 					this.description = "Get some new tools to make upgrades even faster.";
 					if (game.smithyLvl === 0)
 						game.logMessage("event", "You built a smithy to help speed up your upgrades!");
