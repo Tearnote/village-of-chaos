@@ -252,7 +252,14 @@ header {
 	left: 0;
 	width: var(--progress);
 	height: 100%;
+}
+
+#build-tab > .upgrade::after {
 	background-color: rgba(152, 255, 160, 0.4);
+}
+
+#research-tab > .upgrade::after {
+	background-color: rgba(152, 154, 255, 0.4);
 }
 
 /* #endregion */
