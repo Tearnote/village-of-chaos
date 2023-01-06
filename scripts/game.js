@@ -55,6 +55,7 @@ class Game {
 			blacksmith: 0.6,
 			professor: 0.6,
 			mentorBoost: 1.5,
+			managerReduction: 0.2,
 		};
 		this.upgrades = this.createUpgrades();
 
@@ -486,6 +487,7 @@ class Game {
 	getChaosLevel(job) {
 		let unpairedVillagers = Math.max(job.villager - job.mentor, 0);
 		let penalty = job.mentor + unpairedVillagers - 1;
+		penalty *= this.production.managerReduction ** job.manager;
 		return Math.max(1 - 0.8 ** penalty, 0);
 	}
 
