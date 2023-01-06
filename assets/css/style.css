@@ -83,6 +83,14 @@ body {
 	background-color: antiquewhite;
 }
 
+main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
 button {
 	cursor: pointer;
 }
@@ -114,68 +122,11 @@ header {
 
 /* #endregion */
 
-/* #region Gathering */
-
-.gathering {
-	width: fit-content;
-	height: 100%;
-	display: flex;
-	align-self: center;
-	justify-content: center;
-	flex-flow: column;
-	margin: 2rem;
-}
-
-.gathering > button {
-	margin: 0.4rem;
-	padding: 0.2rem 0.5rem;
-}
-
-/* #endregion */
-
-/* #region Log */
-
-#log {
-	position: absolute;
-	top: 4rem;
-	right: 0;
-	width: 100%;
-	max-width: 24rem;
-	height: 100%;
-	max-height: 30rem;
-	display: flex;
-	flex-flow: column-reverse; /* Keeps container scrolled down */
-	overflow-y: scroll;
-	margin: 2rem;
-	border: 2px solid brown;
-	padding: 1rem;
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 0.8rem;
-	background-color: white;
-}
-
-.info {
-	color: blue;
-}
-
-.story {
-	color: darkgreen;
-}
-
-.event {
-	color: orangered;
-}
-
-/* #endregion */
-
 /* #region Tabbed interface */
 
 #interface {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	max-width: 32rem;
+	align-self: flex-end;
+	width: 32rem;
 	padding: 2rem;
 }
 
@@ -218,6 +169,55 @@ header {
 
 #assign-tab > table > tbody > tr > td:last-child {
 	text-align: center;
+}
+
+/* #endregion */
+
+/* #region Gathering */
+
+.gathering {
+	width: fit-content;
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+	margin: 2rem;
+}
+
+.gathering > button {
+	margin: 0.4rem;
+	padding: 0.2rem 0.5rem;
+}
+
+/* #endregion */
+
+/* #region Log */
+
+#log {
+	align-self: flex-start;
+	width: 24rem;
+	height: 30rem;
+	display: flex;
+	flex-flow: column-reverse; /* Keeps container scrolled down */
+	overflow-y: scroll;
+	margin: 2rem;
+	border: 2px solid brown;
+	padding: 1rem;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.8rem;
+	background-color: white;
+}
+
+.info {
+	color: blue;
+}
+
+.story {
+	color: darkgreen;
+}
+
+.event {
+	color: orangered;
 }
 
 /* #endregion */

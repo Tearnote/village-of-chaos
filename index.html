@@ -33,113 +33,133 @@
 			</div>
 		</header>
 
-		<!-- Controls for manual resource gathering -->
-		<section class="gathering">
-			<button id="gather-wood">Gather wood</button>
-			<button id="gather-food">Gather food</button>
-		</section>
+		<main>
+			<!-- Tabbed section interface -->
+			<section id="interface" class="tabs">
+				<!-- "Assign" tab -->
+				<input type="radio" name="tabs" id="assign" checked />
+				<label for="assign">Assign</label>
+				<div id="assign-tab" class="tab">
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th>Villager</th>
+								<th>Mentor</th>
+								<th>Chaos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Lumberjacks</td>
+								<td id="lumberjack"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Fishermen</td>
+								<td>
+									<span id="fisherman-villager"></span>
+									<button id="fisherman-villager-up">
+										+
+									</button>
+									<button id="fisherman-villager-down">
+										-
+									</button>
+								</td>
+								<td>
+									<span id="fisherman-mentor"></span>
+									<button id="fisherman-mentor-up">+</button>
+									<button id="fisherman-mentor-down">
+										-
+									</button>
+								</td>
+								<td><span id="pier-chaos"></span>%</td>
+							</tr>
+							<tr>
+								<td>Miners</td>
+								<td>
+									<span id="miner-villager"></span>
+									<button id="miner-villager-up">+</button>
+									<button id="miner-villager-down">-</button>
+								</td>
+								<td>
+									<span id="miner-mentor"></span>
+									<button id="miner-mentor-up">+</button>
+									<button id="miner-mentor-down">-</button>
+								</td>
+								<td><span id="quarry-chaos"></span>%</td>
+							</tr>
+							<tr>
+								<td>Blacksmiths</td>
+								<td>
+									<span id="blacksmith-villager"></span>
+									<button id="blacksmith-villager-up">
+										+
+									</button>
+									<button id="blacksmith-villager-down">
+										-
+									</button>
+								</td>
+								<td>
+									<span id="blacksmith-mentor"></span>
+									<button id="blacksmith-mentor-up">+</button>
+									<button id="blacksmith-mentor-down">
+										-
+									</button>
+								</td>
+								<td><span id="smithy-chaos"></span>%</td>
+							</tr>
+							<tr>
+								<td>Professors</td>
+								<td>
+									<span id="professor-villager"></span>
+									<button id="professor-villager-up">
+										+
+									</button>
+									<button id="professor-villager-down">
+										-
+									</button>
+								</td>
+								<td>
+									<span id="professor-mentor"></span>
+									<button id="professor-mentor-up">+</button>
+									<button id="professor-mentor-down">
+										-
+									</button>
+								</td>
+								<td><span id="academy-chaos"></span>%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-		<!-- Tabbed section interface -->
-		<section id="interface" class="tabs">
-			<!-- "Assign" tab -->
-			<input type="radio" name="tabs" id="assign" checked />
-			<label for="assign">Assign</label>
-			<div id="assign-tab" class="tab">
-				<table>
-					<thead>
-						<tr>
-							<th></th>
-							<th>Villager</th>
-							<th>Mentor</th>
-							<th>Chaos</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Lumberjacks</td>
-							<td id="lumberjack"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Fishermen</td>
-							<td>
-								<span id="fisherman-villager"></span>
-								<button id="fisherman-villager-up">+</button>
-								<button id="fisherman-villager-down">-</button>
-							</td>
-							<td>
-								<span id="fisherman-mentor"></span>
-								<button id="fisherman-mentor-up">+</button>
-								<button id="fisherman-mentor-down">-</button>
-							</td>
-							<td><span id="pier-chaos"></span>%</td>
-						</tr>
-						<tr>
-							<td>Miners</td>
-							<td>
-								<span id="miner-villager"></span>
-								<button id="miner-villager-up">+</button>
-								<button id="miner-villager-down">-</button>
-							</td>
-							<td>
-								<span id="miner-mentor"></span>
-								<button id="miner-mentor-up">+</button>
-								<button id="miner-mentor-down">-</button>
-							</td>
-							<td><span id="quarry-chaos"></span>%</td>
-						</tr>
-						<tr>
-							<td>Blacksmiths</td>
-							<td>
-								<span id="blacksmith-villager"></span>
-								<button id="blacksmith-villager-up">+</button>
-								<button id="blacksmith-villager-down">-</button>
-							</td>
-							<td>
-								<span id="blacksmith-mentor"></span>
-								<button id="blacksmith-mentor-up">+</button>
-								<button id="blacksmith-mentor-down">-</button>
-							</td>
-							<td><span id="smithy-chaos"></span>%</td>
-						</tr>
-						<tr>
-							<td>Professors</td>
-							<td>
-								<span id="professor-villager"></span>
-								<button id="professor-villager-up">+</button>
-								<button id="professor-villager-down">-</button>
-							</td>
-							<td>
-								<span id="professor-mentor"></span>
-								<button id="professor-mentor-up">+</button>
-								<button id="professor-mentor-down">-</button>
-							</td>
-							<td><span id="academy-chaos"></span>%</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<!-- "Build" tab -->
+				<input type="radio" name="tabs" id="build" />
+				<label for="build">Build</label>
+				<div id="build-tab" class="tab">
+					<!-- Empty - filled in with JS -->
+				</div>
 
-			<!-- "Build" tab -->
-			<input type="radio" name="tabs" id="build" />
-			<label for="build">Build</label>
-			<div id="build-tab" class="tab">
+				<!-- "Research" tab -->
+				<input type="radio" name="tabs" id="research" />
+				<label for="research">Research</label>
+				<div id="research-tab" class="tab">
+					<!-- Empty -->
+				</div>
+			</section>
+
+			<!-- Controls for manual resource gathering -->
+			<section class="gathering">
+				<button id="gather-wood">Gather wood</button>
+				<button id="gather-food">Gather food</button>
+			</section>
+
+			<!-- Log display with recent events -->
+			<section id="log">
 				<!-- Empty - filled in with JS -->
-			</div>
-
-			<!-- "Research" tab -->
-			<input type="radio" name="tabs" id="research" />
-			<label for="research">Research</label>
-			<div id="research-tab" class="tab">
-				<!-- Empty -->
-			</div>
-		</section>
-
-		<!-- Log display with recent events -->
-		<section id="log">
-			<!-- Empty - filled in with JS -->
-		</section>
+			</section>
+		</main>
 
 		<!-- JS includes -->
 		<script src="scripts/vendor/gameloop.js"></script>
