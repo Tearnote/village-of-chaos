@@ -51,7 +51,10 @@ class Upgrade {
 		if (this.el) {
 			// Progress the upgrade if started
 			if (this.started) {
-				let speedup = this.type == "craft"? game.getCraftSpeedup() : game.getResearchSpeedup();
+				let speedup =
+					this.type == "craft"
+						? game.getCraftSpeedup()
+						: game.getResearchSpeedup();
 				this.progress += dt / (this.duration * 1000 * speedup);
 				if (this.progress >= 1) {
 					this.complete(game);
@@ -63,7 +66,8 @@ class Upgrade {
 			if (this.requirement && !this.requirement(game))
 				this.el.classList.add("unavailable");
 			else this.el.classList.remove("unavailable");
-			if (this.canAfford(game)) this.el.classList.remove("inactive");
+			if (this.canAfford(game) || this.started)
+				this.el.classList.remove("inactive");
 			else this.el.classList.add("inactive");
 			// Progress bar
 			this.el.style.setProperty("--progress", this.progress * 100 + "%");
@@ -81,8 +85,10 @@ class Upgrade {
 	}
 
 	clickHandler = (game) => {
-		// Pay the cost if possible and start the upgrade
-		if (!this.canAfford(game) || !this.active) return;
+		// Make sure the upgrade can be started
+		if (!this.active || this.started || !this.canAfford(game)) return;
+
+		// Pay the cost and begin
 		game.food -= this.cost[0];
 		game.wood -= this.cost[1];
 		game.stone -= this.cost[2];
