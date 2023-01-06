@@ -34,6 +34,10 @@ class DOM {
 		this.minerMentor = document.getElementById("miner-mentor");
 		this.blacksmithMentor = document.getElementById("blacksmith-mentor");
 		this.professorMentor = document.getElementById("professor-mentor");
+		this.fishermanManager = document.getElementById("fisherman-manager");
+		this.minerManager = document.getElementById("miner-manager");
+		this.blacksmithManager = document.getElementById("blacksmith-manager");
+		this.professorManager = document.getElementById("professor-manager");
 
 		// Chaos indicators
 		this.pierChaos = document.getElementById("pier-chaos");
@@ -81,6 +85,22 @@ class DOM {
 		);
 		this.professorMentorDown = document.getElementById(
 			"professor-mentor-down"
+		);
+		this.fishermanManagerUp = document.getElementById("fisherman-manager-up");
+		this.fishermanManagerDown = document.getElementById(
+			"fisherman-manager-down"
+		);
+		this.minerManagerUp = document.getElementById("miner-manager-up");
+		this.minerManagerDown = document.getElementById("miner-manager-down");
+		this.blacksmithManagerUp = document.getElementById(
+			"blacksmith-manager-up"
+		);
+		this.blacksmithManagerDown = document.getElementById(
+			"blacksmith-manager-down"
+		);
+		this.professorManagerUp = document.getElementById("professor-manager-up");
+		this.professorManagerDown = document.getElementById(
+			"professor-manager-down"
 		);
 
 		this.log = document.getElementById("log");
