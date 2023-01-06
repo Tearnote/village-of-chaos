@@ -307,6 +307,36 @@ class Game {
 					if (game.academyLvl > 1) game.production.professor *= 0.6;
 				},
 			}),
+			new Upgrade({
+				name: "Mentorship program",
+				description: "What if got one person to oversee another?",
+				type: "research",
+				cost: [400, 10, 2],
+				duration: 6,
+				once: true,
+				requirement: function (game) {
+					return game.academyLvl >= 1 ? true : false;
+				},
+				effect: function (game) {
+					//TODO
+					game.logMessage("event", "Turns out mentors training novices is a pretty good idea!");
+				}
+			}),
+			new Upgrade({
+				name: "People management",
+				description: "Instead of working, make sure others are working.",
+				type: "research",
+				cost: [2000, 20, 10],
+				duration: 20,
+				once: true,
+				requirement: function (game) {
+					return game.academyLvl >= 3 ? true : false;
+				},
+				effect: function (game) {
+					//TODO
+					game.logMessage("event", "You can now assign chaos controllers! Also known as managers.");
+				}
+			})
 		];
 	}
 
