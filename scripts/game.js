@@ -239,16 +239,18 @@ class Game {
 					this.name = "Extend the pier";
 					this.description =
 						"A longer pier means access to bigger fish.";
-					if (game.pierLvl === 0)
+					if (game.pierLvl === 0) {
 						game.logMessage(
 							"event",
 							"You built a pier, and can now assign fishermen."
 						);
-					else
+						game.showElement("fisherman");
+					} else {
 						game.logMessage(
 							"event",
 							"Your fishermen can now catch bigger fish."
 						);
+					}
 					game.pierLvl += 1;
 					if (game.pierLvl > 1) game.production.fisherman *= 1.5;
 				},
@@ -275,6 +277,7 @@ class Game {
 							"You built a quarry, and can now assign miners."
 						);
 						game.showElement("stone");
+						game.showElement("miner");
 					} else {
 						game.logMessage(
 							"event",
@@ -303,6 +306,7 @@ class Game {
 						"Get some new tools to unlock new upgrades and make them even faster to complete.";
 					if (game.smithyLvl === 0) {
 						game.logMessage("event", "You built a smithy! Nice!");
+						game.showElement("blacksmith");
 						game.showElement("craft-speed");
 					} else {
 						game.logMessage(
@@ -335,6 +339,7 @@ class Game {
 							"event",
 							"Your academy is now standing, towering above all except the monolith."
 						);
+						game.showElement("professor");
 						game.showElement("research");
 						game.showElement("research-speed");
 					} else {
@@ -349,7 +354,7 @@ class Game {
 			}),
 			new Upgrade({
 				name: "Mentorship program",
-				description: "What if got one person to oversee another?",
+				description: "What if you got one person to oversee another?",
 				type: "research",
 				cost: [400, 10, 2],
 				duration: 6,
@@ -358,7 +363,7 @@ class Game {
 					return game.academyLvl >= 1 ? true : false;
 				},
 				effect: function (game) {
-					//TODO
+					game.showElement("mentor");
 					game.logMessage(
 						"event",
 						"Turns out mentors training novices is a pretty good idea!"
@@ -377,7 +382,7 @@ class Game {
 					return game.academyLvl >= 3 ? true : false;
 				},
 				effect: function (game) {
-					//TODO
+					game.showElement("manager");
 					game.logMessage(
 						"event",
 						"You can now assign chaos controllers! Also known as managers."
@@ -512,6 +517,8 @@ class Game {
 		if (this.lumberjack == 0) return;
 		this.lumberjack -= 1;
 		this[job][role] += 1;
+		if (this[job][role] >= 2)
+			game.showElement("chaos");
 	}
 
 	unassign(job, role) {

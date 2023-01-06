@@ -88,6 +88,13 @@ body {
 	--research-speed-visible: hidden;
 	--assign-visible: hidden;
 	--research-visible: hidden;
+	--chaos-visible: hidden;
+	--mentor-visible: hidden;
+	--manager-visible: hidden;
+	--fisherman-visible: hidden;
+	--miner-visible: hidden;
+	--blacksmith-visible: hidden;
+	--professor-visible: hidden;
 }
 
 main {
@@ -201,6 +208,37 @@ header {
 
 #assign-tab > table > tbody > tr > td:last-child {
 	text-align: center;
+}
+
+#assign-tab > table > thead > tr > :nth-child(3),
+#assign-tab > table > tbody > tr > :nth-child(3) {
+	visibility: var(--mentor-visible);
+}
+
+#assign-tab > table > thead > tr > :nth-child(4),
+#assign-tab > table > tbody > tr > :nth-child(4) {
+	visibility: var(--manager-visible);
+}
+
+td:last-child,
+th:last-child {
+	visibility: var(--chaos-visible);
+}
+
+.fisherman td {
+	visibility: var(--fisherman-visible);
+}
+
+.miner td {
+	visibility: var(--miner-visible);
+}
+
+.blacksmith td {
+	visibility: var(--blacksmith-visible);
+}
+
+.professor td {
+	visibility: var(--professor-visible);
 }
 
 /* #endregion */
