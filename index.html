@@ -12,21 +12,21 @@
 			<div class="resources">
 				<div>
 					<p>Wood: <span id="wood-amount"></span></p>
-					<p>(+<span id="wood-income"></span>/s)</p>
+					<p class="income">(+<span id="wood-income"></span>/s)</p>
 				</div>
 				<div>
 					<p>Food: <span id="food-amount"></span></p>
-					<p>(+<span id="food-income"></span>/s)</p>
+					<p class="income">(+<span id="food-income"></span>/s)</p>
 				</div>
 				<div>
 					<p>Stone: <span id="stone-amount"></span></p>
-					<p>(+<span id="stone-income"></span>/s)</p>
+					<p class="income">(+<span id="stone-income"></span>/s)</p>
 				</div>
-				<div>
+				<div class="craft-speed">
 					<p>Crafting speed:</p>
 					<p><span id="craft-speed"></span>x</p>
 				</div>
-				<div>
+				<div class="research-speed">
 					<p>Research speed:</p>
 					<p><span id="research-speed"></span>x</p>
 				</div>
@@ -162,10 +162,10 @@
 					</table>
 				</div>
 
-				<!-- "Build" tab -->
-				<input type="radio" name="tabs" id="build" checked />
-				<label for="build">Build</label>
-				<div id="build-tab" class="tab">
+				<!-- "Craft" tab -->
+				<input type="radio" name="tabs" id="craft" checked />
+				<label for="craft">Craft</label>
+				<div id="craft-tab" class="tab">
 					<!-- Empty - filled in with JS -->
 				</div>
 

@@ -138,7 +138,7 @@ class Game {
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
 			if (upgrade.type == "craft")
-				this.dom.buildTab.appendChild(upgrade.createElement(this));
+				this.dom.craftTab.appendChild(upgrade.createElement(this));
 			else this.dom.researchTab.appendChild(upgrade.createElement(this));
 		}
 

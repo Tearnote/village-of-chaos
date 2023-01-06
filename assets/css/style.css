@@ -81,6 +81,12 @@ body {
 	/* Placeholder */
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	background-color: antiquewhite;
+
+	--income-visible: hidden;
+	--craft-speed-visible: hidden;
+	--research-speed-visible: hidden;
+	--assign-visible: hidden;
+	--research-visible: hidden;
 }
 
 main {
@@ -120,6 +126,18 @@ header {
 	margin-left: 1rem;
 }
 
+.income {
+	visibility: var(--income-visible);
+}
+
+.craft-speed {
+	visibility: var(--craft-speed-visible);
+}
+
+.research-speed {
+	visibility: var(--research-speed-visible);
+}
+
 /* #endregion */
 
 /* #region Tabbed interface */
@@ -145,6 +163,14 @@ header {
 
 #interface > label:first-of-type {
 	margin-left: 1rem;
+}
+
+#assign + label {
+	visibility: var(--assign-visible);
+}
+
+#research + label {
+	visibility: var(--research-visible);
 }
 
 #interface > input[type="radio"]:checked + label {
@@ -254,7 +280,7 @@ header {
 	height: 100%;
 }
 
-#build-tab > .upgrade::after {
+#craft-tab > .upgrade::after {
 	background-color: rgba(152, 255, 160, 0.4);
 }
 

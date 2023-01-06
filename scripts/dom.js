@@ -19,7 +19,7 @@ class DOM {
 
 		// Interface tabs
 		this.assignTab = document.getElementById("assign-tab");
-		this.buildTab = document.getElementById("build-tab");
+		this.craftTab = document.getElementById("craft-tab");
 		this.researchTab = document.getElementById("research-tab");
 
 		// Assignment counts
