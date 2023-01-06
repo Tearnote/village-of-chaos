@@ -269,16 +269,18 @@ class Game {
 					this.name = "Develop the quarry";
 					this.description =
 						"Make more of the cliff surface available for mining.";
-					if (game.quarryLvl === 0)
+					if (game.quarryLvl === 0) {
 						game.logMessage(
 							"event",
 							"You built a quarry, and can now assign miners."
 						);
-					else
+						game.showElement("stone");
+					} else {
 						game.logMessage(
 							"event",
 							"Your quarry is now more efficient."
 						);
+					}
 					game.quarryLvl += 1;
 					if (game.quarryLvl > 1) game.production.miner *= 1.5;
 				},

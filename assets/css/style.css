@@ -82,6 +82,7 @@ body {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	background-color: antiquewhite;
 
+	--stone-visible: hidden;
 	--income-visible: hidden;
 	--craft-speed-visible: hidden;
 	--research-speed-visible: hidden;
@@ -128,6 +129,10 @@ header {
 
 .income {
 	visibility: var(--income-visible);
+}
+
+.stone {
+	visibility: var(--stone-visible);
 }
 
 .craft-speed {
