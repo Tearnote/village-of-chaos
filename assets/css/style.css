@@ -131,7 +131,8 @@ header {
 }
 
 #interface > .tab {
-	min-height: 24rem;
+	height: 24rem;
+	overflow-y: auto;
 	background-color: chartreuse;
 	border: 2px solid green;
 	padding: 1rem;
