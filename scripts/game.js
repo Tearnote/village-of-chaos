@@ -176,6 +176,8 @@ class Game {
 							"event",
 							"Two villagers have joined your settlement."
 						);
+						game.showElement("assign");
+						game.showElement("income");
 					} else {
 						game.lumberjack += 1;
 						game.logMessage(
@@ -297,13 +299,15 @@ class Game {
 					this.name = "Modernize the smithy";
 					this.description =
 						"Get some new tools to unlock new upgrades and make them even faster to complete.";
-					if (game.smithyLvl === 0)
+					if (game.smithyLvl === 0) {
 						game.logMessage("event", "You built a smithy! Nice!");
-					else
+						game.showElement("craft-speed");
+					} else {
 						game.logMessage(
 							"event",
 							"Your blacksmiths will now be even more helpful."
 						);
+					}
 					game.smithyLvl += 1;
 					if (game.smithyLvl > 1) game.production.blacksmith *= 0.6;
 				},
@@ -324,16 +328,19 @@ class Game {
 					this.name = "Grow the academy";
 					this.description =
 						"Develop new teaching aids to discover new techniques and improve existing ones.";
-					if (game.academyLvl === 0)
+					if (game.academyLvl === 0) {
 						game.logMessage(
 							"event",
 							"Your academy is now standing, towering above all except the monolith."
 						);
-					else
+						game.showElement("research");
+						game.showElement("research-speed");
+					} else {
 						game.logMessage(
 							"event",
 							"You add another floor to the already imposing academy building."
 						);
+					}
 					game.academyLvl += 1;
 					if (game.academyLvl > 1) game.production.professor *= 0.6;
 				},
@@ -509,5 +516,9 @@ class Game {
 		if (this[job][role] == 0) return;
 		this[job][role] -= 1;
 		this.lumberjack += 1;
+	}
+
+	showElement(name) {
+		document.body.style.setProperty(`--${name}-visible`, "visible");
 	}
 }
