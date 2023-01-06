@@ -528,6 +528,11 @@ class Game {
 	}
 
 	showElement(name) {
-		document.body.style.setProperty(`--${name}-visible`, "visible");
+		let display = "block";
+		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
+			display = "table-row";
+		if (["mentor", "manager", "chaos"].includes(name))
+			display = "table-cell";
+		document.body.style.setProperty(`--${name}-display`, display);
 	}
 }
