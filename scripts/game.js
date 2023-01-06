@@ -29,18 +29,22 @@ class Game {
 		this.fisherman = {
 			villager: 0,
 			mentor: 0,
+			manager: 0,
 		};
 		this.miner = {
 			villager: 0,
 			mentor: 0,
+			manager: 0,
 		};
 		this.blacksmith = {
 			villager: 0,
 			mentor: 0,
+			manager: 0,
 		};
 		this.professor = {
 			villager: 0,
 			mentor: 0,
+			manager: 0,
 		};
 
 		// Balance and content
@@ -105,13 +109,36 @@ class Game {
 		this.dom.professorMentorDown.addEventListener("click", () => {
 			this.unassign("professor", "mentor");
 		});
+		this.dom.fishermanManagerUp.addEventListener("click", () => {
+			this.assign("fisherman", "manager");
+		});
+		this.dom.fishermanManagerDown.addEventListener("click", () => {
+			this.unassign("fisherman", "manager");
+		});
+		this.dom.minerManagerUp.addEventListener("click", () => {
+			this.assign("miner", "manager");
+		});
+		this.dom.minerManagerDown.addEventListener("click", () => {
+			this.unassign("miner", "manager");
+		});
+		this.dom.blacksmithManagerUp.addEventListener("click", () => {
+			this.assign("blacksmith", "manager");
+		});
+		this.dom.blacksmithManagerDown.addEventListener("click", () => {
+			this.unassign("blacksmith", "manager");
+		});
+		this.dom.professorManagerUp.addEventListener("click", () => {
+			this.assign("professor", "manager");
+		});
+		this.dom.professorManagerDown.addEventListener("click", () => {
+			this.unassign("professor", "manager");
+		});
 
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
 			if (upgrade.type == "craft")
 				this.dom.buildTab.appendChild(upgrade.createElement(this));
-			else
-				this.dom.researchTab.appendChild(upgrade.createElement(this));
+			else this.dom.researchTab.appendChild(upgrade.createElement(this));
 		}
 
 		// Add some flavor text
@@ -322,12 +349,16 @@ class Game {
 				},
 				effect: function (game) {
 					//TODO
-					game.logMessage("event", "Turns out mentors training novices is a pretty good idea!");
-				}
+					game.logMessage(
+						"event",
+						"Turns out mentors training novices is a pretty good idea!"
+					);
+				},
 			}),
 			new Upgrade({
 				name: "People management",
-				description: "Instead of working, make sure others are working.",
+				description:
+					"Instead of working, make sure others are working.",
 				type: "research",
 				cost: [2000, 20, 10],
 				duration: 20,
@@ -337,9 +368,12 @@ class Game {
 				},
 				effect: function (game) {
 					//TODO
-					game.logMessage("event", "You can now assign chaos controllers! Also known as managers.");
-				}
-			})
+					game.logMessage(
+						"event",
+						"You can now assign chaos controllers! Also known as managers."
+					);
+				},
+			}),
 		];
 	}
 
@@ -390,6 +424,10 @@ class Game {
 		this.dom.minerMentor.textContent = this.miner.mentor;
 		this.dom.blacksmithMentor.textContent = this.blacksmith.mentor;
 		this.dom.professorMentor.textContent = this.professor.mentor;
+		this.dom.fishermanManager.textContent = this.fisherman.manager;
+		this.dom.minerManager.textContent = this.miner.manager;
+		this.dom.blacksmithManager.textContent = this.blacksmith.manager;
+		this.dom.professorManager.textContent = this.professor.manager;
 
 		// Update chaos indicators
 		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
@@ -463,11 +501,11 @@ class Game {
 		if (this.lumberjack == 0) return;
 		this.lumberjack -= 1;
 		this[job][role] += 1;
-	};
+	}
 
 	unassign(job, role) {
 		if (this[job][role] == 0) return;
 		this[job][role] -= 1;
 		this.lumberjack += 1;
-	};
+	}
 }
