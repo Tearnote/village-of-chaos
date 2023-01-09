@@ -128,12 +128,7 @@ class Game {
 			this.dom.popupShroud.style.display = "none";
 		});
 
-		// Add upgrades to the DOM
-		for (let upgrade of this.upgrades) {
-			if (upgrade.type == "craft")
-				this.dom.craftTab.appendChild(upgrade.createElement(this));
-			else this.dom.researchTab.appendChild(upgrade.createElement(this));
-		}
+		this.refreshUpgrades();
 
 		// Add some flavor text
 		this.logMessage(
@@ -172,6 +167,17 @@ class Game {
 		this.stone += dt * this.getStoneProduction();
 
 		this.displayPopups(); // Defined in tutorial.js
+	}
+
+	refreshUpgrades() {
+		this.dom.craftTab.replaceChildren();
+		this.dom.researchTab.replaceChildren();
+
+		for (let upgrade of this.upgrades) {
+			if (upgrade.type == "craft")
+				this.dom.craftTab.appendChild(upgrade.createElement(this));
+			else this.dom.researchTab.appendChild(upgrade.createElement(this));
+		}
 	}
 
 	render() {
