@@ -19,9 +19,6 @@ class Game {
 			smithy: 0,
 			academy: 0,
 		};
-		this.mentorUnlocked = false;
-		this.managerUnlocked = false;
-
 		this.chaos = {
 			pier: 0,
 			quarry: 0,
@@ -52,7 +49,7 @@ class Game {
 			manager: 0,
 		};
 
-		// Balance and content
+		// Balance
 		this.production = {
 			lumberjack: 0.001,
 			fisherman: 0.001,
@@ -63,7 +60,7 @@ class Game {
 			managerReduction: 0.2,
 		};
 
-		// Upgrade state and DOM
+		// Unlocks
 		this.upgrades = [];
 		for (let upgrade of this.upgradeList) {
 			this.upgrades.push({
@@ -75,6 +72,21 @@ class Game {
 			});
 		}
 		this.renderUpgrades();
+		this.unlocks = {
+			income: false,
+			stone: false,
+			craftSpeed: false,
+			researchSpeed: false,
+			assign: false,
+			research: false,
+			chaos: false,
+			mentor: false,
+			manager: false,
+			fisherman: false,
+			blacksmith: false,
+			miner: false,
+			professor: false,
+		};
 
 		// List of fields which are held in local storage
 		this.serializable = [
@@ -82,8 +94,7 @@ class Game {
 			"food",
 			"stone",
 			"levels",
-			"mentorUnlocked",
-			"managerUnlocked",
+			"unlocks",
 			"lumberjack",
 			"fisherman",
 			"miner",
@@ -436,7 +447,7 @@ class Game {
 		if (this.lumberjack == 0) return;
 		this.lumberjack -= 1;
 		this[job][role] += 1;
-		if (this[job][role] >= 2) game.showElement("chaos");
+		if (this[job][role] >= 2) game.unlock("chaos");
 	}
 
 	unassign(job, role) {
@@ -445,13 +456,16 @@ class Game {
 		this.lumberjack += 1;
 	}
 
-	showElement(name) {
+	unlock(name) {
 		let display = "block";
 		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
 			display = "table-row";
 		if (["mentor", "manager", "chaos"].includes(name))
 			display = "table-cell";
-		document.body.style.setProperty(`--${name}-display`, display);
+		// https://stackoverflow.com/a/47836484
+		let nameDashed = name.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+		document.body.style.setProperty(`--${nameDashed}-display`, display);
+		this.unlocks[name] = true;
 	}
 
 	showPopup(text, atSelector) {

@@ -34,8 +34,8 @@ Game.prototype.upgradeList = [
 					"event",
 					"Two villagers have joined your settlement."
 				);
-				game.showElement("assign");
-				game.showElement("income");
+				game.unlock("assign");
+				game.unlock("income");
 			} else {
 				game.lumberjack += 1;
 				game.logMessage(
@@ -65,7 +65,7 @@ Game.prototype.upgradeList = [
 					"event",
 					"You built a pier, and can now assign fishermen."
 				);
-				game.showElement("fisherman");
+				game.unlock("fisherman");
 			} else {
 				game.logMessage(
 					"event",
@@ -97,8 +97,8 @@ Game.prototype.upgradeList = [
 					"event",
 					"You built a quarry, and can now assign miners."
 				);
-				game.showElement("stone");
-				game.showElement("miner");
+				game.unlock("stone");
+				game.unlock("miner");
 			} else {
 				game.logMessage("event", "Your quarry is now more efficient.");
 			}
@@ -125,8 +125,8 @@ Game.prototype.upgradeList = [
 				"Get some new tools to unlock new upgrades and make them even faster to complete.";
 			if (game.levels.smithy === 0) {
 				game.logMessage("event", "You built a smithy! Nice!");
-				game.showElement("blacksmith");
-				game.showElement("craft-speed");
+				game.unlock("blacksmith");
+				game.unlock("craftSpeed");
 			} else {
 				game.logMessage(
 					"event",
@@ -159,9 +159,9 @@ Game.prototype.upgradeList = [
 					"event",
 					"Your academy is now standing, towering above all except the monolith."
 				);
-				game.showElement("professor");
-				game.showElement("research");
-				game.showElement("research-speed");
+				game.unlock("professor");
+				game.unlock("research");
+				game.unlock("researchSpeed");
 			} else {
 				game.logMessage(
 					"event",
@@ -185,7 +185,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["academy", 1],
 		effect: function (game) {
-			game.showElement("mentor");
+			game.unlock("mentor");
 			game.mentorUnlocked = true;
 			game.logMessage(
 				"event",
@@ -206,7 +206,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["academy", 3],
 		effect: function (game) {
-			game.showElement("manager");
+			game.unlock("manager");
 			game.managerUnlocked = true;
 			game.logMessage(
 				"event",

@@ -80,7 +80,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.academyPopupShown = true;
 	}
-	if (this.mentorUnlocked && !this.mentorPopupShown) {
+	if (this.unlocks.mentor && !this.mentorPopupShown) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`Congratulations, you can now assign mentors to each job! Mentors
@@ -93,7 +93,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.mentorPopupShown = true;
 	}
-	if (this.managerUnlocked && !this.managerPopupShown) {
+	if (this.unlocks.manager && !this.managerPopupShown) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`This is it - the cutting edge of team management. With managers on

@@ -83,8 +83,8 @@ body {
 	background-color: antiquewhite;
 
 	/* Element visibility variables, controlled by JS */
-	--stone-display: none;
 	--income-display: none;
+	--stone-display: none;
 	--craft-speed-display: none;
 	--research-speed-display: none;
 	--assign-display: none;
