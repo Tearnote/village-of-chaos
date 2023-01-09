@@ -173,10 +173,6 @@ header {
 	background-color: lavender;
 }
 
-#interface > label:first-of-type {
-	margin-left: 1rem;
-}
-
 #assign + label {
 	display: var(--assign-display);
 }
