@@ -103,6 +103,10 @@ class DOM {
 			"professor-manager-down"
 		);
 
+		// Other elements
 		this.log = document.getElementById("log");
+		this.popupShroud = document.getElementById("popup-shroud");
+		this.popupText = document.getElementById("popup-text");
+		this.popupDismiss = document.getElementById("popup-dismiss");
 	}
 }

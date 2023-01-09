@@ -20,7 +20,9 @@
 				</div>
 				<div class="stone">
 					<p>Stone: <span id="stone-amount"></span></p>
-					<p class="stone income">(+<span id="stone-income"></span>/s)</p>
+					<p class="stone income">
+						(+<span id="stone-income"></span>/s)
+					</p>
 				</div>
 				<div class="craft-speed">
 					<p>Crafting speed:</p>
@@ -124,7 +126,9 @@
 								</td>
 								<td>
 									<span id="blacksmith-manager"></span>
-									<button id="blacksmith-manager-up">+</button>
+									<button id="blacksmith-manager-up">
+										+
+									</button>
 									<button id="blacksmith-manager-down">
 										-
 									</button>
@@ -166,14 +170,14 @@
 				<input type="radio" name="tabs" id="craft" checked />
 				<label for="craft">Craft</label>
 				<div id="craft-tab" class="tab">
-					<!-- Empty - filled in with JS -->
+					<!-- Filled in by JS -->
 				</div>
 
 				<!-- "Research" tab -->
 				<input type="radio" name="tabs" id="research" />
 				<label for="research">Research</label>
 				<div id="research-tab" class="tab">
-					<!-- Empty -->
+					<!-- Filled in by JS -->
 				</div>
 			</section>
 
@@ -185,9 +189,19 @@
 
 			<!-- Log display with recent events -->
 			<section id="log">
-				<!-- Empty - filled in with JS -->
+				<!-- Filled in by JS -->
 			</section>
 		</main>
+
+		<!-- Tutorial pop-up overlay -->
+		<div id="popup-shroud">
+			<div class="popup">
+				<p id="popup-text">
+					<!-- Filled in by JS -->
+				</p>
+				<button id="popup-dismiss">Okay</button>
+			</div>
+		</div>
 
 		<!-- JS includes -->
 		<script src="scripts/vendor/gameloop.js"></script>
