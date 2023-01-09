@@ -25,7 +25,7 @@ Game.prototype.upgradeList = [
 		effect: function (game) {
 			this.name = "Expand the tent";
 			this.description = "Add another bed to fit in an extra villager.";
-			if (game.tentLvl === 0) {
+			if (game.levels.tent === 0) {
 				game.lumberjack += 2;
 				game.logMessage(
 					"event",
@@ -40,7 +40,7 @@ Game.prototype.upgradeList = [
 					"One extra villager has joined your settlement."
 				);
 			}
-			game.tentLvl += 1;
+			game.levels.tent += 1;
 		},
 	}),
 	new Upgrade({
@@ -51,11 +51,11 @@ Game.prototype.upgradeList = [
 		duration: 2.5,
 		once: false,
 		scaling: 2.5,
-		requirement: ["tentLvl", 1],
+		requirement: ["tent", 1],
 		effect: function (game) {
 			this.name = "Extend the pier";
 			this.description = "A longer pier means access to bigger fish.";
-			if (game.pierLvl === 0) {
+			if (game.levels.pier === 0) {
 				game.logMessage(
 					"event",
 					"You built a pier, and can now assign fishermen."
@@ -67,8 +67,8 @@ Game.prototype.upgradeList = [
 					"Your fishermen can now catch bigger fish."
 				);
 			}
-			game.pierLvl += 1;
-			if (game.pierLvl > 1) game.production.fisherman *= 1.5;
+			game.levels.pier += 1;
+			if (game.levels.pier > 1) game.production.fisherman *= 1.5;
 		},
 	}),
 	new Upgrade({
@@ -80,12 +80,12 @@ Game.prototype.upgradeList = [
 		duration: 4,
 		once: false,
 		scaling: 2.5,
-		requirement: ["pierLvl", 1],
+		requirement: ["pier", 1],
 		effect: function (game) {
 			this.name = "Develop the quarry";
 			this.description =
 				"Make more of the cliff surface available for mining.";
-			if (game.quarryLvl === 0) {
+			if (game.levels.quarry === 0) {
 				game.logMessage(
 					"event",
 					"You built a quarry, and can now assign miners."
@@ -95,8 +95,8 @@ Game.prototype.upgradeList = [
 			} else {
 				game.logMessage("event", "Your quarry is now more efficient.");
 			}
-			game.quarryLvl += 1;
-			if (game.quarryLvl > 1) game.production.miner *= 1.5;
+			game.levels.quarry += 1;
+			if (game.levels.quarry > 1) game.production.miner *= 1.5;
 		},
 	}),
 	new Upgrade({
@@ -108,12 +108,12 @@ Game.prototype.upgradeList = [
 		duration: 4,
 		once: false,
 		scaling: 2.5,
-		requirement: ["quarryLvl", 1],
+		requirement: ["quarry", 1],
 		effect: function (game) {
 			this.name = "Modernize the smithy";
 			this.description =
 				"Get some new tools to unlock new upgrades and make them even faster to complete.";
-			if (game.smithyLvl === 0) {
+			if (game.levels.smithy === 0) {
 				game.logMessage("event", "You built a smithy! Nice!");
 				game.showElement("blacksmith");
 				game.showElement("craft-speed");
@@ -123,8 +123,8 @@ Game.prototype.upgradeList = [
 					"Your blacksmiths will now be even more helpful."
 				);
 			}
-			game.smithyLvl += 1;
-			if (game.smithyLvl > 1) game.production.blacksmith *= 0.6;
+			game.levels.smithy += 1;
+			if (game.levels.smithy > 1) game.production.blacksmith *= 0.6;
 		},
 	}),
 	new Upgrade({
@@ -136,12 +136,12 @@ Game.prototype.upgradeList = [
 		duration: 10,
 		once: false,
 		scaling: 2.5,
-		requirement: ["smithyLvl", 3],
+		requirement: ["smithy", 3],
 		effect: function (game) {
 			this.name = "Grow the academy";
 			this.description =
 				"Develop new teaching aids to discover new techniques and improve existing ones.";
-			if (game.academyLvl === 0) {
+			if (game.levels.academy === 0) {
 				game.logMessage(
 					"event",
 					"Your academy is now standing, towering above all except the monolith."
@@ -155,8 +155,8 @@ Game.prototype.upgradeList = [
 					"You add another floor to the already imposing academy building."
 				);
 			}
-			game.academyLvl += 1;
-			if (game.academyLvl > 1) game.production.professor *= 0.6;
+			game.levels.academy += 1;
+			if (game.levels.academy > 1) game.production.professor *= 0.6;
 		},
 	}),
 	new Upgrade({
@@ -166,7 +166,7 @@ Game.prototype.upgradeList = [
 		cost: [10, 400, 2],
 		duration: 6,
 		once: true,
-		requirement: ["academyLvl", 1],
+		requirement: ["academy", 1],
 		effect: function (game) {
 			game.showElement("mentor");
 			game.mentorUnlocked = true;
@@ -183,7 +183,7 @@ Game.prototype.upgradeList = [
 		cost: [20, 2000, 10],
 		duration: 20,
 		once: true,
-		requirement: ["academyLvl", 3],
+		requirement: ["academy", 3],
 		effect: function (game) {
 			game.showElement("manager");
 			game.managerUnlocked = true;
@@ -202,7 +202,7 @@ Game.prototype.upgradeList = [
 		cost: [5, 5, 0],
 		duration: 1.4,
 		once: true,
-		requirement: ["tentLvl", 1],
+		requirement: ["tent", 1],
 		effect: function (game) {
 			game.food += 40;
 			game.logMessage(
@@ -221,7 +221,7 @@ Game.prototype.upgradeList = [
 		cost: [20, 0, 0],
 		duration: 2,
 		once: true,
-		requirement: ["tentLvl", 1],
+		requirement: ["tent", 1],
 		effect: function (game) {
 			game.production.lumberjack *= 1.5;
 			game.logMessage(

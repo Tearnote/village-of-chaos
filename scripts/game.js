@@ -12,11 +12,13 @@ class Game {
 		this.stone = 0;
 
 		// Buildings
-		this.tentLvl = 0;
-		this.pierLvl = 0;
-		this.quarryLvl = 0;
-		this.smithyLvl = 0;
-		this.academyLvl = 0;
+		this.levels = {
+			tent: 0,
+			pier: 0,
+			quarry: 0,
+			smithy: 0,
+			academy: 0,
+		};
 		this.mentorUnlocked = false;
 		this.managerUnlocked = false;
 
@@ -78,10 +80,7 @@ class Game {
 			"wood",
 			"food",
 			"stone",
-			"tentLvl",
-			"quarryLvl",
-			"smithyLvl",
-			"academyLvl",
+			"levels",
 			"mentorUnlocked",
 			"managerUnlocked",
 			"lumberjack",
@@ -234,7 +233,7 @@ class Game {
 	upgradeRequirementMet(i) {
 		if (!this.upgradeList[i].requirement) return true; // No requirement
 		if (
-			this[this.upgradeList[i].requirement[0]] >=
+			this.levels[this.upgradeList[i].requirement[0]] >=
 			this.upgradeList[i].requirement[1]
 		)
 			return true;
@@ -497,5 +496,6 @@ class Game {
 		let state = JSON.parse(localStorage.getItem("savegame"));
 		if (!state) return; // Nothing to load
 		for (let field of this.serializable) this[field] = state[field];
+		this.renderUpgrades();
 	}
 }

@@ -14,7 +14,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.tentPopupShown = true;
 	}
-	if (this.tentLvl >= 1 && !this.assignPopupShown) {
+	if (this.levels.tent >= 1 && !this.assignPopupShown) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`Now that you have a tent, your village consists of two
@@ -26,7 +26,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.assignPopupShown = true;
 	}
-	if (this.pierLvl >= 1 && !this.pierPopupShown) {
+	if (this.levels.pier >= 1 && !this.pierPopupShown) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`With the fishing pier built, you can now assign some of your
@@ -49,7 +49,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.chaosPopupShown = true;
 	}
-	if (this.quarryLvl >= 1 && !this.stonePopupShown) {
+	if (this.levels.quarry >= 1 && !this.stonePopupShown) {
 		this.showPopup(
 			`With the construction of the quarry, you unlocked a new kind of
 			resource! Assign miners to start gathering stone. You might also
@@ -59,7 +59,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.stonePopupShown = true;
 	}
-	if (this.smithyLvl >= 1 && !this.smithyPopupShown) {
+	if (this.levels.smithy >= 1 && !this.smithyPopupShown) {
 		this.showPopup(
 			`Have you noticed that crafts are taking longer and longer to
 			build? Assign blacksmiths to help you with your crafts, speeding up
@@ -69,7 +69,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.smithyPopupShown = true;
 	}
-	if (this.academyLvl >= 1 && !this.academyPopupShown) {
+	if (this.levels.academy >= 1 && !this.academyPopupShown) {
 		document.getElementById("research").click();
 		this.showPopup(
 			`The academy is now standing! A brand new kind of upgrade has been
