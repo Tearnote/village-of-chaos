@@ -61,6 +61,36 @@ class Game {
 		};
 		this.upgrades = this.createUpgrades(); // Defined in upgradeList.js
 
+		// List of fields which are held in local storage
+		this.serializable = [
+			"wood",
+			"food",
+			"stone",
+			"tentLvl",
+			"quarryLvl",
+			"smithyLvl",
+			"academyLvl",
+			"mentorUnlocked",
+			"managerUnlocked",
+			"lumberjack",
+			"fisherman",
+			"miner",
+			"blacksmith",
+			"professor",
+			"production",
+			"upgrades",
+			"resourcePopupShown",
+			"tentPopupShown",
+			"assignPopupShown",
+			"pierPopupShown",
+			"chaosPopupShown",
+			"stonePopupShown",
+			"smithyPopupShown",
+			"academyPopupShown",
+			"mentorPopupShown",
+			"managerPopupShown",
+		];
+
 		// Tutorial flags
 		this.resourcePopupShown = false;
 		this.tentPopupShown = false;
@@ -416,5 +446,17 @@ class Game {
 			this.dom.popup.style.top =
 				window.innerHeight / 2 - this.dom.popup.offsetHeight / 2 + "px";
 		}
+	}
+
+	save() {
+		let state = {};
+		for (let field of this.serializable) state[field] = this[field];
+		localStorage.setItem("savegame", JSON.stringify(state));
+	}
+
+	load() {
+		let state = JSON.parse(localStorage.getItem("savegame"));
+		if (!state) return; // Nothing to load
+		for (let field of this.serializable) this[field] = state[field];
 	}
 }
