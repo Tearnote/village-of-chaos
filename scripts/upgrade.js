@@ -8,7 +8,7 @@ class Upgrade {
 		this.duration = params?.duration; // Time it takes for the upgrade to complete (in seconds)
 		this.once = params?.once; // True if upgrade should disappear once bought
 		this.scaling = params.scaling; // Only required if once is false
-		this.requirement = params?.requirement; // Optional, upgrade will only be available if this function returns true
+		this.requirement = params?.requirement; // Optional, array of fields and their minimum values for the upgrade to show up
 		this.effect = params?.effect; // Function to run on buying
 
 		this.started = false;
@@ -63,7 +63,7 @@ class Upgrade {
 			}
 
 			// Update the DOM element
-			if (this.requirement && !this.requirement(game))
+			if (this.requirement && !this.requirementMet(game))
 				this.el.classList.add("unavailable");
 			else this.el.classList.remove("unavailable");
 			if (this.canAfford(game) || this.started)
@@ -72,6 +72,11 @@ class Upgrade {
 			// Progress bar
 			this.el.style.setProperty("--progress", this.progress * 100 + "%");
 		}
+	}
+
+	requirementMet(game) {
+		if (game[this.requirement[0]] >= this.requirement[1]) return true;
+		return false;
 	}
 
 	canAfford(game) {

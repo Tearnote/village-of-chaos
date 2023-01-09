@@ -40,9 +40,7 @@ Game.prototype.createUpgrades = function () {
 			duration: 2.5,
 			once: false,
 			scaling: 2.5,
-			requirement: function (game) {
-				return game.tentLvl >= 1 ? true : false;
-			},
+			requirement: ["tentLvl", 1],
 			effect: function (game) {
 				this.name = "Extend the pier";
 				this.description = "A longer pier means access to bigger fish.";
@@ -71,9 +69,7 @@ Game.prototype.createUpgrades = function () {
 			duration: 4,
 			once: false,
 			scaling: 2.5,
-			requirement: function (game) {
-				return game.pierLvl >= 1 ? true : false;
-			},
+			requirement: ["pierLvl", 1],
 			effect: function (game) {
 				this.name = "Develop the quarry";
 				this.description =
@@ -104,9 +100,7 @@ Game.prototype.createUpgrades = function () {
 			duration: 4,
 			once: false,
 			scaling: 2.5,
-			requirement: function (game) {
-				return game.quarryLvl >= 1 ? true : false;
-			},
+			requirement: ["quarryLvl", 1],
 			effect: function (game) {
 				this.name = "Modernize the smithy";
 				this.description =
@@ -134,9 +128,7 @@ Game.prototype.createUpgrades = function () {
 			duration: 10,
 			once: false,
 			scaling: 2.5,
-			requirement: function (game) {
-				return game.smithyLvl >= 3 ? true : false;
-			},
+			requirement: ["smithyLvl", 3],
 			effect: function (game) {
 				this.name = "Grow the academy";
 				this.description =
@@ -166,9 +158,7 @@ Game.prototype.createUpgrades = function () {
 			cost: [400, 10, 2],
 			duration: 6,
 			once: true,
-			requirement: function (game) {
-				return game.academyLvl >= 1 ? true : false;
-			},
+			requirement: ["academyLvl", 1],
 			effect: function (game) {
 				game.showElement("mentor");
 				game.mentorUnlocked = true;
@@ -185,9 +175,7 @@ Game.prototype.createUpgrades = function () {
 			cost: [2000, 20, 10],
 			duration: 20,
 			once: true,
-			requirement: function (game) {
-				return game.academyLvl >= 3 ? true : false;
-			},
+			requirement: ["academyLvl", 3],
 			effect: function (game) {
 				game.showElement("manager");
 				game.managerUnlocked = true;
@@ -207,9 +195,7 @@ Game.prototype.createUpgrades = function () {
 			cost: [5, 5, 0],
 			duration: 1.4,
 			once: true,
-			requirement: function (game) {
-				return game.tentLvl >= 1 ? true : false;
-			},
+			requirement: ["tentLvl", 1],
 			effect: function (game) {
 				game.food += 40;
 				game.logMessage(
@@ -228,9 +214,7 @@ Game.prototype.createUpgrades = function () {
 			cost: [0, 20, 0],
 			duration: 2,
 			once: true,
-			requirement: function (game) {
-				return game.tentLvl >= 1 ? true : false;
-			},
+			requirement: ["tentLvl", 1],
 			effect: function (game) {
 				game.production.lumberjack *= 1.5;
 				game.logMessage(
