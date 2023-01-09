@@ -130,6 +130,22 @@ class Game {
 			this.dom.popupShroud.style.display = "none";
 		});
 
+		this.dom.save.addEventListener("click", () => {
+			this.save();
+		});
+		this.dom.load.addEventListener("click", () => {
+			this.load();
+		});
+		this.dom.reset.addEventListener("click", () => {
+			if (
+				window.confirm(
+					`Are you sure you want to reset your game? Your progress
+					will be lost forever, and this is irreversible.`
+				)
+			)
+				this.reset();
+		});
+
 		// Add some flavor text
 		this.logMessage(
 			"story",
@@ -510,5 +526,10 @@ class Game {
 
 		this.dom.log.replaceChildren(); // We don't restore log entries
 		this.logMessage("info", "Game loaded.");
+	}
+
+	reset() {
+		localStorage.removeItem("savegame");
+		window.location.reload();
 	}
 }

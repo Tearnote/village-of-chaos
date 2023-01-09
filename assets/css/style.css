@@ -161,6 +161,10 @@ header {
 	margin: 0 0.4rem;
 }
 
+#reset {
+	color: red;
+}
+
 /* #endregion */
 
 /* #region Tabbed interface */
