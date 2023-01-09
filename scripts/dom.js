@@ -109,5 +109,8 @@ class DOM {
 		this.popup = document.getElementById("popup");
 		this.popupText = document.getElementById("popup-text");
 		this.popupDismiss = document.getElementById("popup-dismiss");
+
+		// Upgrade list - dynamic
+		this.upgrades = [];
 	}
 }

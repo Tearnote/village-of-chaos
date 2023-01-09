@@ -60,6 +60,19 @@ class Game {
 			managerReduction: 0.2,
 		};
 
+		// Upgrade state and DOM
+		this.upgrades = [];
+		for (let upgrade of this.upgradeList) {
+			this.upgrades.push({
+				visible: false, // Is requirement met?
+				available: false, // Is there enough currency?
+				started: false, // Has the user clicked it?
+				progress: 0, // Advances towards 1.0 over time if started
+				completed: 0, // 0 or 1 for one-time upgrades, can be above 1 for repeatable upgrades
+			});
+		}
+		this.renderUpgrades();
+
 		// List of fields which are held in local storage
 		this.serializable = [
 			"wood",
@@ -127,8 +140,6 @@ class Game {
 			this.dom.popupShroud.style.display = "none";
 		});
 
-		this.refreshUpgrades();
-
 		// Add some flavor text
 		this.logMessage(
 			"story",
@@ -151,8 +162,7 @@ class Game {
 	}
 
 	update(dt) {
-		// Update upgrade state and progress
-		for (let upgrade of this.upgradeList) upgrade.update(game, dt);
+		this.updateUpgrades(dt);
 
 		// Update chaos levels
 		this.pierChaos = this.getChaosLevel(this.fisherman);
@@ -168,15 +178,90 @@ class Game {
 		this.displayPopups(); // Defined in tutorial.js
 	}
 
-	refreshUpgrades() {
-		this.dom.craftTab.replaceChildren();
-		this.dom.researchTab.replaceChildren();
+	updateUpgrades(dt) {
+		for (let i in this.upgradeList) {
+			if (!this.dom.upgrades[i]) continue;
 
-		for (let upgrade of this.upgradeList) {
-			if (upgrade.type == "craft")
-				this.dom.craftTab.appendChild(upgrade.createElement(this));
-			else this.dom.researchTab.appendChild(upgrade.createElement(this));
+			// Update available state
+			this.upgrades[i].available =
+				this.canAffordUpgrade(i) && !this.upgrades[i].started
+					? true
+					: false;
+			if (this.canAffordUpgrade(i) || this.upgrades[i].started)
+				this.dom.upgrades[i].classList.remove("inactive");
+			else this.dom.upgrades[i].classList.add("inactive");
+
+			// Advance progress
+			if (this.upgrades[i].started) {
+				let speedup =
+					this.upgradeList[i].type == "craft"
+						? this.getCraftSpeedup()
+						: this.getResearchSpeedup();
+				this.upgrades[i].progress +=
+					dt / (this.upgradeList[i].duration * 1000 * speedup);
+				if (this.upgrades[i].progress >= 1) {
+					this.completeUpgrade(i);
+				} else {
+					// Upgrade advanced but not completed, update the progress bar
+					this.dom.upgrades[i].style.setProperty(
+						"--progress",
+						this.upgrades[i].progress * 100 + "%"
+					);
+				}
+			}
 		}
+	}
+
+	getUpgradeCost(i) {
+		let cost = [...this.upgradeList[i].cost];
+		let scaling = this.upgradeList[i].scaling ?? 1;
+		let costFactor = scaling ** this.upgrades[i].completed;
+		for (let i in cost) cost[i] = Math.ceil(cost[i] * costFactor);
+		return cost;
+	}
+
+	canAffordUpgrade(i) {
+		let cost = this.getUpgradeCost(i);
+		if (
+			cost[0] <= this.wood &&
+			cost[1] <= this.food &&
+			cost[2] <= this.stone
+		)
+			return true;
+		return false;
+	}
+
+	upgradeRequirementMet(i) {
+		if (!this.upgradeList[i].requirement) return true; // No requirement
+		if (
+			this[this.upgradeList[i].requirement[0]] >=
+			this.upgradeList[i].requirement[1]
+		)
+			return true;
+		return false;
+	}
+
+	upgradeClicked(i) {
+		// Is it affordable?
+		if (!this.upgrades[i].available) return;
+
+		// Pay the cost and begin
+		let cost = this.getUpgradeCost(i);
+		this.wood -= cost[0];
+		this.food -= cost[1];
+		this.stone -= cost[2];
+		this.upgrades[i].started = true;
+	}
+
+	completeUpgrade(i) {
+		// Perform upgrade effect and update upgrade state
+		this.upgradeList[i].effect(this);
+		this.upgrades[i].completed += 1;
+		this.upgrades[i].started = false;
+		this.upgrades[i].progress = 0;
+
+		// Other upgrades might've been affected; refresh everything
+		this.renderUpgrades();
 	}
 
 	render() {
@@ -220,6 +305,69 @@ class Game {
 		this.dom.quarryChaos.textContent = Math.ceil(this.quarryChaos * 100);
 		this.dom.smithyChaos.textContent = Math.ceil(this.smithyChaos * 100);
 		this.dom.academyChaos.textContent = Math.ceil(this.academyChaos * 100);
+	}
+
+	renderUpgrades() {
+		// Clean up
+		this.dom.craftTab.replaceChildren();
+		this.dom.researchTab.replaceChildren();
+		this.dom.upgrades.length = 0;
+
+		// Update requirements
+		for (let i in this.upgradeList)
+			this.upgrades[i].visible = this.upgradeRequirementMet(i);
+
+		// Generate upgrade tabs' DOM
+		for (let i in this.upgradeList) {
+			let upgrade = this.upgrades[i];
+
+			// Is it shown at all?
+			if (
+				!upgrade.visible ||
+				(this.upgradeList[i].once && this.upgrades[i].completed >= 1)
+			) {
+				this.dom.upgrades.push(null);
+				continue;
+			}
+
+			// Generate the upgrade in the correct tab
+			let el = this.createUpgradeElement(i);
+			el.addEventListener("click", () => {
+				this.upgradeClicked(i);
+			});
+			this.dom.upgrades.push(el);
+			if (this.upgradeList[i].type == "craft")
+				this.dom.craftTab.appendChild(el);
+			else this.dom.researchTab.appendChild(el);
+		}
+	}
+
+	createUpgradeElement(i) {
+		let el = document.createElement("div");
+		el.classList.add("upgrade");
+
+		let html = "";
+		html += `<h2>${this.upgradeList[i].name}</h2>`;
+		html += `<p>${this.upgradeList[i].description}</p>`;
+		html += `<p>Cost: `;
+		let cost = this.getUpgradeCost(i);
+		let atLeastOne = false;
+		if (cost[0] > 0) {
+			html += `${cost[0]} wood`;
+			atLeastOne = true;
+		}
+		if (cost[1] > 0) {
+			if (atLeastOne) html += `, `;
+			html += `${cost[1]} food`;
+			atLeastOne = true;
+		}
+		if (cost[2] > 0) {
+			if (atLeastOne) html += `, `;
+			html += `${cost[2]} stone`;
+		}
+		html += `</p>`;
+		el.innerHTML = html;
+		return el;
 	}
 
 	logMessage(type, msg) {

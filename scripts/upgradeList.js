@@ -1,3 +1,17 @@
+class Upgrade {
+	constructor(params = {}) {
+		this.name = params?.name;
+		this.description = params?.description;
+		this.type = params?.type; // "craft" or "research"
+		this.cost = params?.cost; // Array of 3 integers: [wood, food, stone]
+		this.duration = params?.duration; // Time it takes for the upgrade to complete (in seconds)
+		this.once = params?.once; // True if upgrade should disappear once bought
+		this.scaling = params.scaling; // Only required if once is false
+		this.requirement = params?.requirement; // Optional, array of fields and their minimum values for the upgrade to show up
+		this.effect = params?.effect; // Function to run on buying
+	}
+}
+
 Game.prototype.upgradeList = [
 	// Major system progression upgrades
 	new Upgrade({
@@ -33,7 +47,7 @@ Game.prototype.upgradeList = [
 		name: "Build a pier",
 		description: "Construct a wooden pier for your villagers to fish from.",
 		type: "craft",
-		cost: [0, 50, 0],
+		cost: [50, 0, 0],
 		duration: 2.5,
 		once: false,
 		scaling: 2.5,
@@ -62,7 +76,7 @@ Game.prototype.upgradeList = [
 		description:
 			"Prepare a spot on the cliff for your villagers to mine for stone.",
 		type: "craft",
-		cost: [0, 200, 0],
+		cost: [200, 0, 0],
 		duration: 4,
 		once: false,
 		scaling: 2.5,
@@ -90,7 +104,7 @@ Game.prototype.upgradeList = [
 		description:
 			"Unlock new upgrades, and assign blacksmiths to help you complete upgrades faster.",
 		type: "craft",
-		cost: [0, 100, 100],
+		cost: [100, 0, 100],
 		duration: 4,
 		once: false,
 		scaling: 2.5,
@@ -118,7 +132,7 @@ Game.prototype.upgradeList = [
 		description:
 			"Unlock research into team management techniques, and assign professors to help speed it up.",
 		type: "craft",
-		cost: [0, 500, 500],
+		cost: [500, 0, 500],
 		duration: 10,
 		once: false,
 		scaling: 2.5,
@@ -149,7 +163,7 @@ Game.prototype.upgradeList = [
 		name: "Mentorship program",
 		description: "What if you got one person to oversee another?",
 		type: "research",
-		cost: [400, 10, 2],
+		cost: [10, 400, 2],
 		duration: 6,
 		once: true,
 		requirement: ["academyLvl", 1],
@@ -166,7 +180,7 @@ Game.prototype.upgradeList = [
 		name: "People management",
 		description: "Instead of working, make sure others are working.",
 		type: "research",
-		cost: [2000, 20, 10],
+		cost: [20, 2000, 10],
 		duration: 20,
 		once: true,
 		requirement: ["academyLvl", 3],
@@ -204,7 +218,7 @@ Game.prototype.upgradeList = [
 		description:
 			"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
 		type: "craft",
-		cost: [0, 20, 0],
+		cost: [20, 0, 0],
 		duration: 2,
 		once: true,
 		requirement: ["tentLvl", 1],

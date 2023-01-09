@@ -306,10 +306,6 @@ header {
 	background-color: darkgray;
 }
 
-.upgrade.unavailable {
-	display: none;
-}
-
 .upgrade::after {
 	content: "";
 	display: block;
