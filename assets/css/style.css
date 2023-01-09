@@ -157,8 +157,8 @@ header {
 
 #interface {
 	align-self: flex-end;
-	width: 32rem;
-	padding: 2rem;
+	width: 28rem;
+	margin: 2rem;
 }
 
 #interface > .tab {

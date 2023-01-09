@@ -7,9 +7,9 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.wood = 111110;
-		this.food = 111110;
-		this.stone = 111110;
+		this.wood = 0;
+		this.food = 0;
+		this.stone = 0;
 
 		// Buildings
 		this.tentLvl = 0;
@@ -377,7 +377,7 @@ class Game {
 			this.showPopup(
 				`Not bad! You now have enough resources to build your first
 				tent. This will invite two villagers to your village. They will
-				be automatically assigned to be lumberjacks, producing wood for
+				be automatically employed as lumberjacks, producing wood for
 				you over time. Click on "Build a tent" in the upgrade list to
 				begin the craft.`,
 				"#craft-tab"
