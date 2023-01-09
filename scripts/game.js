@@ -165,6 +165,12 @@ class Game {
 			allowing you to build a tent for your first villagers.`,
 			"#gathering"
 		);
+
+		// Load savefile if exists, and save the game periodically
+		this.load();
+		setInterval(() => {
+			this.save();
+		}, 1000 * 60 * 5); // 5 minutes
 	}
 
 	update(dt) {
