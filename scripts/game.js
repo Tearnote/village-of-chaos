@@ -85,9 +85,12 @@ class Game {
 				this.dom[job + roleCap + "Up"].addEventListener("click", () => {
 					this.assign(job, role);
 				});
-				this.dom[job + roleCap + "Down"].addEventListener("click", () => {
-					this.unassign(job, role);
-				});
+				this.dom[job + roleCap + "Down"].addEventListener(
+					"click",
+					() => {
+						this.unassign(job, role);
+					}
+				);
 			}
 		}
 
@@ -376,7 +379,10 @@ class Game {
 		this.food += dt * this.getFoodProduction();
 		this.stone += dt * this.getStoneProduction();
 
-		// Show tutorial pop-ups
+		this.displayPopups();
+	}
+
+	displayPopups() {
 		if (this.wood >= 4 && !this.resourcePopupShown) {
 			this.showPopup(
 				`Your current resource count is shown here.`,
