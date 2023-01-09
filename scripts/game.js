@@ -159,7 +159,10 @@ class Game {
 			disembark. It's time to begin work on your settlement.`
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.showPopup("Hello world!");
+		this.showPopup(
+			"Hello world! This is a long message for testing word wrapping and pop-up positioning.",
+			"#gathering"
+		);
 	}
 
 	createUpgrades() {
@@ -517,14 +520,14 @@ class Game {
 
 	gatherWood = () => {
 		this.wood += 1;
+		this.showPopup("You just collected wood.", "header");
 	};
 
 	assign(job, role) {
 		if (this.lumberjack == 0) return;
 		this.lumberjack -= 1;
 		this[job][role] += 1;
-		if (this[job][role] >= 2)
-			game.showElement("chaos");
+		if (this[job][role] >= 2) game.showElement("chaos");
 	}
 
 	unassign(job, role) {
@@ -542,8 +545,36 @@ class Game {
 		document.body.style.setProperty(`--${name}-display`, display);
 	}
 
-	showPopup(text) {
+	showPopup(text, atSelector) {
 		this.dom.popupShroud.style.display = "block";
 		this.dom.popupText.textContent = text;
+
+		if (atSelector) {
+			let target = document.querySelector(atSelector);
+			let rect = target.getBoundingClientRect();
+
+			this.dom.popup.style.left = rect.left + "px";
+			let margin = parseInt(
+				window.getComputedStyle(this.dom.popup).marginTop
+			);
+			let top = rect.top - this.dom.popup.offsetHeight - margin * 2;
+			if (top < 0)
+				// If pop-up ended up off-screen, position below the target instead of above
+				top = rect.bottom;
+			this.dom.popup.style.top = top + "px";
+
+			target.style.zIndex = 1000; // Bring above the shroud
+			target.style.pointerEvents = "none"; // Make sure target can't be interacted with while pop-up is visible
+			this.dom.popupDismiss.addEventListener("click", () => {
+				target.style.zIndex = "revert";
+				target.style.pointerEvents = "revert";
+			});
+		} else {
+			// Default - just center it
+			this.dom.popup.style.left =
+				window.innerWidth / 2 - this.dom.popup.offsetWidth / 2 + "px";
+			this.dom.popup.style.top =
+				window.innerHeight / 2 - this.dom.popup.offsetHeight / 2 + "px";
+		}
 	}
 }

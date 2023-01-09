@@ -348,6 +348,7 @@ header {
 	flex-flow: column;
 	align-items: center;
 	text-align: justify;
+	margin: 0.2rem;
 	border: paleturquoise solid 4px;
 	padding: 0.8rem 1rem;
 	background-color: white;
