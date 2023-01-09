@@ -334,6 +334,7 @@ header {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.6);
+	user-select: none; /* Prevent accidental select by spamming the shroud */
 }
 
 #popup {
@@ -348,6 +349,7 @@ header {
 	border: paleturquoise solid 4px;
 	padding: 0.8rem 1rem;
 	background-color: white;
+	user-select: text; /* Re-enable inherited select on the pop-up directly */
 }
 
 #popup-text {
