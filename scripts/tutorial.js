@@ -37,7 +37,7 @@ Game.prototype.displayPopups = function () {
 		);
 		this.pierPopupShown = true;
 	}
-	if (this.pierChaos > 0 && !this.chaosPopupShown) {
+	if (this.chaos.pier > 0 && !this.chaosPopupShown) {
 		this.showPopup(
 			`Uh oh! With two villagers both taking care of the pier, it seems
 			like they tend to step on each other's toes. The more villagers you

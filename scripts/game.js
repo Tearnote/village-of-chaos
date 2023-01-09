@@ -22,11 +22,12 @@ class Game {
 		this.mentorUnlocked = false;
 		this.managerUnlocked = false;
 
-		// Chaos levels
-		this.pierChaos = 0;
-		this.quarryChaos = 0;
-		this.smithyChaos = 0;
-		this.academyChaos = 0;
+		this.chaos = {
+			pier: 0,
+			quarry: 0,
+			smithy: 0,
+			academy: 0,
+		};
 
 		// Assignments
 		this.lumberjack = 0;
@@ -164,10 +165,10 @@ class Game {
 		this.updateUpgrades(dt);
 
 		// Update chaos levels
-		this.pierChaos = this.getChaosLevel(this.fisherman);
-		this.quarryChaos = this.getChaosLevel(this.miner);
-		this.smithyChaos = this.getChaosLevel(this.blacksmith);
-		this.academyChaos = this.getChaosLevel(this.professor);
+		this.chaos.pier = this.getChaosLevel(this.fisherman);
+		this.chaos.quarry = this.getChaosLevel(this.miner);
+		this.chaos.smithy = this.getChaosLevel(this.blacksmith);
+		this.chaos.academy = this.getChaosLevel(this.professor);
 
 		// Generate resources
 		this.wood += dt * this.getWoodProduction();
@@ -300,10 +301,10 @@ class Game {
 		this.dom.professorManager.textContent = this.professor.manager;
 
 		// Update chaos indicators
-		this.dom.pierChaos.textContent = Math.ceil(this.pierChaos * 100);
-		this.dom.quarryChaos.textContent = Math.ceil(this.quarryChaos * 100);
-		this.dom.smithyChaos.textContent = Math.ceil(this.smithyChaos * 100);
-		this.dom.academyChaos.textContent = Math.ceil(this.academyChaos * 100);
+		this.dom.pierChaos.textContent = Math.ceil(this.chaos.pier * 100);
+		this.dom.quarryChaos.textContent = Math.ceil(this.chaos.quarry * 100);
+		this.dom.smithyChaos.textContent = Math.ceil(this.chaos.smithy * 100);
+		this.dom.academyChaos.textContent = Math.ceil(this.chaos.academy * 100);
 	}
 
 	renderUpgrades() {
@@ -384,14 +385,14 @@ class Game {
 		let contribution =
 			this.fisherman.villager +
 			this.fisherman.mentor * this.production.mentorBoost;
-		return contribution * this.production.fisherman * (1 - this.pierChaos);
+		return contribution * this.production.fisherman * (1 - this.chaos.pier);
 	}
 
 	getStoneProduction() {
 		let contribution =
 			this.miner.villager +
 			this.miner.mentor * this.production.mentorBoost;
-		return this.production.miner * contribution * (1 - this.quarryChaos);
+		return this.production.miner * contribution * (1 - this.chaos.quarry);
 	}
 
 	getCraftSpeedup() {
@@ -401,7 +402,7 @@ class Game {
 		return (
 			1 -
 			(1 - this.production.blacksmith ** contribution) *
-				(1 - this.smithyChaos)
+				(1 - this.chaos.smithy)
 		);
 	}
 
@@ -412,7 +413,7 @@ class Game {
 		return (
 			1 -
 			(1 - this.production.professor ** contribution) *
-				(1 - this.academyChaos)
+				(1 - this.chaos.academy)
 		);
 	}
 
