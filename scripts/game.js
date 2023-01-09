@@ -7,9 +7,9 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.wood = 100000;
-		this.food = 100000;
-		this.stone = 100000;
+		this.wood = 0;
+		this.food = 0;
+		this.stone = 0;
 
 		// Buildings
 		this.tentLvl = 0;
@@ -58,6 +58,11 @@ class Game {
 			managerReduction: 0.2,
 		};
 		this.upgrades = this.createUpgrades();
+
+		// Tutorial flags
+		this.resourcePopupShown = false;
+		this.tentPopupShown = false;
+		this.assignPopupShown = false;
 
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
@@ -160,7 +165,10 @@ class Game {
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
 		this.showPopup(
-			"Hello world! This is a long message for testing word wrapping and pop-up positioning.",
+			`Welcome to Village of Chaos! In this game you will collect
+			resources, invite villagers and build new structures. To start
+			with, use these buttons to collect 10 units of food and wood,
+			allowing you to build a tent for your first villagers.`,
 			"#gathering"
 		);
 	}
@@ -171,7 +179,7 @@ class Game {
 				name: "Build a tent",
 				description: "Has space for two villagers.",
 				type: "craft",
-				cost: [20, 20, 0],
+				cost: [10, 10, 0],
 				duration: 0.8,
 				once: false,
 				scaling: 2.5,
@@ -415,6 +423,38 @@ class Game {
 		this.wood += dt * this.getWoodProduction();
 		this.food += dt * this.getFoodProduction();
 		this.stone += dt * this.getStoneProduction();
+
+		// Show tutorial pop-ups
+		if (this.wood >= 4 && !this.resourcePopupShown) {
+			this.showPopup(
+				`Your current resource count is shown here.`,
+				"header"
+			);
+			this.resourcePopupShown = true;
+		}
+		if (this.wood >= 10 && this.food >= 10 && !this.tentPopupShown) {
+			this.showPopup(
+				`Not bad! You now have enough resources to build your first
+				tent. This will invite two villagers to your village. They will
+				be automatically assigned to be lumberjacks, producing wood for
+				you over time. Click on "Build a tent" in the upgrade list to
+				begin the craft.`,
+				"#craft-tab"
+			);
+			this.tentPopupShown = true;
+		}
+		if (this.tentLvl >= 1 && !this.assignPopupShown) {
+			document.getElementById("assign").click();
+			this.showPopup(
+				`Now that you have a tent, your village consists of two
+				lumberjacks, which you can see in the newly unlocked "Assign"
+				tab. Click on the "Craft" tab to get back to your list of
+				available upgrades, and let's see if you can manage to build a
+				fishing pier.`,
+				"#interface"
+			);
+			this.assignPopupShown = true;
+		}
 	}
 
 	render() {
@@ -520,7 +560,6 @@ class Game {
 
 	gatherWood = () => {
 		this.wood += 1;
-		this.showPopup("You just collected wood.", "header");
 	};
 
 	assign(job, role) {
