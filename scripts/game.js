@@ -212,7 +212,7 @@ class Game {
 	}
 
 	getUpgradeCost(i) {
-		let cost = [...this.upgradeList[i].cost];
+		let cost = { ...this.upgradeList[i].cost };
 		let scaling = this.upgradeList[i].scaling ?? 1;
 		let costFactor = scaling ** this.upgrades[i].completed;
 		for (let i in cost) cost[i] = Math.ceil(cost[i] * costFactor);
@@ -222,9 +222,9 @@ class Game {
 	canAffordUpgrade(i) {
 		let cost = this.getUpgradeCost(i);
 		if (
-			cost[0] <= this.wood &&
-			cost[1] <= this.food &&
-			cost[2] <= this.stone
+			(cost.wood ?? 0) <= this.wood &&
+			(cost.food ?? 0) <= this.food &&
+			(cost.stone ?? 0) <= this.stone
 		)
 			return true;
 		return false;
@@ -246,9 +246,9 @@ class Game {
 
 		// Pay the cost and begin
 		let cost = this.getUpgradeCost(i);
-		this.wood -= cost[0];
-		this.food -= cost[1];
-		this.stone -= cost[2];
+		this.wood -= cost.wood ?? 0;
+		this.food -= cost.food ?? 0;
+		this.stone -= cost.stone ?? 0;
 		this.upgrades[i].started = true;
 	}
 
@@ -351,18 +351,18 @@ class Game {
 		html += `<p>Cost: `;
 		let cost = this.getUpgradeCost(i);
 		let atLeastOne = false;
-		if (cost[0] > 0) {
-			html += `${cost[0]} wood`;
+		if (cost.wood) {
+			html += `${cost.wood} wood`;
 			atLeastOne = true;
 		}
-		if (cost[1] > 0) {
+		if (cost.food) {
 			if (atLeastOne) html += `, `;
-			html += `${cost[1]} food`;
+			html += `${cost.food} food`;
 			atLeastOne = true;
 		}
-		if (cost[2] > 0) {
+		if (cost.stone) {
 			if (atLeastOne) html += `, `;
-			html += `${cost[2]} stone`;
+			html += `${cost.stone} stone`;
 		}
 		html += `</p>`;
 		el.innerHTML = html;
