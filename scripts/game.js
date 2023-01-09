@@ -17,6 +17,8 @@ class Game {
 		this.quarryLvl = 0;
 		this.smithyLvl = 0;
 		this.academyLvl = 0;
+		this.mentorUnlocked = false;
+		this.managerUnlocked = false;
 
 		// Chaos levels
 		this.pierChaos = 0;
@@ -63,6 +65,13 @@ class Game {
 		this.resourcePopupShown = false;
 		this.tentPopupShown = false;
 		this.assignPopupShown = false;
+		this.pierPopupShown = false;
+		this.chaosPopupShown = false;
+		this.stonePopupShown = false;
+		this.smithyPopupShown = false;
+		this.academyPopupShown = false;
+		this.mentorPopupShown = false;
+		this.managerPopupShown = false;
 
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
@@ -322,6 +331,7 @@ class Game {
 				},
 				effect: function (game) {
 					game.showElement("mentor");
+					game.mentorUnlocked = true;
 					game.logMessage(
 						"event",
 						"Turns out mentors training novices is a pretty good idea!"
@@ -341,6 +351,7 @@ class Game {
 				},
 				effect: function (game) {
 					game.showElement("manager");
+					game.managerUnlocked = true;
 					game.logMessage(
 						"event",
 						"You can now assign chaos controllers! Also known as managers."
@@ -395,6 +406,87 @@ class Game {
 				"#interface"
 			);
 			this.assignPopupShown = true;
+		}
+		if (this.pierLvl >= 1 && !this.pierPopupShown) {
+			document.getElementById("assign").click();
+			this.showPopup(
+				`With the fishing pier built, you can now assign some of your
+				villagers to be fishermen, producing food over time. Use the
+				"+" and "-" buttons to change your assignments. Any unassigned
+				villagers will still gather wood for you.`,
+				"#assign-tab"
+			);
+			this.pierPopupShown = true;
+		}
+		if (this.pierChaos > 0 && !this.chaosPopupShown) {
+			this.showPopup(
+				`Uh oh! With two villagers both taking care of the pier, it
+				seems like they tend to step on each other's toes. The more
+				villagers you assign to do the same job, the more chaotic their
+				workplace becomes, and production slows down. You can see the
+				slowdown factor in the "Chaos" column. Try to minimize this to
+				make the most of your village.`,
+				"#assign-tab"
+			);
+			this.chaosPopupShown = true;
+		}
+		if (this.quarryLvl >= 1 && !this.stonePopupShown) {
+			this.showPopup(
+				`With the construction of the quarry, you unlocked a new kind
+				of resource! Assign miners to start gathering stone. You might
+				also discover new crafts if you upgrade your existing buildings
+				enough...`,
+				"header"
+			);
+			this.stonePopupShown = true;
+		}
+		if (this.smithyLvl >= 1 && !this.smithyPopupShown) {
+			this.showPopup(
+				`Have you noticed that crafts are taking longer and longer to
+				build? Assign blacksmiths to help you with your crafts,
+				speeding up their creation significantly. The speed-up factor
+				is shown next to your resource count.`,
+				"header"
+			);
+			this.smithyPopupShown = true;
+		}
+		if (this.academyLvl >= 1 && !this.academyPopupShown) {
+			document.getElementById("research").click();
+			this.showPopup(
+				`The academy is now standing! A brand new kind of upgrade has
+				been unlocked - researches, which you can access via the new
+				"Research" tab. You can now also assign professors who will
+				speed up research progress, similarly to how blacksmiths speed
+				up crafts.`,
+				"#interface"
+			);
+			this.academyPopupShown = true;
+		}
+		if (this.mentorUnlocked && !this.mentorPopupShown) {
+			document.getElementById("assign").click();
+			this.showPopup(
+				`Congratulations, you can now assign mentors to each job!
+				Mentors are not only better at production than regular
+				villagers, but they can also take on a villager as an
+				apprentice. Each pair of mentor and villager will count as only
+				one person for the purposes of Chaos, helping you to make your
+				workplaces bigger without inviting mismanagement.`,
+				"#assign-tab"
+			);
+			this.mentorPopupShown = true;
+		}
+		if (this.managerUnlocked && !this.managerPopupShown) {
+			document.getElementById("assign").click();
+			this.showPopup(
+				`This is it - the cutting edge of team management. With
+				managers on your teams, your production will be higher than
+				ever before! Sure, managers don't actually produce anything,
+				but the more of them you have, the lower your Chaos becomes.
+				The sky's the limit! Soon, maybe you will be able to
+				investigate that monolith on the horizon...`,
+				"#assign-tab"
+			);
+			this.managerPopupShown = true;
 		}
 	}
 
