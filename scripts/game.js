@@ -7,9 +7,9 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.wood = 0;
-		this.food = 0;
-		this.stone = 0;
+		this.wood = 111110;
+		this.food = 111110;
+		this.stone = 111110;
 
 		// Buildings
 		this.levels = {
@@ -468,6 +468,13 @@ class Game {
 		this.unlocks[name] = true;
 	}
 
+	lockEverything() {
+		for (let name in this.unlocks) {
+			let nameDashed = name.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+			document.body.style.setProperty(`--${nameDashed}-display`, "none");
+		}
+	}
+
 	showPopup(text, atSelector) {
 		this.dom.popupShroud.style.display = "block";
 		this.dom.popupText.textContent = text;
@@ -505,6 +512,8 @@ class Game {
 		let state = {};
 		for (let field of this.serializable) state[field] = this[field];
 		localStorage.setItem("savegame", JSON.stringify(state));
+
+		this.logMessage("info", "Game saved.");
 	}
 
 	load() {
@@ -512,5 +521,16 @@ class Game {
 		if (!state) return; // Nothing to load
 		for (let field of this.serializable) this[field] = state[field];
 		this.renderUpgrades();
+
+		// Set unlock state in DOM
+		this.lockEverything();
+		for (let unlock in this.unlocks)
+			if (this.unlocks[unlock]) this.unlock(unlock);
+
+		// Close pop-up if open
+		this.dom.popupDismiss.click();
+
+		this.dom.log.replaceChildren(); // We don't restore log entries
+		this.logMessage("info", "Game loaded.");
 	}
 }
