@@ -103,6 +103,11 @@ class DOM {
 			"professor-manager-down"
 		);
 
+		// System buttons
+		this.save = document.getElementById("save");
+		this.load = document.getElementById("load");
+		this.reset = document.getElementById("reset");
+
 		// Other elements
 		this.log = document.getElementById("log");
 		this.popupShroud = document.getElementById("popup-shroud");

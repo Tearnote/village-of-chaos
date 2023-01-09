@@ -151,6 +151,16 @@ header {
 	display: var(--research-speed-display);
 }
 
+#system {
+	margin-right: 1rem;
+	display: flex;
+	flex-flow: row;
+}
+
+#system > button {
+	margin: 0 0.4rem;
+}
+
 /* #endregion */
 
 /* #region Tabbed interface */
