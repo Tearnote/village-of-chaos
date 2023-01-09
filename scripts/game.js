@@ -441,18 +441,14 @@ class Game {
 			display = "table-row";
 		if (["mentor", "manager", "chaos"].includes(name))
 			display = "table-cell";
-		// https://stackoverflow.com/a/47836484
-		let nameDashed = name.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+		let nameDashed = Util.kebabCase(name);
 		document.body.style.setProperty(`--${nameDashed}-display`, display);
 		this.unlocks[name] = true;
 	}
 
 	lockEverything() {
 		for (let name in this.unlocks) {
-			let nameDashed = name.replace(
-				/[A-Z]/g,
-				(m) => "-" + m.toLowerCase()
-			);
+			let nameDashed = Util.kebabCase(name);
 			document.body.style.setProperty(`--${nameDashed}-display`, "none");
 		}
 	}
