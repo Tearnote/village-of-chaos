@@ -340,7 +340,7 @@ header {
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
-.popup {
+#popup {
 	position: fixed;
 	top: 0; /* Controlled by JS */
 	left: 0; /* Controlled by JS */
@@ -351,9 +351,9 @@ header {
 	background-color: white;
 }
 
-.popup > p {
+#popup-text {
 	max-width: 24rem;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 #popup-dismiss {
