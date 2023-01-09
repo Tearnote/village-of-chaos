@@ -59,7 +59,6 @@ class Game {
 			mentorBoost: 1.5,
 			managerReduction: 0.2,
 		};
-		this.upgrades = this.createUpgrades(); // Defined in upgradeList.js
 
 		// List of fields which are held in local storage
 		this.serializable = [
@@ -153,7 +152,7 @@ class Game {
 
 	update(dt) {
 		// Update upgrade state and progress
-		for (let upgrade of this.upgrades) upgrade.update(game, dt);
+		for (let upgrade of this.upgradeList) upgrade.update(game, dt);
 
 		// Update chaos levels
 		this.pierChaos = this.getChaosLevel(this.fisherman);
@@ -173,7 +172,7 @@ class Game {
 		this.dom.craftTab.replaceChildren();
 		this.dom.researchTab.replaceChildren();
 
-		for (let upgrade of this.upgrades) {
+		for (let upgrade of this.upgradeList) {
 			if (upgrade.type == "craft")
 				this.dom.craftTab.appendChild(upgrade.createElement(this));
 			else this.dom.researchTab.appendChild(upgrade.createElement(this));
