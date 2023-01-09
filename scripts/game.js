@@ -62,6 +62,7 @@ class Game {
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
+
 		this.dom.fishermanVillagerUp.addEventListener("click", () => {
 			this.assign("fisherman", "villager");
 		});
@@ -135,6 +136,10 @@ class Game {
 			this.unassign("professor", "manager");
 		});
 
+		this.dom.popupDismiss.addEventListener("click", () => {
+			this.dom.popupShroud.style.display = "none";
+		});
+
 		// Add upgrades to the DOM
 		for (let upgrade of this.upgrades) {
 			if (upgrade.type == "craft")
@@ -154,6 +159,7 @@ class Game {
 			disembark. It's time to begin work on your settlement.`
 		);
 		this.logMessage("info", "Welcome to Village of Chaos!");
+		this.showPopup("Hello world!");
 	}
 
 	createUpgrades() {
@@ -534,5 +540,10 @@ class Game {
 		if (["mentor", "manager", "chaos"].includes(name))
 			display = "table-cell";
 		document.body.style.setProperty(`--${name}-display`, display);
+	}
+
+	showPopup(text) {
+		this.dom.popupShroud.style.display = "block";
+		this.dom.popupText.textContent = text;
 	}
 }
