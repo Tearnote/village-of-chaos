@@ -124,12 +124,12 @@ header {
 	background-color: chocolate;
 }
 
-.resources {
+#resources {
 	display: flex;
 	flex-flow: row;
 }
 
-.resources > div {
+#resources > div {
 	min-width: 7rem;
 	text-align: center;
 	margin-left: 1rem;
@@ -242,7 +242,7 @@ header {
 
 /* #region Gathering */
 
-.gathering {
+#gathering {
 	width: fit-content;
 	align-self: center;
 	display: flex;
@@ -251,7 +251,7 @@ header {
 	margin: 2rem;
 }
 
-.gathering > button {
+#gathering > button {
 	margin: 0.4rem;
 	padding: 0.2rem 0.5rem;
 }
@@ -346,6 +346,8 @@ header {
 	left: 0; /* Controlled by JS */
 	display: flex;
 	flex-flow: column;
+	align-items: center;
+	text-align: justify;
 	border: paleturquoise solid 4px;
 	padding: 0.8rem 1rem;
 	background-color: white;
@@ -358,7 +360,6 @@ header {
 
 #popup-dismiss {
 	width: fit-content;
-	align-self: center;
 }
 
 /* #endregion */
