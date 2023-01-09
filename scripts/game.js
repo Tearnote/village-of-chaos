@@ -102,29 +102,8 @@ class Game {
 			"professor",
 			"production",
 			"upgrades",
-			"resourcePopupShown",
-			"tentPopupShown",
-			"assignPopupShown",
-			"pierPopupShown",
-			"chaosPopupShown",
-			"stonePopupShown",
-			"smithyPopupShown",
-			"academyPopupShown",
-			"mentorPopupShown",
-			"managerPopupShown",
+			"tutorial",
 		];
-
-		// Tutorial flags
-		this.resourcePopupShown = false;
-		this.tentPopupShown = false;
-		this.assignPopupShown = false;
-		this.pierPopupShown = false;
-		this.chaosPopupShown = false;
-		this.stonePopupShown = false;
-		this.smithyPopupShown = false;
-		this.academyPopupShown = false;
-		this.mentorPopupShown = false;
-		this.managerPopupShown = false;
 
 		// Register button clicks
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
@@ -470,7 +449,10 @@ class Game {
 
 	lockEverything() {
 		for (let name in this.unlocks) {
-			let nameDashed = name.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+			let nameDashed = name.replace(
+				/[A-Z]/g,
+				(m) => "-" + m.toLowerCase()
+			);
 			document.body.style.setProperty(`--${nameDashed}-display`, "none");
 		}
 	}

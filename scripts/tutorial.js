@@ -1,9 +1,22 @@
+Game.prototype.tutorial = {
+	resource: false,
+	tent: false,
+	assign: false,
+	pier: false,
+	chaos: false,
+	stone: false,
+	smithy: false,
+	academy: false,
+	mentor: false,
+	manager: false,
+};
+
 Game.prototype.displayPopups = function () {
-	if (this.wood >= 4 && !this.resourcePopupShown) {
+	if (this.wood >= 4 && !this.tutorial.resource) {
 		this.showPopup(`Your current resource count is shown here.`, "header");
-		this.resourcePopupShown = true;
+		this.tutorial.resource = true;
 	}
-	if (this.wood >= 10 && this.food >= 10 && !this.tentPopupShown) {
+	if (this.wood >= 10 && this.food >= 10 && !this.tutorial.tent) {
 		this.showPopup(
 			`Not bad! You now have enough resources to build your first tent.
 			This will invite two villagers to your village. They will be
@@ -12,9 +25,9 @@ Game.prototype.displayPopups = function () {
 			craft.`,
 			"#craft-tab"
 		);
-		this.tentPopupShown = true;
+		this.tutorial.tent = true;
 	}
-	if (this.levels.tent >= 1 && !this.assignPopupShown) {
+	if (this.levels.tent >= 1 && !this.tutorial.assign) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`Now that you have a tent, your village consists of two
@@ -24,9 +37,9 @@ Game.prototype.displayPopups = function () {
 			pier.`,
 			"#interface"
 		);
-		this.assignPopupShown = true;
+		this.tutorial.assign = true;
 	}
-	if (this.levels.pier >= 1 && !this.pierPopupShown) {
+	if (this.levels.pier >= 1 && !this.tutorial.pier) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`With the fishing pier built, you can now assign some of your
@@ -35,9 +48,9 @@ Game.prototype.displayPopups = function () {
 			villagers will still gather wood for you.`,
 			"#assign-tab"
 		);
-		this.pierPopupShown = true;
+		this.tutorial.pier = true;
 	}
-	if (this.chaos.pier > 0 && !this.chaosPopupShown) {
+	if (this.chaos.pier > 0 && !this.tutorial.chaos) {
 		this.showPopup(
 			`Uh oh! With two villagers both taking care of the pier, it seems
 			like they tend to step on each other's toes. The more villagers you
@@ -47,9 +60,9 @@ Game.prototype.displayPopups = function () {
 			your village.`,
 			"#assign-tab"
 		);
-		this.chaosPopupShown = true;
+		this.tutorial.chaos = true;
 	}
-	if (this.levels.quarry >= 1 && !this.stonePopupShown) {
+	if (this.levels.quarry >= 1 && !this.tutorial.stone) {
 		this.showPopup(
 			`With the construction of the quarry, you unlocked a new kind of
 			resource! Assign miners to start gathering stone. You might also
@@ -57,9 +70,9 @@ Game.prototype.displayPopups = function () {
 			enough...`,
 			"header"
 		);
-		this.stonePopupShown = true;
+		this.tutorial.stone = true;
 	}
-	if (this.levels.smithy >= 1 && !this.smithyPopupShown) {
+	if (this.levels.smithy >= 1 && !this.tutorial.smithy) {
 		this.showPopup(
 			`Have you noticed that crafts are taking longer and longer to
 			build? Assign blacksmiths to help you with your crafts, speeding up
@@ -67,9 +80,9 @@ Game.prototype.displayPopups = function () {
 			your resource count.`,
 			"header"
 		);
-		this.smithyPopupShown = true;
+		this.tutorial.smithy = true;
 	}
-	if (this.levels.academy >= 1 && !this.academyPopupShown) {
+	if (this.levels.academy >= 1 && !this.tutorial.academy) {
 		document.getElementById("research").click();
 		this.showPopup(
 			`The academy is now standing! A brand new kind of upgrade has been
@@ -78,9 +91,9 @@ Game.prototype.displayPopups = function () {
 			progress, similarly to how blacksmiths speed up crafts.`,
 			"#interface"
 		);
-		this.academyPopupShown = true;
+		this.tutorial.academy = true;
 	}
-	if (this.unlocks.mentor && !this.mentorPopupShown) {
+	if (this.unlocks.mentor && !this.tutorial.mentor) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`Congratulations, you can now assign mentors to each job! Mentors
@@ -91,9 +104,9 @@ Game.prototype.displayPopups = function () {
 			mismanagement.`,
 			"#assign-tab"
 		);
-		this.mentorPopupShown = true;
+		this.tutorial.mentor = true;
 	}
-	if (this.unlocks.manager && !this.managerPopupShown) {
+	if (this.unlocks.manager && !this.tutorial.manager) {
 		document.getElementById("assign").click();
 		this.showPopup(
 			`This is it - the cutting edge of team management. With managers on
@@ -104,6 +117,6 @@ Game.prototype.displayPopups = function () {
 			horizon...`,
 			"#assign-tab"
 		);
-		this.managerPopupShown = true;
+		this.tutorial.manager = true;
 	}
 };
