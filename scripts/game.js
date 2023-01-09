@@ -7,9 +7,9 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.wood = 0;
-		this.food = 0;
-		this.stone = 0;
+		this.wood = 111110;
+		this.food = 111110;
+		this.stone = 111110;
 
 		// Buildings
 		this.tentLvl = 0;
@@ -68,78 +68,19 @@ class Game {
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 
-		this.dom.fishermanVillagerUp.addEventListener("click", () => {
-			this.assign("fisherman", "villager");
-		});
-		this.dom.fishermanVillagerDown.addEventListener("click", () => {
-			this.unassign("fisherman", "villager");
-		});
-		this.dom.minerVillagerUp.addEventListener("click", () => {
-			this.assign("miner", "villager");
-		});
-		this.dom.minerVillagerDown.addEventListener("click", () => {
-			this.unassign("miner", "villager");
-		});
-		this.dom.blacksmithVillagerUp.addEventListener("click", () => {
-			this.assign("blacksmith", "villager");
-		});
-		this.dom.blacksmithVillagerDown.addEventListener("click", () => {
-			this.unassign("blacksmith", "villager");
-		});
-		this.dom.professorVillagerUp.addEventListener("click", () => {
-			this.assign("professor", "villager");
-		});
-		this.dom.professorVillagerDown.addEventListener("click", () => {
-			this.unassign("professor", "villager");
-		});
-		this.dom.fishermanMentorUp.addEventListener("click", () => {
-			this.assign("fisherman", "mentor");
-		});
-		this.dom.fishermanMentorDown.addEventListener("click", () => {
-			this.unassign("fisherman", "mentor");
-		});
-		this.dom.minerMentorUp.addEventListener("click", () => {
-			this.assign("miner", "mentor");
-		});
-		this.dom.minerMentorDown.addEventListener("click", () => {
-			this.unassign("miner", "mentor");
-		});
-		this.dom.blacksmithMentorUp.addEventListener("click", () => {
-			this.assign("blacksmith", "mentor");
-		});
-		this.dom.blacksmithMentorDown.addEventListener("click", () => {
-			this.unassign("blacksmith", "mentor");
-		});
-		this.dom.professorMentorUp.addEventListener("click", () => {
-			this.assign("professor", "mentor");
-		});
-		this.dom.professorMentorDown.addEventListener("click", () => {
-			this.unassign("professor", "mentor");
-		});
-		this.dom.fishermanManagerUp.addEventListener("click", () => {
-			this.assign("fisherman", "manager");
-		});
-		this.dom.fishermanManagerDown.addEventListener("click", () => {
-			this.unassign("fisherman", "manager");
-		});
-		this.dom.minerManagerUp.addEventListener("click", () => {
-			this.assign("miner", "manager");
-		});
-		this.dom.minerManagerDown.addEventListener("click", () => {
-			this.unassign("miner", "manager");
-		});
-		this.dom.blacksmithManagerUp.addEventListener("click", () => {
-			this.assign("blacksmith", "manager");
-		});
-		this.dom.blacksmithManagerDown.addEventListener("click", () => {
-			this.unassign("blacksmith", "manager");
-		});
-		this.dom.professorManagerUp.addEventListener("click", () => {
-			this.assign("professor", "manager");
-		});
-		this.dom.professorManagerDown.addEventListener("click", () => {
-			this.unassign("professor", "manager");
-		});
+		let jobs = ["fisherman", "miner", "blacksmith", "professor"];
+		let roles = ["villager", "mentor", "manager"];
+		for (let job of jobs) {
+			for (let role of roles) {
+				let roleCap = role[0].toUpperCase() + role.slice(1);
+				this.dom[job + roleCap + "Up"].addEventListener("click", () => {
+					this.assign(job, role);
+				});
+				this.dom[job + roleCap + "Down"].addEventListener("click", () => {
+					this.unassign(job, role);
+				});
+			}
+		}
 
 		this.dom.popupDismiss.addEventListener("click", () => {
 			this.dom.popupShroud.style.display = "none";
