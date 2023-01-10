@@ -465,7 +465,7 @@ Game.prototype.upgradeList = [
 				"event",
 				"Equipped with back supports, your lumberjacks are like tree-cutting machines."
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Time management",
@@ -489,7 +489,8 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Swing smarter, not harder",
-		description: "A lumberjack course for maximizing your results with the same effort.",
+		description:
+			"A lumberjack course for maximizing your results with the same effort.",
 		type: "research",
 		cost: {
 			food: 600,
@@ -503,7 +504,7 @@ Game.prototype.upgradeList = [
 				"event",
 				"Your lumberjacks are a lot better at tree-cutting. They also seem to have formed a union."
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Task mastery",
@@ -603,7 +604,8 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Exploration basics",
-		description: "Teach your villagers how to survive in the wild in their free time. Maybe they'll find something?",
+		description:
+			"Teach your villagers how to survive in the wild in their free time. Maybe they'll find something?",
 		type: "research",
 		cost: {
 			wood: 50,
@@ -620,11 +622,12 @@ Game.prototype.upgradeList = [
 				"event",
 				"Your villagers went on an adventure last weekend. They found an abandoned camp, full of supplies! All the food was rotten, though."
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Foreign customs",
-		description: "Learn how to communicate with a friendly tribe minding their business nearby.",
+		description:
+			"Learn how to communicate with a friendly tribe minding their business nearby.",
 		type: "research",
 		cost: {
 			food: 400,
@@ -636,7 +639,10 @@ Game.prototype.upgradeList = [
 			game.wood += 1600;
 			game.stone += 1600;
 			game.food += 800;
-			game.logMessage("The friendly tribe agreed to barter! They happily accepted a bunch of random trinkets, and offered tons of supplies in return.");
-		}
-	})
+			game.logMessage(
+				"event",
+				"The friendly tribe agreed to barter! They happily accepted a bunch of random trinkets, and offered tons of supplies in return."
+			);
+		},
+	}),
 ];
