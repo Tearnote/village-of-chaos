@@ -45,7 +45,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 2,
 		once: false,
-		scaling: 2,
+		scaling: 1.8,
 		requirement: ["tent", 1],
 		effect: function (game) {
 			game.levels.tent += 1;
@@ -121,7 +121,7 @@ Game.prototype.upgradeList = [
 		description: "Make more of the cliff surface available for mining.",
 		type: "craft",
 		cost: {
-			wood: 400,
+			wood: 250,
 			stone: 100,
 		},
 		duration: 5,
@@ -179,7 +179,7 @@ Game.prototype.upgradeList = [
 			"Educate your village population to help them with all aspects of life and work.",
 		type: "craft",
 		cost: {
-			wood: 500,
+			wood: 1000,
 			stone: 2000,
 		},
 		duration: 10,
@@ -201,8 +201,8 @@ Game.prototype.upgradeList = [
 		description: "Build new classrooms to advance your knowledge.",
 		type: "craft",
 		cost: {
-			wood: 1000,
-			stone: 4000,
+			wood: 2000,
+			stone: 3000,
 		},
 		duration: 10,
 		once: false,
@@ -307,7 +307,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["quarry", 1],
 		effect: function (game) {
-			game.production.quarry *= 1.5;
+			game.production.miner *= 1.5;
 			game.logMessage(
 				"event",
 				"Equipped with pickaxes, your miners don't have to settle on scavenging whatever rocks are scattered around the place."
@@ -345,10 +345,88 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["quarry", 2],
 		effect: function (game) {
-			game.production.quarry *= 1.5;
+			game.production.miner *= 1.5;
 			game.logMessage(
 				"event",
 				"Your miners are boldly entering the stone age."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Sharpen the pickaxes",
+		description: "Rocks break faster with pointier tools.",
+		type: "craft",
+		cost: {
+			wood: 60,
+			stone: 120,
+		},
+		duration: 8,
+		once: true,
+		requirement: ["smithy", 1],
+		effect: function (game) {
+			game.production.miner *= 1.5;
+			game.logMessage(
+				"event",
+				"After a brief period of adjustment, your miners figured out which end of the pickaxe to stick in the rocks."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Comfortable stools",
+		description: "Your fishermen are tired of standing around.",
+		type: "craft",
+		cost: {
+			wood: 160,
+			stone: 40,
+		},
+		duration: 8,
+		once: true,
+		requirement: ["smithy", 1],
+		effect: function (game) {
+			game.production.fisherman *= 1.5;
+			game.logMessage(
+				"event",
+				"You hear a loud cheer of joy as your fishermen are given hard stone chairs, the best they've ever used."
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Log storage",
+		description: "Put your wood in standardized boxes.",
+		type: "craft",
+		cost: {
+			wood: 200,
+			stone: 120,
+		},
+		duration: 10,
+		once: true,
+		requirement: ["smithy", 2],
+		effect: function (game) {
+			game.production.lumberjack *= 1.5;
+			game.logMessage(
+				"event",
+				`The blacksmith committee has decided on a standard measurement of length -
+				this arbitrary tree is the length of "1 log". Lumberjacks now have an easier time
+				carrying and storing wood.`
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Quarry scaffolding",
+		description: "Expand your quarry vertically.",
+		type: "craft",
+		cost: {
+			wood: 400,
+			stone: 100,
+		},
+		duration: 10,
+		once: true,
+		requirement: ["smithy", 2],
+		effect: function (game) {
+			game.production.miner *= 1.5;
+			game.logMessage(
+				"event",
+				"A multi-level quarry means more stone to mine. Villagers with a fear of heights are not pleased."
 			);
 		},
 	}),
@@ -394,7 +472,8 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Level the ground",
-		description: "The village is built on rather uneven ground. Maybe our miners can help with that.",
+		description:
+			"The village is built on rather uneven ground. Maybe our miners can help with that.",
 		type: "craft",
 		cost: {
 			stone: 20,
@@ -408,11 +487,12 @@ Game.prototype.upgradeList = [
 				"event",
 				"The village is now flatter than ever! Alright guys, you can carry the buildings back in."
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Fish out the monster of the deep",
-		description: "A fish of enormous proportions has been terrorizing the population.",
+		description:
+			"A fish of enormous proportions has been terrorizing the population.",
 		type: "craft",
 		cost: {
 			food: 40,
@@ -426,6 +506,6 @@ Game.prototype.upgradeList = [
 				"event",
 				"The monster of the deep has been put to rest. The waters are safe once more. It also happened to be quite delicious."
 			);
-		}
+		},
 	}),
 ];
