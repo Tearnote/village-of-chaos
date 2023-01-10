@@ -7,9 +7,9 @@ class Game {
 		this.dom = dom;
 
 		// Resources
-		this.wood = 111110;
-		this.food = 111110;
-		this.stone = 111110;
+		this.wood = 0;
+		this.food = 0;
+		this.stone = 0;
 
 		// Buildings
 		this.levels = {
