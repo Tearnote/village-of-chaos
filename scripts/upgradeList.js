@@ -45,7 +45,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 2,
 		once: false,
-		scaling: 2.5,
+		scaling: 2,
 		requirement: ["tent", 1],
 		effect: function (game) {
 			game.levels.tent += 1;
@@ -61,7 +61,7 @@ Game.prototype.upgradeList = [
 		description: "Construct a wooden pier for your villagers to fish from.",
 		type: "craft",
 		cost: {
-			wood: 50,
+			wood: 100,
 		},
 		duration: 4,
 		once: true,
@@ -80,11 +80,11 @@ Game.prototype.upgradeList = [
 		description: "A longer pier gives access to bigger fish.",
 		type: "craft",
 		cost: {
-			wood: 100,
+			wood: 200,
 		},
 		duration: 4,
 		once: false,
-		scaling: 2.5,
+		scaling: 4,
 		requirement: ["pier", 1],
 		effect: function (game) {
 			game.production.fisherman *= 1.5;
@@ -126,7 +126,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 5,
 		once: false,
-		scaling: 2.5,
+		scaling: 4,
 		requirement: ["quarry", 1],
 		effect: function (game) {
 			game.levels.quarry += 1;
@@ -162,7 +162,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 6,
 		once: false,
-		scaling: 2.5,
+		scaling: 4,
 		requirement: ["smithy", 1],
 		effect: function (game) {
 			game.levels.smithy += 1;
@@ -206,7 +206,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 10,
 		once: false,
-		scaling: 2.5,
+		scaling: 4,
 		requirement: ["academy", 1],
 		effect: function (game) {
 			game.levels.academy += 1;
@@ -258,6 +258,46 @@ Game.prototype.upgradeList = [
 
 	// Job upgrades
 	new Upgrade({
+		name: "Craft wooden axes",
+		description:
+			"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
+		type: "craft",
+		cost: {
+			wood: 40,
+		},
+		duration: 3,
+		once: true,
+		requirement: ["tent", 1],
+		effect: function (game) {
+			game.production.lumberjack *= 1.5;
+			game.logMessage(
+				"event",
+				"Your lumberjacks are now equipped with wooden axes."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Craft wooden fishing rods",
+		description:
+			"Flailing your arms about in the water might not have been very effective.",
+		type: "craft",
+		cost: {
+			wood: 100,
+		},
+		duration: 3,
+		once: true,
+		requirement: ["pier", 1],
+		effect: function (game) {
+			game.production.fisherman *= 1.5;
+			game.logMessage(
+				"event",
+				"Your fishermen can now sit back and observe the lure. Handy."
+			);
+		},
+	}),
+
+	// Random upgrades
+	new Upgrade({
 		name: "Hunt down local wildlife",
 		description: "Catch the local fluffy bunny population for some food.",
 		type: "craft",
@@ -265,7 +305,7 @@ Game.prototype.upgradeList = [
 			wood: 5,
 			food: 5,
 		},
-		duration: 1.4,
+		duration: 2,
 		once: true,
 		requirement: ["tent", 1],
 		effect: function (game) {
@@ -276,24 +316,22 @@ Game.prototype.upgradeList = [
 			);
 		},
 	}),
-
-	// Random upgrades
 	new Upgrade({
-		name: "Craft wooden axes",
+		name: "Fell a great oak",
 		description:
-			"Your lumberjacks will be happy they don't have to use their bare fists anymore.",
+			"Chop down the largest tree you can find to boost your supplies.",
 		type: "craft",
 		cost: {
 			wood: 20,
 		},
-		duration: 2,
+		duration: 4,
 		once: true,
-		requirement: ["tent", 1],
+		requirement: ["pier", 1],
 		effect: function (game) {
-			game.production.lumberjack *= 1.5;
+			game.wood += 100;
 			game.logMessage(
 				"event",
-				"Your lumberjacks are now equipped with wooden axes."
+				"A majestic oak, providing shade and solace to warriors and lovers alike, is the latest victim of your expansion."
 			);
 		},
 	}),
