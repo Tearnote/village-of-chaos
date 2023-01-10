@@ -45,7 +45,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 2,
 		once: false,
-		scaling: 1.8,
+		scaling: 1.5,
 		requirement: ["tent", 1],
 		effect: function (game) {
 			game.levels.tent += 1;
@@ -87,7 +87,7 @@ Game.prototype.upgradeList = [
 		scaling: 4,
 		requirement: ["pier", 1],
 		effect: function (game) {
-			game.production.fisherman *= 1.5;
+			game.production.fisherman *= 2;
 			game.levels.pier += 1;
 			game.logMessage(
 				"event",
@@ -130,7 +130,7 @@ Game.prototype.upgradeList = [
 		requirement: ["quarry", 1],
 		effect: function (game) {
 			game.levels.quarry += 1;
-			game.production.miner *= 1.5;
+			game.production.miner *= 2;
 			game.logMessage("event", "Your quarry is now more efficient.");
 		},
 	}),
@@ -162,7 +162,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 6,
 		once: false,
-		scaling: 4,
+		scaling: 2,
 		requirement: ["smithy", 1],
 		effect: function (game) {
 			game.levels.smithy += 1;
@@ -180,7 +180,7 @@ Game.prototype.upgradeList = [
 		type: "craft",
 		cost: {
 			wood: 1000,
-			stone: 2000,
+			stone: 1000,
 		},
 		duration: 10,
 		once: true,
@@ -201,12 +201,12 @@ Game.prototype.upgradeList = [
 		description: "Build new classrooms to advance your knowledge.",
 		type: "craft",
 		cost: {
-			wood: 2000,
-			stone: 3000,
+			wood: 1500,
+			stone: 2000,
 		},
 		duration: 10,
 		once: false,
-		scaling: 4,
+		scaling: 2,
 		requirement: ["academy", 1],
 		effect: function (game) {
 			game.levels.academy += 1;
@@ -222,7 +222,7 @@ Game.prototype.upgradeList = [
 		description: "What if you got one person to oversee another?",
 		type: "research",
 		cost: {
-			food: 4000,
+			food: 1500,
 		},
 		duration: 6,
 		once: true,
@@ -243,7 +243,7 @@ Game.prototype.upgradeList = [
 		cost: {
 			food: 10000,
 		},
-		duration: 30,
+		duration: 12,
 		once: true,
 		requirement: ["academy", 3],
 		effect: function (game) {
@@ -269,7 +269,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["tent", 1],
 		effect: function (game) {
-			game.production.lumberjack *= 1.5;
+			game.production.lumberjack *= 1.75;
 			game.logMessage(
 				"event",
 				"Your lumberjacks are now equipped with wooden axes."
@@ -288,7 +288,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["pier", 1],
 		effect: function (game) {
-			game.production.fisherman *= 1.5;
+			game.production.fisherman *= 1.75;
 			game.logMessage(
 				"event",
 				"Your fishermen can now sit back and observe the lure. Handy."
@@ -307,7 +307,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["quarry", 1],
 		effect: function (game) {
-			game.production.miner *= 1.5;
+			game.production.miner *= 1.75;
 			game.logMessage(
 				"event",
 				"Equipped with pickaxes, your miners don't have to settle on scavenging whatever rocks are scattered around the place."
@@ -326,7 +326,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["quarry", 1],
 		effect: function (game) {
-			game.production.lumberjack *= 1.5;
+			game.production.lumberjack *= 1.75;
 			game.logMessage(
 				"event",
 				"Stone axes are go. Look at all them trees fall!"
@@ -345,7 +345,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["quarry", 2],
 		effect: function (game) {
-			game.production.miner *= 1.5;
+			game.production.miner *= 1.75;
 			game.logMessage(
 				"event",
 				"Your miners are boldly entering the stone age."
@@ -364,7 +364,7 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["smithy", 1],
 		effect: function (game) {
-			game.production.miner *= 1.5;
+			game.production.miner *= 1.25;
 			game.logMessage(
 				"event",
 				"After a brief period of adjustment, your miners figured out which end of the pickaxe to stick in the rocks."
@@ -383,12 +383,12 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["smithy", 1],
 		effect: function (game) {
-			game.production.fisherman *= 1.5;
+			game.production.fisherman *= 1.25;
 			game.logMessage(
 				"event",
 				"You hear a loud cheer of joy as your fishermen are given hard stone chairs, the best they've ever used."
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Log storage",
@@ -402,14 +402,14 @@ Game.prototype.upgradeList = [
 		once: true,
 		requirement: ["smithy", 2],
 		effect: function (game) {
-			game.production.lumberjack *= 1.5;
+			game.production.lumberjack *= 1.25;
 			game.logMessage(
 				"event",
 				`The blacksmith committee has decided on a standard measurement of length -
 				this arbitrary tree is the length of "1 log". Lumberjacks now have an easier time
 				carrying and storing wood.`
 			);
-		}
+		},
 	}),
 	new Upgrade({
 		name: "Quarry scaffolding",
@@ -427,6 +427,99 @@ Game.prototype.upgradeList = [
 			game.logMessage(
 				"event",
 				"A multi-level quarry means more stone to mine. Villagers with a fear of heights are not pleased."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Fish traps",
+		description: "Construct cunning traps to get fish to catch themselves.",
+		type: "craft",
+		cost: {
+			wood: 500,
+		},
+		duration: 12,
+		once: true,
+		requirement: ["smithy", 3],
+		effect: function (game) {
+			game.production.fisherman *= 1.5;
+			game.logMessage(
+				"event",
+				"With fish traps, your fishermen are now fishing twice at the same time."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Back supports",
+		description: "Your lumberjacks' backs hurt from all the swinging.",
+		type: "craft",
+		cost: {
+			wood: 300,
+			stone: 300,
+		},
+		duration: 12,
+		once: true,
+		requirement: ["smithy", 3],
+		effect: function (game) {
+			game.production.lumberjack * 1.75;
+			game.logMessage(
+				"event",
+				"Equipped with back supports, your lumberjacks are like tree-cutting machines."
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Time management",
+		description:
+			"Help blacksmiths and professors manage their workday more efficiently.",
+		type: "research",
+		cost: {
+			food: 2000,
+		},
+		duration: 15,
+		once: true,
+		requirement: ["academy", 1],
+		effect: function (game) {
+			game.production.blacksmith -= 0.05;
+			game.production.professor -= 0.05;
+			game.logMessage(
+				"event",
+				"Writing up a schedule helps your blacksmiths and professors realize how much time they have been wasting."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Swing smarter, not harder",
+		description: "A lumberjack course for maximizing your results with the same effort.",
+		type: "research",
+		cost: {
+			food: 600,
+		},
+		duration: 15,
+		once: true,
+		requirement: ["academy", 1],
+		effect: function (game) {
+			game.production.lumberjack *= 2;
+			game.logMessage(
+				"event",
+				"Your lumberjacks are a lot better at tree-cutting. They also seem to have formed a union."
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Task mastery",
+		description: "Your mentors are good, but they could be better.",
+		type: "Research",
+		cost: {
+			food: 3000,
+		},
+		duration: 16,
+		once: true,
+		requirement: ["academy", 2],
+		effect: function (game) {
+			game.production.mentorBoost += 0.1;
+			game.logMessage(
+				"event",
+				"After doing the same thing over and over for long enough, your mentors got better at their job."
 			);
 		},
 	}),
@@ -508,4 +601,42 @@ Game.prototype.upgradeList = [
 			);
 		},
 	}),
+	new Upgrade({
+		name: "Exploration basics",
+		description: "Teach your villagers how to survive in the wild in their free time. Maybe they'll find something?",
+		type: "research",
+		cost: {
+			wood: 50,
+			stone: 50,
+			food: 100,
+		},
+		duration: 10,
+		once: true,
+		requirement: ["academy", 1],
+		effect: function (game) {
+			game.wood += 1000;
+			game.stone += 1000;
+			game.logMessage(
+				"event",
+				"Your villagers went on an adventure last weekend. They found an abandoned camp, full of supplies! All the food was rotten, though."
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Foreign customs",
+		description: "Learn how to communicate with a friendly tribe minding their business nearby.",
+		type: "research",
+		cost: {
+			food: 400,
+		},
+		duration: 15,
+		once: true,
+		requirement: ["academy", 2],
+		effect: function (game) {
+			game.wood += 1600;
+			game.stone += 1600;
+			game.food += 800;
+			game.logMessage("The friendly tribe agreed to barter! They happily accepted a bunch of random trinkets, and offered tons of supplies in return.");
+		}
+	})
 ];
