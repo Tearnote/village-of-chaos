@@ -54,8 +54,8 @@ class Game {
 			lumberjack: 0.001,
 			fisherman: 0.001,
 			miner: 0.001,
-			blacksmith: 0.6,
-			professor: 0.6,
+			blacksmith: 0.75,
+			professor: 0.75,
 			mentorBoost: 1.5,
 			managerReduction: 0.2,
 		};

@@ -140,11 +140,11 @@ Game.prototype.upgradeList = [
 		type: "craft",
 		cost: {
 			wood: 200,
-			stone: 400,
+			stone: 200,
 		},
 		duration: 6,
 		once: true,
-		requirement: ["quarry", 1],
+		requirement: ["quarry", 2],
 		effect: function (game) {
 			game.levels.smithy += 1;
 			game.unlock("blacksmith");
@@ -157,8 +157,8 @@ Game.prototype.upgradeList = [
 		description: "Get some new tools to make your blacksmiths happier.",
 		type: "craft",
 		cost: {
-			wood: 100,
-			stone: 1000,
+			wood: 400,
+			stone: 400,
 		},
 		duration: 6,
 		once: false,
@@ -295,6 +295,63 @@ Game.prototype.upgradeList = [
 			);
 		},
 	}),
+	new Upgrade({
+		name: "Craft wooden pickaxes",
+		description:
+			"Not the best idea in the world, but it gets the job done. Somewhat.",
+		type: "craft",
+		cost: {
+			wood: 120,
+		},
+		duration: 3,
+		once: true,
+		requirement: ["quarry", 1],
+		effect: function (game) {
+			game.production.quarry *= 1.5;
+			game.logMessage(
+				"event",
+				"Equipped with pickaxes, your miners don't have to settle on scavenging whatever rocks are scattered around the place."
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Craft stone axes",
+		description: "Chop down trees with something tougher than themselves.",
+		type: "craft",
+		cost: {
+			wood: 20,
+			stone: 50,
+		},
+		duration: 4,
+		once: true,
+		requirement: ["quarry", 1],
+		effect: function (game) {
+			game.production.lumberjack *= 1.5;
+			game.logMessage(
+				"event",
+				"Stone axes are go. Look at all them trees fall!"
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Craft stone pickaxes",
+		description: "Breaking rocks with style.",
+		type: "craft",
+		cost: {
+			wood: 50,
+			stone: 100,
+		},
+		duration: 5,
+		once: true,
+		requirement: ["quarry", 2],
+		effect: function (game) {
+			game.production.quarry *= 1.5;
+			game.logMessage(
+				"event",
+				"Your miners are boldly entering the stone age."
+			);
+		},
+	}),
 
 	// Random upgrades
 	new Upgrade({
@@ -334,5 +391,41 @@ Game.prototype.upgradeList = [
 				"A majestic oak, providing shade and solace to warriors and lovers alike, is the latest victim of your expansion."
 			);
 		},
+	}),
+	new Upgrade({
+		name: "Level the ground",
+		description: "The village is built on rather uneven ground. Maybe our miners can help with that.",
+		type: "craft",
+		cost: {
+			stone: 20,
+		},
+		duration: 5,
+		once: true,
+		requirement: ["quarry", 1],
+		effect: function (game) {
+			game.stone += 120;
+			game.logMessage(
+				"event",
+				"The village is now flatter than ever! Alright guys, you can carry the buildings back in."
+			);
+		}
+	}),
+	new Upgrade({
+		name: "Fish out the monster of the deep",
+		description: "A fish of enormous proportions has been terrorizing the population.",
+		type: "craft",
+		cost: {
+			food: 40,
+		},
+		duration: 5,
+		once: true,
+		requirement: ["quarry", 2],
+		effect: function (game) {
+			game.food += 200;
+			game.logMessage(
+				"event",
+				"The monster of the deep has been put to rest. The waters are safe once more. It also happened to be quite delicious."
+			);
+		}
 	}),
 ];
