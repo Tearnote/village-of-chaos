@@ -175,8 +175,8 @@ header {
 	position: fixed;
 	width: 640px;
 	height: 640px;
-	left: calc(50vw - 320px);
-	top: calc(50vh - 320px);
+	left: calc(320px * (var(--scale) - 1));
+	top: calc(320px * (var(--scale) - 1));
 	z-index: -1;
 	image-rendering: pixelated;
 	transform: scale(var(--scale));
