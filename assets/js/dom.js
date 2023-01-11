@@ -109,6 +109,7 @@ class DOM {
 		this.reset = document.getElementById("reset");
 
 		// Other elements
+		this.world = document.getElementById("world");
 		this.log = document.getElementById("log");
 		this.popupShroud = document.getElementById("popup-shroud");
 		this.popup = document.getElementById("popup");

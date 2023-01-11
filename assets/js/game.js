@@ -317,6 +317,10 @@ class Game {
 		this.dom.quarryChaos.textContent = Math.ceil(this.chaos.quarry * 100);
 		this.dom.smithyChaos.textContent = Math.ceil(this.chaos.smithy * 100);
 		this.dom.academyChaos.textContent = Math.ceil(this.chaos.academy * 100);
+
+		// Make sure world display is sized correctly
+		let smallerDim = Math.min(window.innerWidth, window.innerHeight);
+		this.dom.world.style.setProperty("--scale", smallerDim / 640);
 	}
 
 	renderUpgrades() {
