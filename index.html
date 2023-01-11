@@ -7,41 +7,9 @@
 		<link rel="stylesheet" href="assets/css/style.css" />
 	</head>
 	<body>
-		<!-- Header with resource details -->
-		<header>
-			<div id="resources">
-				<div>
-					<p>Wood: <span id="wood-amount"></span></p>
-					<p class="income">(+<span id="wood-income"></span>/s)</p>
-				</div>
-				<div>
-					<p>Food: <span id="food-amount"></span></p>
-					<p class="income">(+<span id="food-income"></span>/s)</p>
-				</div>
-				<div class="stone">
-					<p>Stone: <span id="stone-amount"></span></p>
-					<p class="stone income">
-						(+<span id="stone-income"></span>/s)
-					</p>
-				</div>
-				<div class="craft-speed">
-					<p>Crafting speed:</p>
-					<p><span id="craft-speed"></span>x</p>
-				</div>
-				<div class="research-speed">
-					<p>Research speed:</p>
-					<p><span id="research-speed"></span>x</p>
-				</div>
-			</div>
-			<div id="system">
-				<button id="save">Save</button>
-				<button id="load">Load</button>
-				<button id="reset">Reset</button>
-			</div>
-		</header>
-
-		<main>
-			<!-- Game world display -->
+		<!-- The square area covering most of the window -->
+		<section id="main">
+			<!-- Background - game world display -->
 			<section id="world">
 				<img
 					id="terrain-img"
@@ -75,6 +43,57 @@
 				/>
 			</section>
 
+			<!-- Header with resource details -->
+			<header>
+				<div id="resources">
+					<div>
+						<p>Wood: <span id="wood-amount"></span></p>
+						<p class="income">
+							(+<span id="wood-income"></span>/s)
+						</p>
+					</div>
+					<div>
+						<p>Food: <span id="food-amount"></span></p>
+						<p class="income">
+							(+<span id="food-income"></span>/s)
+						</p>
+					</div>
+					<div class="stone">
+						<p>Stone: <span id="stone-amount"></span></p>
+						<p class="stone income">
+							(+<span id="stone-income"></span>/s)
+						</p>
+					</div>
+					<div class="craft-speed">
+						<p>Crafting speed:</p>
+						<p><span id="craft-speed"></span>x</p>
+					</div>
+					<div class="research-speed">
+						<p>Research speed:</p>
+						<p><span id="research-speed"></span>x</p>
+					</div>
+				</div>
+				<div id="system">
+					<button id="save">Save</button>
+					<button id="load">Load</button>
+					<button id="reset">Reset</button>
+				</div>
+			</header>
+
+			<!-- Controls for manual resource gathering -->
+			<section id="gathering">
+				<button id="gather-wood">Gather wood</button>
+				<button id="gather-food">Gather food</button>
+			</section>
+
+			<!-- Log display with recent events -->
+			<section id="log">
+				<!-- Filled in by JS -->
+			</section>
+		</section>
+
+		<!-- Side area with controls and upgrades -->
+		<section id="side">
 			<!-- Tabbed section interface -->
 			<section id="interface" class="tabs">
 				<!-- "Assign" tab -->
@@ -219,18 +238,7 @@
 					<!-- Filled in by JS -->
 				</div>
 			</section>
-
-			<!-- Controls for manual resource gathering -->
-			<section id="gathering">
-				<button id="gather-wood">Gather wood</button>
-				<button id="gather-food">Gather food</button>
-			</section>
-
-			<!-- Log display with recent events -->
-			<section id="log">
-				<!-- Filled in by JS -->
-			</section>
-		</main>
+		</section>
 
 		<!-- Tutorial pop-up overlay -->
 		<div id="popup-shroud">
