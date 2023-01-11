@@ -121,7 +121,7 @@ header {
 	flex-flow: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: chocolate;
+	background-color: rgba(202, 103, 32, 0.5);
 }
 
 #resources {
@@ -163,6 +163,57 @@ header {
 
 #reset {
 	color: red;
+}
+
+/* #endregion */
+
+/* #region Game world */
+
+#world {
+	--scale: 1;
+	position: fixed;
+	width: 640px;
+	height: 640px;
+	left: calc(50vw - 320px);
+	top: calc(50vh - 320px);
+	z-index: -1;
+	image-rendering: pixelated;
+	transform: scale(var(--scale));
+}
+
+#world > img {
+	position: absolute;
+	object-fit: contain;
+}
+
+#terrain-img {
+	left: 0;
+	top: 0;
+}
+
+#tent-img {
+	left: 320px;
+	top: 361px;
+}
+
+#pier-img {
+	left: 112px;
+	top: 304px;
+}
+
+#quarry-img {
+	left: 337px;
+	top: 130px;
+}
+
+#smithy-img {
+	left: 261px;
+	top: 288px;
+}
+
+#academy-img {
+	left: 138px;
+	top: 377px;
 }
 
 /* #endregion */
