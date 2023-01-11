@@ -193,26 +193,31 @@ header {
 }
 
 #tent-img {
+	display: var(--assign-display);
 	left: 320px;
 	top: 361px;
 }
 
 #pier-img {
+	display: var(--fisherman-display);
 	left: 112px;
 	top: 304px;
 }
 
 #quarry-img {
+	display: var(--miner-display);
 	left: 337px;
 	top: 130px;
 }
 
 #smithy-img {
+	display: var(--blacksmith-display);
 	left: 261px;
 	top: 288px;
 }
 
 #academy-img {
+	display: var(--professor-display);
 	left: 138px;
 	top: 377px;
 }
