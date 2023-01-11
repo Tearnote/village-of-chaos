@@ -96,6 +96,9 @@ body {
 	--miner-display: none;
 	--blacksmith-display: none;
 	--professor-display: none;
+
+	/* Controls sizing of the two main page sections */
+	--main-size: min(100vw, 100vh);
 }
 
 @media (orientation: landscape) {
@@ -111,12 +114,35 @@ body {
 }
 
 #main {
-	--main-size: min(100vw, 100vh);
 	width: var(--main-size);
 	height: var(--main-size);
 	display: flex;
 	flex-flow: column;
 	justify-content: space-between;
+}
+
+#side {
+	display: flex;
+	justify-content: space-between;
+	background-color: brown;
+}
+
+@media (orientation: landscape) {
+	#side {
+		flex-direction: column;
+		min-width: 24rem;
+		width: calc(100vw - var(--main-size));
+		height: 100%;
+	}
+}
+
+@media (orientation: portrait) {
+	#side {
+		flex-direction: row;
+		width: 100%;
+		min-height: 24rem;
+		height: calc(100vh - var(--main-size));
+	}
 }
 
 button {
@@ -128,10 +154,19 @@ button {
 /* #region Game world */
 
 #world {
+	/*
+	We need to calculate scale from JS,
+	because calc() doesn't support floats
+	*/
 	--scale: 1;
-	position: fixed;
+	position: absolute;
 	width: 640px;
 	height: 640px;
+	/*
+	Because scale() zooms in from the center of the element,
+	we need to push the element away from the edge to make sure
+	that it stays in the same place after the scaling
+	*/
 	left: calc(320px * (var(--scale) - 1));
 	top: calc(320px * (var(--scale) - 1));
 	z-index: -1;
@@ -184,13 +219,14 @@ button {
 /* #region Header */
 
 header {
+	flex: 0 0 auto;
 	width: 100%;
-	height: 5rem;
+	height: 4rem;
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: rgba(202, 103, 32, 0.5);
+	background-color: cornflowerblue;
 }
 
 #resources {
@@ -199,9 +235,9 @@ header {
 }
 
 #resources > div {
-	min-width: 7rem;
+	min-width: 5rem;
 	text-align: center;
-	margin-left: 1rem;
+	margin-left: 0.5rem;
 }
 
 .income {
@@ -227,7 +263,7 @@ header {
 }
 
 #system > button {
-	margin: 0 0.4rem;
+	margin: 0 0.3rem;
 }
 
 #reset {
@@ -239,17 +275,12 @@ header {
 /* #region Tabbed interface */
 
 #interface {
-	align-self: flex-end;
-	width: 28rem;
-	margin: 2rem;
+	flex: 1 0 auto;
 }
 
 #interface > .tab {
-	height: 24rem;
 	overflow-y: auto;
 	background-color: chartreuse;
-	border: 2px solid green;
-	padding: 1rem;
 }
 
 #interface > label {
@@ -344,18 +375,25 @@ header {
 /* #region Log */
 
 #log {
-	align-self: flex-start;
-	width: 24rem;
-	height: 30rem;
+	min-width: 20rem;
+	width: 40%;
+	min-height: 10rem;
+	height: 20%;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
 	overflow-y: scroll;
-	margin: 2rem;
-	border: 2px solid brown;
-	padding: 1rem;
+	margin: 0.5rem;
+	padding: 0.5rem;
 	font-family: "Courier New", Courier, monospace;
 	font-size: 0.8rem;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.6);
+	backdrop-filter: blur(1rem);
+}
+
+#log > p:not(:last-child) {
+	padding-top: 0.2rem;
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	margin-top: 0.2rem;
 }
 
 .info {
