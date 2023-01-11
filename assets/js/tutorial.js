@@ -35,7 +35,7 @@ Game.prototype.displayPopups = function () {
 			Click on the "Craft" tab to get back to your list of available
 			upgrades, and let's see if you can manage to build a fishing
 			pier.`,
-			"#interface"
+			"#assign-tab"
 		);
 		this.tutorial.assign = true;
 	}
@@ -89,7 +89,7 @@ Game.prototype.displayPopups = function () {
 			unlocked - researches, which you can access via the new "Research"
 			tab. You can now also assign professors who will speed up research
 			progress, similarly to how blacksmiths speed up crafts.`,
-			"#interface"
+			"#research-tab"
 		);
 		this.tutorial.academy = true;
 	}
