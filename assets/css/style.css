@@ -60,9 +60,9 @@ body {
 	--secondary-highlight-color: #4dd7e1;
 	--active-color: #e7fffc;
 	--inactive-color: #a8bab8;
-	--wood-color: #653a0c;
-	--food-color: #349097;
-	--stone-color: #3c3d43;
+	--wood-color: #54300a;
+	--food-color: #194548;
+	--stone-color: #37383d;
 
 	/* Element visibility variables, controlled by JS */
 	--income-display: none;
@@ -325,7 +325,16 @@ header > button {
 	display: var(--income-display);
 }
 
+.wood {
+	color: var(--wood-color);
+}
+
+.food {
+	color: var(--food-color);
+}
+
 .stone {
+	color: var(--stone-color);
 	display: var(--stone-display);
 }
 
