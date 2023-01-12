@@ -540,7 +540,7 @@ class Game {
 			);
 			this.dom.popup.style.top = top + "px";
 
-			target.style.zIndex = 1000; // Bring above the shroud
+			target.style.zIndex = 2000; // Bring above the shroud
 			target.style.pointerEvents = "none"; // Make sure target can't be interacted with while pop-up is visible
 			this.dom.popupDismiss.addEventListener("click", () => {
 				target.style.zIndex = "revert";
