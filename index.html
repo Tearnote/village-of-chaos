@@ -105,103 +105,213 @@
 			<!-- Game control panel -->
 			<section id="controls">
 				<div id="assign">
-					<div class="heading-row">
-						<strong></strong>
-						<strong>Villager</strong>
-						<strong>Mentor</strong>
-						<strong>Manager</strong>
-						<strong>Chaos</strong>
+					<div class="job tent">
+						<h3>Tent</h3>
+						<p class="job-details">
+							Lv.
+							<span class="job-level" id="tent-level"></span>
+						</p>
+						<div class="villager">
+							<p>
+								<span class="job-count" id="lumberjack"></span>
+								villagers chopping down trees
+							</p>
+						</div>
 					</div>
-					<div class="lumberjack-row">
-						<span>Lumberjacks:</span>
-						<span id="lumberjack"></span>
-						<span></span>
-						<span></span>
-						<span></span>
+					<div class="job pier">
+						<h3>Pier</h3>
+						<p class="job-details">
+							Lv. <span class="job-level" id="pier-level"></span>
+							<span class="chaos"
+								>(<span id="pier-chaos"></span>% chaos)</span
+							>
+						</p>
+						<div class="assignment villager">
+							<p>
+								Villagers:
+								<span
+									class="job-count"
+									id="fisherman-villager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="fisherman-villager-up">+</button>
+								<button id="fisherman-villager-down">-</button>
+							</div>
+						</div>
+						<div class="assignment mentor">
+							<p>
+								Mentors:
+								<span
+									class="job-count"
+									id="fisherman-mentor"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="fisherman-mentor-up">+</button>
+								<button id="fisherman-mentor-down">-</button>
+							</div>
+						</div>
+						<div class="assignment manager">
+							<p>
+								Managers:
+								<span
+									class="job-count"
+									id="fisherman-manager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="fisherman-manager-up">+</button>
+								<button id="fisherman-manager-down">-</button>
+							</div>
+						</div>
 					</div>
-					<div class="fisherman-row">
-						<span>Fishermen:</span>
-						<span>
-							<span id="fisherman-villager"></span>
-							<button id="fisherman-villager-up">+</button>
-							<button id="fisherman-villager-down">-</button>
-						</span>
-						<span>
-							<span id="fisherman-mentor"></span>
-							<button id="fisherman-mentor-up">+</button>
-							<button id="fisherman-mentor-down">-</button>
-						</span>
-						<span>
-							<span id="fisherman-manager"></span>
-							<button id="fisherman-manager-up">+</button>
-							<button id="fisherman-manager-down">-</button>
-						</span>
-						<span>
-							<span id="pier-chaos"></span>%
-						</span>
+					<div class="job quarry">
+						<h3>Quarry</h3>
+						<p class="job-details">
+							Lv.
+							<span class="job-level" id="quarry-level"></span>
+							<span class="chaos"
+								>(<span id="quarry-chaos"></span>% chaos)</span
+							>
+						</p>
+						<div class="assignment villager">
+							<p>
+								Villagers:
+								<span
+									class="job-count"
+									id="miner-villager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="miner-villager-up">+</button>
+								<button id="miner-villager-down">-</button>
+							</div>
+						</div>
+						<div class="assignment mentor">
+							<p>
+								Mentors:
+								<span
+									class="job-count"
+									id="miner-mentor"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="miner-mentor-up">+</button>
+								<button id="miner-mentor-down">-</button>
+							</div>
+						</div>
+						<div class="assignment manager">
+							<p>
+								Managers:
+								<span
+									class="job-count"
+									id="miner-manager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="miner-manager-up">+</button>
+								<button id="miner-manager-down">-</button>
+							</div>
+						</div>
 					</div>
-					<div class="miner-row">
-						<span>Miners:</span>
-						<span>
-							<span id="miner-villager"></span>
-							<button id="miner-villager-up">+</button>
-							<button id="miner-villager-down">-</button>
-						</span>
-						<span>
-							<span id="miner-mentor"></span>
-							<button id="miner-mentor-up">+</button>
-							<button id="miner-mentor-down">-</button>
-						</span>
-						<span>
-							<span id="miner-manager"></span>
-							<button id="miner-manager-up">+</button>
-							<button id="miner-manager-down">-</button>
-						</span>
-						<span>
-							<span id="quarry-chaos"></span>%
-						</span>
+					<div class="job smithy">
+						<h3>Smithy</h3>
+						<p class="job-details">
+							Lv.
+							<span class="job-level" id="smithy-level"></span>
+							<span class="chaos"
+								>(<span id="smithy-chaos"></span>% chaos)</span
+							>
+						</p>
+						<div class="assignment villager">
+							<p>
+								Villagers:
+								<span
+									class="job-count"
+									id="blacksmith-villager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="blacksmith-villager-up">+</button>
+								<button id="blacksmith-villager-down">-</button>
+							</div>
+						</div>
+						<div class="assignment mentor">
+							<p>
+								Mentors:
+								<span
+									class="job-count"
+									id="blacksmith-mentor"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="blacksmith-mentor-up">+</button>
+								<button id="blacksmith-mentor-down">-</button>
+							</div>
+						</div>
+						<div class="assignment manager">
+							<p>
+								Managers:
+								<span
+									class="job-count"
+									id="blacksmith-manager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="blacksmith-manager-up">+</button>
+								<button id="blacksmith-manager-down">-</button>
+							</div>
+						</div>
 					</div>
-					<div class="blacksmith-row">
-						<span>Blacksmiths:</span>
-						<span>
-							<span id="blacksmith-villager"></span>
-							<button id="blacksmith-villager-up">+</button>
-							<button id="blacksmith-villager-down">-</button>
-						</span>
-						<span>
-							<span id="blacksmith-mentor"></span>
-							<button id="blacksmith-mentor-up">+</button>
-							<button id="blacksmith-mentor-down">-</button>
-						</span>
-						<span>
-							<span id="blacksmith-manager"></span>
-							<button id="blacksmith-manager-up">+</button>
-							<button id="blacksmith-manager-down">-</button>
-						</span>
-						<span>
-							<span id="smithy-chaos"></span>%
-						</span>
-					</div>
-					<div class="professor-row">
-						<span>Professors:</span>
-						<span>
-							<span id="professor-villager"></span>
-							<button id="professor-villager-up">+</button>
-							<button id="professor-villager-down">-</button>
-						</span>
-						<span>
-							<span id="professor-mentor"></span>
-							<button id="professor-mentor-up">+</button>
-							<button id="professor-mentor-down">-</button>
-						</span>
-						<span>
-							<span id="professor-manager"></span>
-							<button id="professor-manager-up">+</button>
-							<button id="professor-manager-down">-</button>
-						</span>
-						<span>
-							<span id="academy-chaos"></span>%
-						</span>
+					<div class="job academy">
+						<h3>Academy</h3>
+						<p class="job-details">
+							Lv.
+							<span class="job-level" id="academy-level"></span>
+							<span class="chaos"
+								>(<span id="academy-chaos"></span>% chaos)</span
+							>
+						</p>
+						<div class="assignment villager">
+							<p>
+								Villagers:
+								<span
+									class="job-count"
+									id="professor-villager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="professor-villager-up">+</button>
+								<button id="professor-villager-down">-</button>
+							</div>
+						</div>
+						<div class="assignment mentor">
+							<p>
+								Mentors:
+								<span
+									class="job-count"
+									id="professor-mentor"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="professor-mentor-up">+</button>
+								<button id="professor-mentor-down">-</button>
+							</div>
+						</div>
+						<div class="assignment manager">
+							<p>
+								Managers:
+								<span
+									class="job-count"
+									id="professor-manager"
+								></span>
+							</p>
+							<div class="buttons">
+								<button id="professor-manager-up">+</button>
+								<button id="professor-manager-down">-</button>
+							</div>
+						</div>
 					</div>
 				</div>
 

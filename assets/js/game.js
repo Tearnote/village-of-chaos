@@ -312,6 +312,13 @@ class Game {
 		this.dom.blacksmithManager.textContent = this.blacksmith.manager;
 		this.dom.professorManager.textContent = this.professor.manager;
 
+		// Update building levels
+		this.dom.tentLevel.textContent = this.levels.tent;
+		this.dom.pierLevel.textContent = this.levels.pier;
+		this.dom.quarryLevel.textContent = this.levels.quarry;
+		this.dom.smithyLevel.textContent = this.levels.smithy;
+		this.dom.academyLevel.textContent = this.levels.academy;
+
 		// Update chaos indicators
 		this.dom.pierChaos.textContent = Math.ceil(this.chaos.pier * 100);
 		this.dom.quarryChaos.textContent = Math.ceil(this.chaos.quarry * 100);

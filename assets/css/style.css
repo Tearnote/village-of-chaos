@@ -279,77 +279,35 @@ h1 {
 /* #region Assign tab */
 
 #assign {
-	padding: 0.8rem 0.4rem;
+	padding: 0.8rem 1.0rem;
 }
 
-#assign > div {
-	height: 2rem;
+.job {
 	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
+	flex-flow: row wrap;
+	align-items: baseline;
+	padding: 0.4rem 0;
+}
+
+.job > h3,
+.job-details {
+	width: 50%;
+}
+
+.assignment {
+	padding: 0.2rem 0.8rem;
+	display: flex;
+	flex-flow: column;
 	align-items: center;
 }
 
-.heading-row > strong {
-	justify-content: center;
+.assignment > p {
+	text-align: center;
 }
 
-#assign > div > * {
-	display: flex;
-	flex-flow: row;
-	align-items: baseline;
-}
-
-#assign > div > span > button {
-	margin-left: 0.2rem;
-}
-
-#assign > div > :nth-child(1) {
-	width: 5.4rem;
-	justify-content: right;
-	padding-right: 0.2rem;
-}
-
-#assign > div > :nth-child(2),
-#assign > div > :nth-child(3),
-#assign > div > :nth-child(4) {
-	width: 4.5rem;
-}
-
-#assign > div > :nth-child(5) {
-	width: 3.2rem;
-	justify-content: center;
-}
-
-#assign > table > thead > tr > :nth-child(3),
-#assign > table > tbody > tr > :nth-child(3) {
-	display: var(--mentor-display);
-}
-
-#assign > table > thead > tr > :nth-child(4),
-#assign > table > tbody > tr > :nth-child(4) {
-	display: var(--manager-display);
-}
-
-#assign > table > thead > tr > :last-child,
-#assign > table > tbody > tr > :last-child {
-	display: var(--chaos-display);
-}
-
-.fisherman {
-	display: var(--fisherman-display);
-}
-
-.miner {
-	display: var(--miner-display);
-}
-
-.blacksmith {
-	display: var(--blacksmith-display);
-}
-
-.professor {
-	display: var(--professor-display);
+.job-level,
+.job-count {
+	font-weight: 700;
 }
 
 /* #endregion */

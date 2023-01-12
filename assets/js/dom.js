@@ -39,6 +39,13 @@ class DOM {
 		this.blacksmithManager = document.getElementById("blacksmith-manager");
 		this.professorManager = document.getElementById("professor-manager");
 
+		// Building levels
+		this.tentLevel = document.getElementById("tent-level");
+		this.pierLevel = document.getElementById("pier-level");
+		this.quarryLevel = document.getElementById("quarry-level");
+		this.smithyLevel = document.getElementById("smithy-level");
+		this.academyLevel = document.getElementById("academy-level");
+
 		// Chaos indicators
 		this.pierChaos = document.getElementById("pier-chaos");
 		this.quarryChaos = document.getElementById("quarry-chaos");
