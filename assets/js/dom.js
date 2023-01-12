@@ -119,9 +119,11 @@ class DOM {
 		this.save = document.getElementById("save");
 		this.load = document.getElementById("load");
 		this.reset = document.getElementById("reset");
+		this.logExpand = document.getElementById("log-expand");
 
 		// Other elements
 		this.world = document.getElementById("world");
+		this.log = document.getElementById("log");
 		this.messageArea = document.getElementById("message-area");
 		this.popupShroud = document.getElementById("popup-shroud");
 		this.popup = document.getElementById("popup");

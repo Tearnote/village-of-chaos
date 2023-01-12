@@ -155,6 +155,9 @@ class Game {
 			)
 				this.reset();
 		});
+		this.dom.logExpand.addEventListener("click", () => {
+			this.dom.log.classList.toggle("visible");
+		});
 
 		// Pre-select a tab
 		this.dom.craftButton.click();
