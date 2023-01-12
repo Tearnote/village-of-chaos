@@ -521,31 +521,56 @@ class Game {
 
 		if (atSelector) {
 			let target = document.querySelector(atSelector);
-			let rect = target.getBoundingClientRect();
+			let targetRect = target.getBoundingClientRect();
 			let margin = parseInt(
 				window.getComputedStyle(this.dom.popup).marginTop
 			);
 
-			let left = rect.right;
-			if (
-				left + margin * 2 + this.dom.popup.offsetWidth >
-				window.innerWidth
-			)
-				left = rect.left - margin * 2 - this.dom.popup.offsetWidth;
+			// Determine if we're portrait or landscape
+			let portrait = window.innerWidth >= window.innerHeight;
 
-			left = Math.max(0, left);
+			let left = targetRect.left;
+			let top = targetRect.top;
+
+			if (portrait) {
+				// Try positioning to the right of the target,
+				// go to the left if that's off-screen
+				left += target.offsetWidth;
+				if (
+					left + margin + this.dom.popup.offsetWidth >
+					window.innerWidth
+				)
+					left =
+						targetRect.left -
+						margin * 2 -
+						this.dom.popup.offsetWidth;
+			} else {
+				// Try positioning below the target,
+				// go above if that's off-screen
+				top += target.offsetHeight;
+				if (
+					top + margin + this.dom.popup.offsetHeight >
+					window.innerHeight
+				)
+					top =
+						targetrect.top -
+						margin * 2 -
+						this.dom.popup.offsetHeight;
+			}
+
+			// Clamp pop-up position to window size, just in case
+			left = Math.max(left, 0);
 			left = Math.min(
-				window.innerWidth - this.dom.popup.offsetWidth - margin * 2,
-				left
+				left,
+				window.innerWidth - this.dom.popup.offsetWidth - margin * 2
 			);
-			this.dom.popup.style.left = left + "px";
-
-			let top = rect.top;
-			top = Math.max(0, top);
+			top = Math.max(top, 0);
 			top = Math.min(
-				window.innerHeight - this.dom.popup.offsetHeight - margin * 2,
-				top
+				top,
+				window.innerHeight - this.dom.popup.offsetHeight - margin * 2
 			);
+
+			this.dom.popup.style.left = left + "px";
 			this.dom.popup.style.top = top + "px";
 
 			target.style.zIndex = 1000; // Bring above the shroud
