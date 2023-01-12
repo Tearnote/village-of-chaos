@@ -560,6 +560,7 @@ header > button {
 	position: relative;
 	--margin: 0.4rem;
 	width: 20rem;
+	max-width: 32rem;
 	height: 6rem;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
