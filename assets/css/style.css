@@ -602,7 +602,12 @@ header > button {
 	content: "- log";
 }
 
-#log > p:not(:last-child) {
+#message-area {
+	display: flex;
+	flex-flow: column-reverse; /* Keeps container scrolled down */
+}
+
+#message-area > p:not(:last-child) {
 	padding-top: 0.2rem;
 	border-top: 1px solid rgba(0, 0, 0, 0.12);
 	margin-top: 0.2rem;
