@@ -440,11 +440,22 @@ header > p {
 
 #gathering {
 	width: fit-content;
-	align-self: center;
 	display: flex;
 	justify-content: center;
 	flex-flow: column;
 	margin: 2rem;
+}
+
+@media (orientation: landscape) {
+	#gathering {
+		align-self: center;
+	}
+}
+
+@media (orientation: portrait) {
+	#gathering {
+		align-self: flex-start;
+	}
 }
 
 #gathering > button {
