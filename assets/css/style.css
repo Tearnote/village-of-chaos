@@ -110,6 +110,7 @@ h1 {
 	display: flex;
 	justify-content: space-between;
 	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 64px;
 }
 
 @media (orientation: landscape) {
@@ -233,6 +234,7 @@ header {
 		position: fixed;
 		top: 0;
 		right: 0;
+		box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 64px;
 	}
 }
 
@@ -242,6 +244,10 @@ header > h1 {
 
 header > p {
 	padding-bottom: 0.6rem;
+}
+
+header > button {
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
 }
 
 #warehouse {
@@ -391,6 +397,7 @@ header > p {
 	height: 6rem;
 	margin: 0.8rem;
 	border-radius: 4px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
 	font-size: large;
 	text-shadow: 0 0 0.4rem var(--active-color);
 }
@@ -480,6 +487,7 @@ header > p {
 	height: 2.25rem;
 	margin: 0.2rem;
 	font-size: x-large;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
 }
 
 .mentor {
