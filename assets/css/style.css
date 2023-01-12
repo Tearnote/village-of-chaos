@@ -288,6 +288,10 @@ header > p {
 	flex-flow: column;
 }
 
+#controls > div {
+	min-height: 100%;
+}
+
 #assign {
 	background-color: var(--primary-highlight-color);
 	display: none; /* Overridden by JS */
