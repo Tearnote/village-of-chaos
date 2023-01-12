@@ -553,7 +553,7 @@ class Game {
 					window.innerHeight
 				)
 					top =
-						targetrect.top -
+						targetRect.top -
 						margin * 2 -
 						this.dom.popup.offsetHeight;
 			}
