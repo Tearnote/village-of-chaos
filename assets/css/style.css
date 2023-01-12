@@ -60,6 +60,9 @@ body {
 	--secondary-highlight-color: #4dd7e1;
 	--active-color: #e7fffc;
 	--inactive-color: #a8bab8;
+	--wood-color: #653a0c;
+	--food-color: #349097;
+	--stone-color: #3c3d43;
 
 	/* Element visibility variables, controlled by JS */
 	--income-display: none;
@@ -534,11 +537,11 @@ header > button {
 }
 
 #gather-wood {
-	background-color: #653a0c;
+	background-color: var(--wood-color);
 }
 
 #gather-food {
-	background-color: var(--secondary-color);
+	background-color: var(--food-color);
 }
 
 /* #endregion */
