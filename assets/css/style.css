@@ -262,12 +262,31 @@ header > p {
 	#warehouse > div {
 		flex: 1 0 0;
 	}
+
+	.resource > br {
+		display: none;
+	}
+
+	.multiplier-name {
+		min-width: 7.5rem;
+	}
 }
 
 @media (orientation: portrait) {
 	#warehouse {
 		flex-flow: column;
 		justify-content: center;
+		min-width: 8rem;
+	}
+
+	#warehouse > div {
+		width: 100%;
+	}
+
+	.resource,
+	.multiplier {
+		text-align: center;
+		padding: 0.2rem 0;
 	}
 }
 
@@ -286,7 +305,6 @@ header > p {
 .multiplier-name {
 	display: inline-block;
 	text-align: right;
-	min-width: 7.5rem;
 }
 
 .multiplier-amount {
