@@ -275,6 +275,8 @@ h1 {
 #controls {
 	flex: 1 0 0;
 	overflow-y: auto;
+	display: flex;
+	flex-flow: column;
 }
 
 #assign {
