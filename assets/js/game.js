@@ -389,17 +389,17 @@ class Game {
 		let cost = this.getUpgradeCost(i);
 		let atLeastOne = false;
 		if (cost.wood) {
-			html += `<span class="cost">${cost.wood}</span> wood`;
+			html += `<span class="cost-wood"><span class="cost">${cost.wood}</span> wood</span>`;
 			atLeastOne = true;
 		}
 		if (cost.food) {
 			if (atLeastOne) html += `, `;
-			html += `<span class="cost">${cost.food}</span> food`;
+			html += `<span class="cost-food"><span class="cost">${cost.food}</span> food</span>`;
 			atLeastOne = true;
 		}
 		if (cost.stone) {
 			if (atLeastOne) html += `, `;
-			html += `<span class="cost">${cost.stone}</span> stone`;
+			html += `<span class="cost-stone"><span class="cost">${cost.stone}</span> stone</span>`;
 		}
 		html += `</p>`;
 		el.innerHTML = html;

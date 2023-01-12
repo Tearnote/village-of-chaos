@@ -624,8 +624,20 @@ header > button {
 	margin-bottom: -0.2rem;
 }
 
-.upgrade > p > .cost {
+.upgrade > p > span > .cost {
 	font-weight: 700;
+}
+
+.cost-wood {
+	color: var(--wood-color);
+}
+
+.cost-food {
+	color: var(--food-color);
+}
+
+.cost-stone {
+	color: var(--stone-color);
 }
 
 #craft > .upgrade::after {
