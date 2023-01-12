@@ -557,19 +557,24 @@ header > button {
 /* #region Log */
 
 #log {
-	min-width: 20rem;
-	width: 40%;
-	min-height: 10rem;
-	height: 20%;
+	--margin: 0.4rem;
+	width: 20rem;
+	height: 6rem;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
 	overflow-y: scroll;
-	margin: 0.5rem;
-	padding: 0.5rem;
+	margin: var(--margin);
+	padding: 0.4rem;
 	font-family: "Courier New", Courier, monospace;
 	font-size: 0.8rem;
-	background-color: rgba(255, 255, 255, 0.6);
-	backdrop-filter: blur(1rem);
+	background-color: var(--active-color);
+	z-index: 500;
+}
+
+@media (max-width: 600px) {
+	#log {
+		visibility: hidden;
+	}
 }
 
 #log > p:not(:last-child) {
