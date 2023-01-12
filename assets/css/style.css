@@ -629,7 +629,7 @@ header > button {
 	content: "log -";
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) or ((max-width: 900px) and (orientation: landscape)) {
 	#log {
 		visibility: hidden;
 	}
