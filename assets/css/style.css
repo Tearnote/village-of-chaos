@@ -43,6 +43,11 @@ a:visited {
 /* #region Site style and general layout */
 
 body {
+	/* Prevent scrolling, ever */
+	max-width: 100vw;
+	max-height: 100vh;
+	overflow: hidden;
+
 	display: flex;
 	/* Placeholder */
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
