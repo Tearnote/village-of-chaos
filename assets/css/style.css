@@ -100,6 +100,7 @@ h1 {
 #main {
 	width: var(--main-size);
 	height: var(--main-size);
+	position: relative;
 	display: flex;
 	flex-flow: column;
 	justify-content: space-between;
@@ -503,6 +504,7 @@ header > button {
 /* #region Gathering */
 
 #gathering {
+	position: absolute;
 	width: fit-content;
 	display: flex;
 	justify-content: center;
@@ -512,19 +514,31 @@ header > button {
 
 @media (orientation: landscape) {
 	#gathering {
-		align-self: center;
+		right: 0;
+		top: 0;
 	}
 }
 
 @media (orientation: portrait) {
 	#gathering {
-		align-self: flex-start;
+		left: 0;
+		bottom: 0;
 	}
 }
 
 #gathering > button {
 	margin: 0.4rem;
-	padding: 0.2rem 0.5rem;
+	padding: 0.8rem;
+	color: var(--active-color);
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+}
+
+#gather-wood {
+	background-color: #653a0c;
+}
+
+#gather-food {
+	background-color: var(--secondary-color);
 }
 
 /* #endregion */
