@@ -155,7 +155,7 @@ button:active {
 	We need to calculate scale from JS,
 	because calc() doesn't support floats
 	*/
-	--scale: 1;
+	--scale: 0;
 	position: absolute;
 	width: 640px;
 	height: 640px;
