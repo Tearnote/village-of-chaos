@@ -380,14 +380,17 @@ header > p {
 }
 
 #assign-button {
+	display: var(--assign-display);
 	background-color: var(--primary-highlight-color);
 }
 
 #craft-button {
+	display: var(--assign-display);
 	background-color: var(--primary-color);
 }
 
 #research-button {
+	display: var(--research-display);
 	background-color: var(--secondary-color);
 }
 
@@ -409,6 +412,26 @@ header > p {
 .job > h3,
 .job-details {
 	width: 50%;
+}
+
+.chaos {
+	display: var(--chaos-display);
+}
+
+.pier {
+	display: var(--fisherman-display);
+}
+
+.quarry {
+	display: var(--miner-display);
+}
+
+.smithy {
+	display: var(--blacksmith-display);
+}
+
+.academy {
+	display: var(--professor-display);
 }
 
 .assignment {
@@ -437,6 +460,14 @@ header > p {
 	height: 2.25rem;
 	margin: 0.2rem;
 	font-size: x-large;
+}
+
+.mentor {
+	display: var(--mentor-display);
+}
+
+.manager {
+	display: var(--manager-display);
 }
 
 /* #endregion */

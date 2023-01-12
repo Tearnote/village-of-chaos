@@ -484,10 +484,8 @@ class Game {
 	unlock(name) {
 		let display = "block";
 		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
-			display = "table-row";
-		if (["mentor", "manager", "chaos"].includes(name))
-			display = "table-cell";
-		if (name === "income")
+			display = "flex";
+		if (["income", "chaos"].includes(name))
 			display = "inline";
 		let nameDashed = Util.kebabCase(name);
 		document.body.style.setProperty(`--${nameDashed}-display`, display);
