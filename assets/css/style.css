@@ -286,7 +286,7 @@ h1 {
 
 #craft {
 	background-color: var(--primary-color);
-	display: block; /* Overridden by JS */
+	display: none; /* Overridden by JS */
 }
 
 #research {

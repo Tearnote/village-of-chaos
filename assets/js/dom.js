@@ -3,6 +3,16 @@
 
 class DOM {
 	constructor() {
+		// Tab buttons
+		this.assignButton = document.getElementById("assign-button");
+		this.craftButton = document.getElementById("craft-button");
+		this.researchButton = document.getElementById("research-button");
+
+		// Tab sections
+		this.assign = document.getElementById("assign");
+		this.craft = document.getElementById("craft");
+		this.research = document.getElementById("research");
+
 		// Resource indicators
 		this.wood = document.getElementById("wood-amount");
 		this.woodIncome = document.getElementById("wood-income");
@@ -16,11 +26,6 @@ class DOM {
 		// Gathering buttons
 		this.gatherWood = document.getElementById("gather-wood");
 		this.gatherFood = document.getElementById("gather-food");
-
-		// Control sections
-		this.assign = document.getElementById("assign");
-		this.craft = document.getElementById("craft");
-		this.research = document.getElementById("research");
 
 		// Assignment counts
 		this.lumberjack = document.getElementById("lumberjack");
@@ -73,9 +78,7 @@ class DOM {
 		this.professorVillagerDown = document.getElementById(
 			"professor-villager-down"
 		);
-		this.fishermanMentorUp = document.getElementById(
-			"fisherman-mentor-up"
-		);
+		this.fishermanMentorUp = document.getElementById("fisherman-mentor-up");
 		this.fishermanMentorDown = document.getElementById(
 			"fisherman-mentor-down"
 		);
@@ -87,13 +90,13 @@ class DOM {
 		this.blacksmithMentorDown = document.getElementById(
 			"blacksmith-mentor-down"
 		);
-		this.professorMentorUp = document.getElementById(
-			"professor-mentor-up"
-		);
+		this.professorMentorUp = document.getElementById("professor-mentor-up");
 		this.professorMentorDown = document.getElementById(
 			"professor-mentor-down"
 		);
-		this.fishermanManagerUp = document.getElementById("fisherman-manager-up");
+		this.fishermanManagerUp = document.getElementById(
+			"fisherman-manager-up"
+		);
 		this.fishermanManagerDown = document.getElementById(
 			"fisherman-manager-down"
 		);
@@ -105,7 +108,9 @@ class DOM {
 		this.blacksmithManagerDown = document.getElementById(
 			"blacksmith-manager-down"
 		);
-		this.professorManagerUp = document.getElementById("professor-manager-up");
+		this.professorManagerUp = document.getElementById(
+			"professor-manager-up"
+		);
 		this.professorManagerDown = document.getElementById(
 			"professor-manager-down"
 		);

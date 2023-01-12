@@ -106,6 +106,16 @@ class Game {
 		];
 
 		// Register button clicks
+		this.dom.assignButton.addEventListener("click", () => {
+			this.changeTab("assign");
+		});
+		this.dom.craftButton.addEventListener("click", () => {
+			this.changeTab("craft");
+		});
+		this.dom.researchButton.addEventListener("click", () => {
+			this.changeTab("research");
+		});
+
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 
@@ -486,6 +496,20 @@ class Game {
 			let nameDashed = Util.kebabCase(name);
 			document.body.style.setProperty(`--${nameDashed}-display`, "none");
 		}
+	}
+
+	changeTab(tabName) {
+		const TABS = ["assign", "craft", "research"];
+
+		// Hide everything
+		for (let tab of TABS) {
+			this.dom[tab].style.display = "none";
+			this.dom[tab + "Button"].classList.remove("active");
+		}
+
+		// Activate chosen tab
+		this.dom[tabName].style.display = "block";
+		this.dom[tabName + "Button"].classList.add("active");
 	}
 
 	showPopup(text, atSelector) {
