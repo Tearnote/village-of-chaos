@@ -290,6 +290,8 @@ header > p {
 
 #controls > div {
 	min-height: 100%;
+	height: max-content;
+	overflow-y: auto;
 }
 
 #assign {
