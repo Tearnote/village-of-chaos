@@ -96,6 +96,7 @@ body {
 }
 
 #side {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	background-color: white;
@@ -278,10 +279,47 @@ h1 {
 
 #assign {
 	background-color: var(--primary-highlight-color);
+	display: none; /* Overridden by JS */
 }
 
 #craft {
 	background-color: var(--primary-color);
+	display: block; /* Overridden by JS */
+}
+
+#research {
+	background-color: var(--secondary-color);
+	display: none; /* Overridden by JS */
+}
+
+#side > nav {
+	position: absolute;
+	bottom: 0;
+	left: -100%;
+	width: 100%;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-end;
+}
+
+#side > nav > button {
+	width: 6rem;
+	height: 6rem;
+	margin: 0.8rem;
+	font-size: large;
+	text-shadow: 0 0 0.4rem var(--active-color);
+}
+
+#assign-button {
+	background-color: var(--primary-highlight-color);
+}
+
+#craft-button {
+	background-color: var(--primary-color);
+}
+
+#research-button {
+	background-color: var(--secondary-color);
 }
 
 /* #endregion */
