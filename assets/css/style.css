@@ -607,12 +607,6 @@ header > button {
 	z-index: 500;
 }
 
-@media (max-width: 600px) {
-	#log {
-		visibility: hidden;
-	}
-}
-
 #log-expand {
 	visibility: visible;
 	position: absolute;
@@ -622,7 +616,7 @@ header > button {
 }
 
 #log-expand > p:after {
-	content: "+ log";
+	content: "log +";
 }
 
 #log.visible {
@@ -632,7 +626,20 @@ header > button {
 }
 
 #log.visible > #log-expand > p:after {
-	content: "- log";
+	content: "log -";
+}
+
+@media (max-width: 600px) {
+	#log {
+		visibility: hidden;
+	}
+
+	#log-expand {
+		top: 0.1rem;
+		left: 0.1rem;
+		width: 3rem;
+		height: 3rem;
+	}
 }
 
 #message-area {
