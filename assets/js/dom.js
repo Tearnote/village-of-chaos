@@ -122,7 +122,7 @@ class DOM {
 
 		// Other elements
 		this.world = document.getElementById("world");
-		this.log = document.getElementById("log");
+		this.messageArea = document.getElementById("message-area");
 		this.popupShroud = document.getElementById("popup-shroud");
 		this.popup = document.getElementById("popup");
 		this.popupText = document.getElementById("popup-text");

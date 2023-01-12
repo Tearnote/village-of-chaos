@@ -406,13 +406,6 @@ class Game {
 		return el;
 	}
 
-	logMessage(type, msg) {
-		let el = document.createElement("p");
-		el.textContent = msg;
-		el.classList.add(type);
-		this.dom.log.prepend(el); // Prepend instead of append because of flexbox direction
-	}
-
 	getWoodProduction() {
 		return this.production.lumberjack * this.lumberjack;
 	}
@@ -485,8 +478,7 @@ class Game {
 		let display = "block";
 		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
 			display = "flex";
-		if (["income", "chaos"].includes(name))
-			display = "inline";
+		if (["income", "chaos"].includes(name)) display = "inline";
 		let nameDashed = Util.kebabCase(name);
 		document.body.style.setProperty(`--${nameDashed}-display`, display);
 		this.unlocks[name] = true;
@@ -513,6 +505,13 @@ class Game {
 		this.dom[tabName + "Button"].classList.add("active");
 	}
 
+	logMessage(type, msg) {
+		let el = document.createElement("p");
+		el.textContent = msg;
+		el.classList.add(type);
+		this.dom.messageArea.prepend(el); // Prepend instead of append because of flexbox direction
+	}
+
 	showPopup(text, atSelector) {
 		this.dom.popupShroud.style.display = "block";
 		this.dom.popupText.textContent = text;
@@ -523,13 +522,19 @@ class Game {
 			let margin = parseInt(
 				window.getComputedStyle(this.dom.popup).marginTop
 			);
-			
+
 			let left = rect.right;
-			if (left + margin * 2 + this.dom.popup.offsetWidth > window.innerWidth)
+			if (
+				left + margin * 2 + this.dom.popup.offsetWidth >
+				window.innerWidth
+			)
 				left = rect.left - margin * 2 - this.dom.popup.offsetWidth;
-			
+
 			left = Math.max(0, left);
-			left = Math.min(window.innerWidth - this.dom.popup.offsetWidth - margin * 2, left);
+			left = Math.min(
+				window.innerWidth - this.dom.popup.offsetWidth - margin * 2,
+				left
+			);
 			this.dom.popup.style.left = left + "px";
 
 			let top = rect.top;
@@ -577,7 +582,7 @@ class Game {
 		// Close pop-up if open
 		this.dom.popupDismiss.click();
 
-		this.dom.log.replaceChildren(); // We don't restore log entries
+		this.dom.messageArea.replaceChildren(); // We don't restore log entries
 		this.logMessage("info", "Game loaded.");
 	}
 
