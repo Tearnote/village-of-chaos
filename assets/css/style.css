@@ -438,15 +438,14 @@ header > button {
 
 /* #region Assign tab */
 
-#assign {
-	padding: 0.8rem 1rem;
-}
-
 .job {
 	display: flex;
 	flex-flow: row wrap;
 	align-items: baseline;
-	padding: 0.5rem 0;
+	margin: 0.8rem 0;
+	padding: 0.4rem 1rem;
+	background-color: rgba(231, 255, 252, 0.6);
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
 }
 
 .job > h3,
