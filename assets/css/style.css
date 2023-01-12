@@ -60,9 +60,9 @@ body {
 	--secondary-highlight-color: #4dd7e1;
 	--active-color: #e7fffc;
 	--inactive-color: #a8bab8;
-	--wood-color: #54300a;
-	--food-color: #194548;
-	--stone-color: #37383d;
+	--wood-color: #5a2800;
+	--food-color: #00444a;
+	--stone-color: #37173c;
 
 	/* Element visibility variables, controlled by JS */
 	--income-display: none;
