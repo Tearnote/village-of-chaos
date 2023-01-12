@@ -544,6 +544,17 @@ header > button {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
 }
 
+@media (max-width: 560px) {
+	#gathering {
+		margin: 0.4rem;
+	}
+
+	#gathering > button {
+		margin: 0.2rem;
+		padding: 0.6rem;
+	}
+}
+
 #gather-wood {
 	background-color: var(--wood-color);
 }
