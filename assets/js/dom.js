@@ -17,10 +17,10 @@ class DOM {
 		this.gatherWood = document.getElementById("gather-wood");
 		this.gatherFood = document.getElementById("gather-food");
 
-		// Interface tabs
-		this.assignTab = document.getElementById("assign-tab");
-		this.craftTab = document.getElementById("craft-tab");
-		this.researchTab = document.getElementById("research-tab");
+		// Control sections
+		this.assign = document.getElementById("assign");
+		this.craft = document.getElementById("craft");
+		this.research = document.getElementById("research");
 
 		// Assignment counts
 		this.lumberjack = document.getElementById("lumberjack");

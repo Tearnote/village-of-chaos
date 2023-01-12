@@ -40,39 +40,6 @@ a:visited {
 
 /* #endregion */
 
-/* #region Pure CSS tabs */
-/* Inspired by https://codepen.io/alvarotrigo/pen/RwLzvQz */
-
-.tabs {
-	display: flex;
-	flex-flow: row wrap;
-	align-content: flex-end;
-}
-
-.tabs > input[type="radio"] {
-	display: none;
-}
-
-.tabs > label {
-	order: 20;
-	height: fit-content;
-	cursor: pointer;
-	user-select: none;
-}
-
-.tabs > .tab {
-	order: 10;
-	width: 100%;
-	height: auto;
-	display: none;
-}
-
-.tabs > input[type="radio"]:checked + label + .tab {
-	display: block;
-}
-
-/* #endregion */
-
 /* #region Site style and general layout */
 
 body {
@@ -80,7 +47,6 @@ body {
 	/* Placeholder */
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
 		sans-serif;
-	background-color: antiquewhite;
 
 	/* Color palette */
 	--secondary-color: #349097;
@@ -128,7 +94,7 @@ body {
 #side {
 	display: flex;
 	justify-content: space-between;
-	background-color: black;
+	background-color: white;
 }
 
 @media (orientation: landscape) {
@@ -285,67 +251,45 @@ h1 {
 
 /* #endregion */
 
-/* #region Tabbed interface */
+/* #region Game control section */
 
-#interface {
+#controls {
 	flex: 1 0 auto;
 }
 
-#interface > .tab {
-	overflow-y: auto;
-	background-color: chartreuse;
-}
-
-#interface > label {
-	padding: 0.5rem 1rem;
-	background-color: lavender;
-}
-
-#assign + label {
-	display: var(--assign-display);
-}
-
-#research + label {
-	display: var(--research-display);
-}
-
-#interface > input[type="radio"]:checked + label {
-	background-color: gray;
-}
-
-#assign-tab > table {
+#assign > table {
 	text-align: left;
 }
 
-#assign-tab > table > thead {
+#assign > table > thead {
 	text-align: center;
 }
 
-#assign-tab > table > thead > tr > th,
-#assign-tab > table > tbody > tr > td {
+#assign > table > thead > tr > th,
+#assign > table > tbody > tr > td {
 	padding: 0.2rem 0.5rem;
 }
 
-#assign-tab > table > tbody > tr > :first-child {
+#assign > table > tbody > tr > :first-child {
 	text-align: right;
 }
 
-#assign-tab > table > tbody > tr > :last-child {
+#assign > table > tbody > tr > :last-child {
 	text-align: center;
 }
 
-#assign-tab > table > thead > tr > :nth-child(3),
-#assign-tab > table > tbody > tr > :nth-child(3) {
+#assign > table > thead > tr > :nth-child(3),
+#assign > table > tbody > tr > :nth-child(3) {
 	display: var(--mentor-display);
 }
 
-#assign-tab > table > thead > tr > :nth-child(4),
-#assign-tab > table > tbody > tr > :nth-child(4) {
+#assign > table > thead > tr > :nth-child(4),
+#assign > table > tbody > tr > :nth-child(4) {
 	display: var(--manager-display);
 }
 
-#assign-tab > table > thead > tr > :last-child,
-#assign-tab > table > tbody > tr > :last-child {
+#assign > table > thead > tr > :last-child,
+#assign > table > tbody > tr > :last-child {
 	display: var(--chaos-display);
 }
 

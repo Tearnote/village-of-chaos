@@ -325,8 +325,8 @@ class Game {
 
 	renderUpgrades() {
 		// Clean up
-		this.dom.craftTab.replaceChildren();
-		this.dom.researchTab.replaceChildren();
+		this.dom.craft.replaceChildren();
+		this.dom.research.replaceChildren();
 		this.dom.upgrades.length = 0;
 
 		// Update requirements
@@ -353,8 +353,8 @@ class Game {
 			});
 			this.dom.upgrades.push(el);
 			if (this.upgradeList[i].type == "craft")
-				this.dom.craftTab.appendChild(el);
-			else this.dom.researchTab.appendChild(el);
+				this.dom.craft.appendChild(el);
+			else this.dom.research.appendChild(el);
 		}
 	}
 
