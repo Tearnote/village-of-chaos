@@ -564,9 +564,7 @@ header > button {
 	height: 6rem;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
-	overflow-y: scroll;
 	margin: var(--margin);
-	padding: 0.4rem;
 	font-family: "Courier New", Courier, monospace;
 	font-size: 0.8rem;
 	background-color: var(--active-color);
@@ -603,6 +601,10 @@ header > button {
 }
 
 #message-area {
+	width: 100%;
+	height: 100%;
+	padding: 0.4rem;
+	overflow-y: scroll;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
 }
