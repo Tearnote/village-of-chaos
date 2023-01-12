@@ -87,6 +87,11 @@ body {
 	}
 }
 
+h1 {
+	font-size: xx-large;
+	text-shadow: 0 0 0.4rem var(--active-color);
+}
+
 #main {
 	width: var(--main-size);
 	height: var(--main-size);
@@ -213,8 +218,12 @@ header {
 	background-color: var(--secondary-color);
 }
 
-h1 {
-	padding-bottom: 0.2rem;
+header > h1 {
+	margin-bottom: -0.5rem;
+}
+
+header > p {
+	padding-bottom: 0.6rem;
 }
 
 #warehouse {
