@@ -308,8 +308,13 @@ h1 {
 	width: 6rem;
 	height: 6rem;
 	margin: 0.8rem;
+	border-radius: 4px;
 	font-size: large;
 	text-shadow: 0 0 0.4rem var(--active-color);
+}
+
+#side > nav > button.active {
+	box-shadow: 0 0 0 4px var(--active-color);
 }
 
 #assign-button {
