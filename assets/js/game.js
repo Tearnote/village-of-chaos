@@ -522,15 +522,24 @@ class Game {
 		if (atSelector) {
 			let target = document.querySelector(atSelector);
 			let rect = target.getBoundingClientRect();
-
-			this.dom.popup.style.left = rect.left + "px";
 			let margin = parseInt(
 				window.getComputedStyle(this.dom.popup).marginTop
 			);
-			let top = rect.top - this.dom.popup.offsetHeight - margin * 2;
-			if (top < 0)
-				// If pop-up ended up off-screen, position below the target instead of above
-				top = rect.bottom;
+			
+			let left = rect.right;
+			if (left + margin * 2 + this.dom.popup.offsetWidth > window.innerWidth)
+				left = rect.left - margin * 2 - this.dom.popup.offsetWidth;
+			
+			left = Math.max(0, left);
+			left = Math.min(window.innerWidth - this.dom.popup.offsetWidth - margin * 2, left);
+			this.dom.popup.style.left = left + "px";
+
+			let top = rect.top;
+			top = Math.max(0, top);
+			top = Math.min(
+				window.innerHeight - this.dom.popup.offsetHeight - margin * 2,
+				top
+			);
 			this.dom.popup.style.top = top + "px";
 
 			target.style.zIndex = 1000; // Bring above the shroud
