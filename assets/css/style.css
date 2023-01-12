@@ -211,11 +211,24 @@ button:active {
 /* #region Header and warehouse */
 
 header {
-	flex: 0 0 auto;
-	width: 100%;
 	text-align: right;
 	padding: 0.4rem 0.75rem 0.8rem;
 	background-color: var(--secondary-color);
+}
+
+@media (orientation: landscape) {
+	header {
+		width: 100%;
+		flex: 0 0 auto;
+	}
+}
+
+@media (orientation: portrait) {
+	header {
+		position: fixed;
+		top: 0;
+		right: 0;
+	}
 }
 
 header > h1 {
@@ -230,14 +243,27 @@ header > p {
 	flex: 0 0 auto;
 	display: flex;
 	flex-flow: row;
-	align-items: center;
-	justify-content: stretch;
+		align-items: center;
 	padding: 0.6rem 0.8rem;
 	background-color: var(--secondary-highlight-color);
 }
 
-#warehouse > div {
-	flex: 1 0 0;
+@media (orientation: landscape) {
+	#warehouse {
+		flex-flow: row;
+		justify-content: stretch;
+	}
+
+	#warehouse > div {
+		flex: 1 0 0;
+	}
+}
+
+@media (orientation: portrait) {
+	#warehouse {
+		flex-flow: column;
+		justify-content: center;
+	}
 }
 
 .resource-name {
