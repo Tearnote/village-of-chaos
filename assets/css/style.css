@@ -248,7 +248,7 @@ header > p {
 	flex: 0 0 auto;
 	display: flex;
 	flex-flow: row;
-		align-items: center;
+	align-items: center;
 	padding: 0.6rem 0.8rem;
 	background-color: var(--secondary-highlight-color);
 }
@@ -280,12 +280,17 @@ header > p {
 .resource-amount {
 	display: inline-block;
 	min-width: 3rem;
+	font-weight: 700;
 }
 
 .multiplier-name {
 	display: inline-block;
 	text-align: right;
 	min-width: 7.5rem;
+}
+
+.multiplier-amount {
+	font-weight: 700;
 }
 
 .income {
@@ -399,7 +404,7 @@ header > p {
 /* #region Assign tab */
 
 #assign {
-	padding: 0.8rem 1.0rem;
+	padding: 0.8rem 1rem;
 }
 
 .job {
