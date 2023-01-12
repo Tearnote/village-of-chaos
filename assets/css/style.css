@@ -82,6 +82,10 @@ body {
 		sans-serif;
 	background-color: antiquewhite;
 
+	/* Color palette */
+	--secondary-color: #349097;
+	--secondary-highlight-color: #4dd7e1;
+
 	/* Element visibility variables, controlled by JS */
 	--income-display: none;
 	--stone-display: none;
@@ -124,7 +128,7 @@ body {
 #side {
 	display: flex;
 	justify-content: space-between;
-	background-color: brown;
+	background-color: black;
 }
 
 @media (orientation: landscape) {
@@ -216,28 +220,47 @@ button {
 
 /* #endregion */
 
-/* #region Header */
+/* #region Header and warehouse */
 
 header {
-	flex: 0 0 auto;
 	width: 100%;
-	height: 4rem;
+	text-align: right;
+	padding: 0.4rem 0.75rem 0.8rem;
+	background-color: var(--secondary-color);
+}
+
+h1 {
+	padding-bottom: 0.2rem;
+}
+
+#warehouse {
 	display: flex;
 	flex-flow: row;
-	justify-content: space-between;
 	align-items: center;
-	background-color: cornflowerblue;
+	justify-content: stretch;
+	padding: 0.6rem 0.8rem;
+	background-color: var(--secondary-highlight-color);
 }
 
-#resources {
-	display: flex;
-	flex-flow: row;
+#warehouse > div {
+	flex: 1 0 0;
 }
 
-#resources > div {
-	min-width: 5rem;
-	text-align: center;
-	margin-left: 0.5rem;
+.resource-name {
+	display: inline-block;
+	text-align: right;
+	min-width: 3rem;
+}
+
+.resource-amount {
+	display: inline-block;
+	min-width: 3rem;
+}
+
+.multiplier-name {
+	display: inline-block;
+	text-align: right;
+	min-width: 7.5rem;
 }
 
 .income {
@@ -254,16 +277,6 @@ header {
 
 .research-speed {
 	display: var(--research-speed-display);
-}
-
-#system {
-	margin-right: 1rem;
-	display: flex;
-	flex-flow: row;
-}
-
-#system > button {
-	margin: 0 0.3rem;
 }
 
 #reset {

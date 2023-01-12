@@ -57,42 +57,50 @@
 
 		<!-- Side area with controls and upgrades -->
 		<section id="side">
-			<!-- Header with resource details -->
+			<!-- Header with title and system controls -->
 			<header>
-				<div id="resources">
-					<div>
-						<p>Wood: <span id="wood-amount"></span></p>
-						<p class="income">
-							(+<span id="wood-income"></span>/s)
-						</p>
-					</div>
-					<div>
-						<p>Food: <span id="food-amount"></span></p>
-						<p class="income">
-							(+<span id="food-income"></span>/s)
-						</p>
-					</div>
-					<div class="stone">
-						<p>Stone: <span id="stone-amount"></span></p>
-						<p class="stone income">
-							(+<span id="stone-income"></span>/s)
-						</p>
-					</div>
-					<div class="craft-speed">
-						<p>Crafting speed:</p>
-						<p><span id="craft-speed"></span>x</p>
-					</div>
-					<div class="research-speed">
-						<p>Research speed:</p>
-						<p><span id="research-speed"></span>x</p>
-					</div>
-				</div>
-				<div id="system">
-					<button id="save">Save</button>
-					<button id="load">Load</button>
-					<button id="reset">Reset</button>
-				</div>
+				<h1>Village of Chaos v1.0</h1>
+				<button id="save">Save</button>
+				<button id="load">Load</button>
+				<button id="reset">Reset</button>
 			</header>
+
+			<!-- Information section about current resources and multipliers -->
+			<section id="warehouse">
+				<div>
+					<p class="wood">
+						<span class="resource-name">Wood:</span>
+						<span class="resource-amount" id="wood-amount"></span>
+						<span class="income">
+							(+<span id="wood-income"></span>/s)
+						</span>
+					</p>
+					<p class="food">
+						<span class="resource-name">Food:</span>
+						<span class="resource-amount" id="food-amount"></span>
+						<span class="income">
+							(+<span id="food-income"></span>/s)
+						</span>
+					</p>
+					<p class="stone">
+						<span class="resource-name">Stone:</span>
+						<span class="resource-amount" id="stone-amount"></span>
+						<span class="income">
+							(+<span id="stone-income"></span>/s)
+						</span>
+					</p>
+				</div>
+				<div>
+					<p class="craft-speed">
+						<span class="multiplier-name">Crafting speed:</span>
+						<span id="craft-speed"></span>x
+					</p>
+					<p class="research-speed">
+						<span class="multiplier-name">Research speed:</span>
+						<span id="research-speed"></span>x
+					</p>
+				</div>
+			</section>
 
 			<!-- Tabbed section interface -->
 			<section id="interface" class="tabs">
