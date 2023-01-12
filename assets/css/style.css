@@ -123,7 +123,16 @@ button {
 	min-width: 1.5rem;
 	background-color: var(--active-color);
 	border: 1px solid black;
+	border-radius: 2px;
 	cursor: pointer;
+}
+
+button:hover {
+	filter: brightness(80%);
+}
+
+button:active {
+	filter: brightness(120%);
 }
 
 /* #endregion */
