@@ -415,6 +415,16 @@ header > button {
 	text-shadow: 0 0 0.4rem var(--active-color);
 }
 
+@media (max-width: 560px) {
+	#side > nav > button {
+		width: 5rem;
+		height: 3.33rem;
+		margin: 0.4rem 0.4rem 0.4rem 0;
+		padding: 0;
+		font-size: medium;
+	}
+}
+
 #side > nav > button.active {
 	box-shadow: 0 0 0 4px var(--active-color);
 }
