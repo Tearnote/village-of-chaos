@@ -573,8 +573,9 @@ header > p {
 	align-items: center;
 	text-align: justify;
 	margin: 0.2rem;
-	border: paleturquoise solid 4px;
-	padding: 0.8rem 1rem;
+	border: var(--secondary-color) solid 4px;
+	border-radius: 8px;
+	padding: 0.8rem;
 	background-color: white;
 	user-select: text; /* Re-enable inherited select on the pop-up directly */
 }
