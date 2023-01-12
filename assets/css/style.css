@@ -539,11 +539,11 @@ header > p {
 }
 
 #craft > .upgrade::after {
-	background-color: rgba(152, 255, 160, 0.4);
+	background-color: rgba(179, 197, 90, 0.4);
 }
 
 #research > .upgrade::after {
-	background-color: rgba(152, 154, 255, 0.4);
+	background-color: rgba(77, 215, 225, 0.4);
 }
 
 /* #endregion */
