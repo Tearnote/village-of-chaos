@@ -156,6 +156,9 @@ class Game {
 				this.reset();
 		});
 
+		// Pre-select a tab
+		this.dom.craftButton.click();
+
 		// Add some flavor text
 		this.logMessage(
 			"story",
