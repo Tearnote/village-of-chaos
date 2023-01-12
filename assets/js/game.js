@@ -149,8 +149,7 @@ class Game {
 		this.dom.reset.addEventListener("click", () => {
 			if (
 				window.confirm(
-					`Are you sure you want to reset your game? Your progress
-					will be lost forever, and this is irreversible.`
+					`Are you sure you want to reset your game? Your progress will be lost forever, and this is irreversible.`
 				)
 			)
 				this.reset();
