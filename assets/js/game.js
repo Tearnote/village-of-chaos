@@ -383,23 +383,23 @@ class Game {
 		el.classList.add("upgrade");
 
 		let html = "";
-		html += `<h2>${this.upgradeList[i].name}</h2>`;
-		html += `<p>${this.upgradeList[i].description}</p>`;
+		html += `<h3>${this.upgradeList[i].name}</h3>`;
+		html += `<p class="description">${this.upgradeList[i].description}</p>`;
 		html += `<p>Cost: `;
 		let cost = this.getUpgradeCost(i);
 		let atLeastOne = false;
 		if (cost.wood) {
-			html += `${cost.wood} wood`;
+			html += `<span class="cost">${cost.wood}</span> wood`;
 			atLeastOne = true;
 		}
 		if (cost.food) {
 			if (atLeastOne) html += `, `;
-			html += `${cost.food} food`;
+			html += `<span class="cost">${cost.food}</span> food`;
 			atLeastOne = true;
 		}
 		if (cost.stone) {
 			if (atLeastOne) html += `, `;
-			html += `${cost.stone} stone`;
+			html += `<span class="cost">${cost.stone}</span> stone`;
 		}
 		html += `</p>`;
 		el.innerHTML = html;

@@ -507,9 +507,9 @@ header > p {
 
 .upgrade {
 	position: relative;
-	margin: 0.5rem;
+	margin: 0.4rem;
 	border: 1px solid black;
-	padding: 0.5rem 1rem;
+	padding: 0.4rem 0.8rem;
 	background-color: var(--active-color);
 	cursor: pointer;
 	user-select: none;
@@ -528,6 +528,14 @@ header > p {
 	left: 0;
 	width: var(--progress);
 	height: 100%;
+}
+
+.upgrade > h3 {
+	margin-bottom: -0.2rem;
+}
+
+.upgrade > p > .cost {
+	font-weight: 700;
 }
 
 #craft > .upgrade::after {
