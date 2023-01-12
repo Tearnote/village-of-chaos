@@ -600,7 +600,7 @@ header > button {
 	border: 1px solid black;
 	padding: 0.4rem 0.8rem;
 	background-color: var(--active-color);
-	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
 	cursor: pointer;
 	user-select: none;
 	--progress: 0%;
