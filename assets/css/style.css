@@ -683,11 +683,10 @@ header > button {
 
 #popup-shroud {
 	display: none; /* Controlled by JS */
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.6);
-	z-index: 1000;
 	user-select: none; /* Prevent accidental select by spamming the shroud */
 }
 
@@ -704,7 +703,7 @@ header > button {
 	border-radius: 8px;
 	padding: 0.8rem;
 	background-color: white;
-	z-index: 3000;
+	z-index: 2000;
 	user-select: text; /* Re-enable inherited select on the pop-up directly */
 }
 
