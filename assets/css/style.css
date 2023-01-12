@@ -310,6 +310,18 @@ h1 {
 	font-weight: 700;
 }
 
+.assignment > .buttons {
+	display: flex;
+	flex-flow: row;
+}
+
+.assignment > .buttons > button {
+	width: 2.4rem;
+	height: 2.4rem;
+	margin: 0.1rem;
+	font-size: x-large;
+}
+
 /* #endregion */
 
 /* #region Gathering */
