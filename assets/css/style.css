@@ -49,8 +49,12 @@ body {
 		sans-serif;
 
 	/* Color palette */
+	--primary-color: #768c38;
+	--primary-highlight-color: #b3c55a;
 	--secondary-color: #349097;
 	--secondary-highlight-color: #4dd7e1;
+	--active-color: #e7fffc;
+	--inactive-color: #a8bab8;
 
 	/* Element visibility variables, controlled by JS */
 	--income-display: none;
@@ -116,6 +120,10 @@ body {
 }
 
 button {
+	min-width: 1.75rem;
+	min-height: 1.75rem;
+	background-color: var(--active-color);
+	border: 1px solid black;
 	cursor: pointer;
 }
 
@@ -189,6 +197,7 @@ button {
 /* #region Header and warehouse */
 
 header {
+	flex: 0 0 auto;
 	width: 100%;
 	text-align: right;
 	padding: 0.4rem 0.75rem 0.8rem;
@@ -200,6 +209,7 @@ h1 {
 }
 
 #warehouse {
+	flex: 0 0 auto;
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -254,7 +264,16 @@ h1 {
 /* #region Game control section */
 
 #controls {
-	flex: 1 0 auto;
+	flex: 1 0 0;
+	overflow-y: auto;
+}
+
+#assign {
+	background-color: var(--primary-highlight-color);
+}
+
+#craft {
+	background-color: var(--primary-color);
 }
 
 #assign > table {
@@ -374,14 +393,14 @@ h1 {
 	margin: 0.5rem;
 	border: 1px solid black;
 	padding: 0.5rem 1rem;
-	background-color: white;
+	background-color: var(--active-color);
 	cursor: pointer;
 	user-select: none;
 	--progress: 0%;
 }
 
 .upgrade.inactive {
-	background-color: darkgray;
+	background-color: var(--inactive-color);
 }
 
 .upgrade::after {
@@ -394,11 +413,11 @@ h1 {
 	height: 100%;
 }
 
-#craft-tab > .upgrade::after {
+#craft > .upgrade::after {
 	background-color: rgba(152, 255, 160, 0.4);
 }
 
-#research-tab > .upgrade::after {
+#research > .upgrade::after {
 	background-color: rgba(152, 154, 255, 0.4);
 }
 
