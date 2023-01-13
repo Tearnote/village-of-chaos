@@ -36,3 +36,14 @@ Check the following points to confirm that the game is working as intended:
 -   All the above holds true on mobile devices.
 
 The site was tested to work properly using this procedure in latest Chrome, Firefox and Edge, as well as mobile Chrome.
+
+## User stories study
+
+In the design phase, we [established](DESIGN.md#user-stories) the expected user-base and what kinds of questions they might have when playing the game. We will check if their questions are answered by the finished project.
+
+| Question                   | Answered? | How?                                                                                                                                                                                            |
+|----------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| What kind of game is this? | Yes       | Answered by the description meta, which the user is likely to see in search results or share widget                                                                                             |
+| What do the buttons mean?  | Yes       | Answered by the tutorial system, which explains each button as it becomes available                                                                                                             |
+| How do I start?            | Yes       | Answered by the tutorial system, which provides guidance throughout the first steps                                                                                                             |
+| What's the ultimate goal?  | Yes       | The goal appears to be to develop your village, motivated by new graphics appearing on every major upgrade. However, the focus begins to shift by the endgame to the mysterious Monolith entity |
