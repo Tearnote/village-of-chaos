@@ -113,4 +113,6 @@ The color palette was extracted from the background image to make the game feel 
 
 The goal for the fonts was a literary feel, but also exaggerated and slightly distorted to accent the "chaos" elements, which change in meaning as the game progresses. The heading choice was [Milonga](https://fonts.google.com/specimen/Milonga), with strong flowing curves that give off a "fantasy" vibe. It is accompanied by [Alegreya](https://fonts.google.com/specimen/Alegreya) for primary copy. It's a bookish font on the surface, but closer inspection reveals slightly off-angle lines and discrepancies from the metric.
 
+![Illustration of the font pairing](fonts.png)
+
 The log window uses [Fira Mono](https://fonts.google.com/specimen/Fira+Mono). A monospace font was needed, and this one features the most gratuituous serifs and embellishments.
