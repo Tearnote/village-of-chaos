@@ -6,6 +6,16 @@ _Village of Chaos_ is an incremental game written in vanilla Javascript, made fo
 
 [Live version is available here.](https://tearnote.github.io/village-of-chaos/)
 
+## Important notes
+
+The game has a saving feature. It autosaves every 5 minutes, but make sure to save manually if you're about to close the game so that you don't lose the last few minutes of progress.
+
+The documentation is split across three files:
+
+-   [README.md](README.md) (this file): Overview of the game. Read this to get an idea of the basic premise, technologies used and project conventions.
+-   [DESIGN.md](doc/DESIGN.md): UX design notes crafted during early stages of development. The design process is described entirely, from the concept and market research, through information structuring to visual design principles and color palettes.
+-   [TESTING.md](doc/TESTING.md): Testing procedures. The game has been automatically validated and manually tested with procedures noted down in this file.
+
 ## Motivation
 
 Ever since the the advent of [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/), incremental games have enjoyed a huge rise in popularity, topping the charts of mobile app stores. The simple gameplay makes them appealing to people less skilled in videogames, and they can be created very rapidly with little graphical content by any aspiring game designer. _Village of Chaos_ is a "management" type incremental, where workers can be assigned to automate tasks. However, the driving idea behind this game is that increasing the number of units assigned to the same task doesn't neccessarily result in a speedup, as the team becomes uncoordinated and chaotic. The player will need to research and apply management techniques to keep the team efficient and the production high.
