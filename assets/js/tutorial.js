@@ -13,7 +13,10 @@ Game.prototype.tutorial = {
 
 Game.prototype.displayPopups = function () {
 	if (this.wood >= 4 && !this.tutorial.resource) {
-		this.showPopup(`Your current resource count is shown here.`, "#warehouse");
+		this.showPopup(
+			`Your current resource count is shown here.`,
+			"#warehouse"
+		);
 		this.tutorial.resource = true;
 	}
 	if (this.wood >= 10 && this.food >= 10 && !this.tutorial.tent) {
@@ -33,7 +36,7 @@ Game.prototype.displayPopups = function () {
 			lumberjacks, which you can see in the newly unlocked "Assign" tab.
 			Click on the "Craft" tab to get back to your list of available
 			upgrades, and let's see if you can manage to build a fishing
-			pier.`,
+			pier. Feel free to make any other helpful crafts along the way!`,
 			"#assign",
 			"assign"
 		);
@@ -66,16 +69,15 @@ Game.prototype.displayPopups = function () {
 		this.showPopup(
 			`With the construction of the quarry, you unlocked a new kind of
 			resource! Assign miners to start gathering stone. You might also
-			discover new crafts if you upgrade your existing buildings
-			enough...`,
+			discover new crafts if you upgrade your existing buildings...`,
 			"#warehouse"
 		);
 		this.tutorial.stone = true;
 	}
 	if (this.levels.smithy >= 1 && !this.tutorial.smithy) {
 		this.showPopup(
-			`Have you noticed that crafts are taking longer and longer to
-			build? Assign blacksmiths to help you with your crafts, speeding up
+			`Have you noticed that crafts are taking longer and longer to complete?
+			Assign blacksmiths to help you with your crafts, speeding up
 			their creation significantly. The speed-up factor is shown next to
 			your resource count.`,
 			"#warehouse"
@@ -84,10 +86,10 @@ Game.prototype.displayPopups = function () {
 	}
 	if (this.levels.academy >= 1 && !this.tutorial.academy) {
 		this.showPopup(
-			`The academy is now standing! A brand new kind of upgrade has been
-			unlocked - researches, which you can access via the new "Research"
-			tab. You can now also assign professors who will speed up research
-			progress, similarly to how blacksmiths speed up crafts.`,
+			`The village academy is now standing! A brand new kind of upgrade
+			has been unlocked - researches, which you can access via the new
+			"Research" tab. You can now also assign professors who will speed
+			up research progress, similarly to how blacksmiths speed up crafts.`,
 			"#research",
 			"research"
 		);
