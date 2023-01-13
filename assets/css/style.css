@@ -858,6 +858,7 @@ header > button {
 	align-items: center;
 	background-color: black;
 	color: var(--active-color);
+	z-index: 5000;
 }
 
 #story-text {
