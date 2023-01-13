@@ -125,7 +125,7 @@
 			</section>
 		</section>
 
-		<!-- Side area with controls and upgrades -->
+		<!-- Side area with primary controls and upgrades -->
 		<section id="side">
 			<!-- Header with title and system controls -->
 			<header>
@@ -183,6 +183,7 @@
 
 			<!-- Game control panel -->
 			<section id="controls">
+				<!-- Assign tab - assign villagers to jobs -->
 				<div id="assign">
 					<div class="job tent">
 						<h3>Tent</h3>
@@ -394,10 +395,12 @@
 					</div>
 				</div>
 
+				<!-- Craft tab - upgrades -->
 				<div id="craft">
 					<!-- Filled in by JS -->
 				</div>
 
+				<!-- Research tab - late-game upgrades -->
 				<div id="research" class="tab">
 					<!-- Filled in by JS -->
 				</div>
@@ -449,7 +452,7 @@
 			</button>
 		</div>
 
-		<!-- JS includes. Ordering is crucial! -->
+		<!-- JS includes. Do not reorder! -->
 		<script src="assets/js/vendor/gameloop.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/dom.js"></script>
