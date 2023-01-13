@@ -89,3 +89,28 @@ Througout the player's first steps, tutorial pop-ups will appear at appropriate 
 As the game evolved, the design slowly diverged from this initial wireframe into one with less floating sections and more concrete panels. This helped avoid overlap between elements at all sorts of screen sizes.
 
 In particular, the header is now floating on mobile, and part of the sidebar on desktop. The tabbed interface is always part of the sidebar. The log window is floating, but can be collapsed to save space.
+
+## Design language
+
+As this project was focused on the functionality rather than design, the primary priority was clarity of UX rather than attractive visuals. All site elements were laid out with placeholder design as the game was being developed until the interactions were satisfactory. The purely visual aspects, like color scheme followed after. Time also permitted to add flavor images to the site background.
+
+The color palette was extracted from the background image to make the game feel consistent. The colors are bright, and are used mostly as backgrounds for dark text.
+
+<details><summary>Color palette hex codes</summary>
+
+-   Text color: `#201711`,
+-   Primary color: `#768c38`,
+-   Primary color highlight: `#b3c55a`,
+-   Secondary color: `#349097`,
+-   Secondary color highlight: `#4dd7e1`,
+-   Active element color: `#e7fffc`,
+-   Inactive element color: `#a8bab8`,
+-   Resource color (wood): `#5a2800`,
+-   Resource color (food): `#00444a`,
+-   Resource color (stone): `#37173c`.
+
+</details>
+
+The goal for the fonts was a literary feel, but also exaggerated and slightly distorted to accent the "chaos" elements, which change in meaning as the game progresses. The heading choice was [Milonga](https://fonts.google.com/specimen/Milonga), with strong flowing curves that give off a "fantasy" vibe. It is accompanied by [Alegreya](https://fonts.google.com/specimen/Alegreya) for primary copy. It's a bookish font on the surface, but closer inspection reveals slightly off-angle lines and discrepancies from the metric.
+
+The log window uses [Fira Mono](https://fonts.google.com/specimen/Fira+Mono). A monospace font was needed, and this one features the most gratuituous serifs and embellishments.
