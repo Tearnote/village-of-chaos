@@ -139,6 +139,9 @@ class Game {
 		this.dom.popupDismiss.addEventListener("click", () => {
 			this.dom.popupShroud.style.display = "none";
 		});
+		this.dom.storyDismiss.addEventListener("click", () => {
+			this.dom.storyShroud.style.display = "none";
+		});
 
 		this.dom.save.addEventListener("click", () => {
 			this.save();
