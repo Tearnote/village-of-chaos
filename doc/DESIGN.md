@@ -84,9 +84,9 @@ Througout the player's first steps, tutorial pop-ups will appear at appropriate 
 
 ## Wireframe
 
-![Mock-up wireframe view of the game in a desktop browser](wireframe.png)
+![Mock-up wireframe view of the game in a desktop browser](wireframes/desktop.png)
 
-![Mock-up wireframe view of the game in a mobile browser](mobile.png)
+![Mock-up wireframe view of the game in a mobile browser](wireframes/mobile.png)
 
 As the game evolved, the design slowly diverged from this initial wireframe into one with less floating sections and more concrete panels. This helped avoid overlap between elements at all sorts of screen sizes.
 
