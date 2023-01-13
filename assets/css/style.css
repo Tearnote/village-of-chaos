@@ -114,6 +114,10 @@ h1 {
 	text-shadow: 0 0 0.4rem var(--active-color);
 }
 
+h2 {
+	font-size: large;
+}
+
 #main {
 	width: var(--main-size);
 	height: var(--main-size);
@@ -545,7 +549,7 @@ header > button {
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
 }
 
-.job > h3,
+.job > h2,
 .job-details {
 	width: 50%; /* Make sure these two elements take up a whole line together */
 }

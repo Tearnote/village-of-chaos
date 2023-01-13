@@ -424,7 +424,7 @@ class Game {
 		el.classList.add("upgrade");
 
 		let html = "";
-		html += `<h3>${this.upgradeList[upgradeIdx].name}</h3>`;
+		html += `<h2>${this.upgradeList[upgradeIdx].name}</h2>`;
 		html += `<p class="description">${this.upgradeList[upgradeIdx].description}</p>`;
 		html += `<p>Cost: `;
 		const cost = this.getUpgradeCost(upgradeIdx);
