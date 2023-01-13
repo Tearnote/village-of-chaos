@@ -1,5 +1,5 @@
-// DOM class
-// Holds DOM objects that are relevant to the game logic
+// dom.js
+// Container for convenient access to relevant DOM objects from JS
 
 class DOM {
 	constructor() {
@@ -121,17 +121,21 @@ class DOM {
 		this.reset = document.getElementById("reset");
 		this.logExpand = document.getElementById("log-expand");
 
-		// Other elements
-		this.world = document.getElementById("world");
-		this.log = document.getElementById("log");
-		this.messageArea = document.getElementById("message-area");
+		// Tutorial pop-up
 		this.popupShroud = document.getElementById("popup-shroud");
 		this.popup = document.getElementById("popup");
 		this.popupText = document.getElementById("popup-text");
 		this.popupDismiss = document.getElementById("popup-dismiss");
+
+		// Story shroud
 		this.storyShroud = document.getElementById("story-shroud");
 		this.storyText = document.getElementById("story-text");
 		this.storyDismiss = document.getElementById("story-dismiss");
+
+		// Other page elements
+		this.world = document.getElementById("world");
+		this.log = document.getElementById("log");
+		this.messageArea = document.getElementById("message-area");
 
 		// Upgrade list - dynamic
 		this.upgrades = [];
