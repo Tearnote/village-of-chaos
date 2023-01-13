@@ -864,6 +864,7 @@ header > button {
 #story-text {
 	max-width: 24em;
 	font-size: x-large;
+	text-align: justify;
 	margin-bottom: 2rem;
 }
 
