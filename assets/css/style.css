@@ -91,10 +91,6 @@ h6 {
 	font-family: "Milonga", cursive;
 }
 
-h3, h4, h5, h6 {
-	/* font-weight: 400; */
-}
-
 @media (orientation: landscape) {
 	body {
 		flex-flow: row;
@@ -437,6 +433,9 @@ header > button {
 	margin: 0.8rem;
 	border-radius: 4px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+}
+
+#side > nav > button > h2 {
 	font-size: large;
 	text-shadow: 0 0 0.4rem var(--active-color);
 }
@@ -447,6 +446,9 @@ header > button {
 		height: 3.33rem;
 		margin: 0.4rem 0.4rem 0.4rem 0;
 		padding: 0;
+	}
+
+	#side > nav > button > h2 {
 		font-size: medium;
 	}
 }
