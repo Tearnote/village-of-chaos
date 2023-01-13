@@ -49,9 +49,6 @@ body {
 	overflow: hidden;
 
 	display: flex;
-	/* Placeholder */
-	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-		sans-serif;
 
 	/* Color palette */
 	--primary-color: #768c38;
@@ -81,6 +78,21 @@ body {
 
 	/* Controls sizing of the two main page sections */
 	--main-size: min(100vw, 100vh);
+
+	font-family: "Alegreya", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Milonga", cursive;
+}
+
+h3, h4, h5, h6 {
+	/* font-weight: 400; */
 }
 
 @media (orientation: landscape) {
