@@ -192,8 +192,8 @@ class Game {
 		}, 1000 * 60 * 5); // 5 minutes
 	}
 
-	update(dt) {
-		this.updateUpgrades(dt);
+	update(deltaTime) {
+		this.updateUpgrades(deltaTime);
 
 		// Update chaos levels
 		this.chaos.pier = this.getChaosLevel(this.fisherman);
@@ -202,14 +202,14 @@ class Game {
 		this.chaos.academy = this.getChaosLevel(this.professor);
 
 		// Generate resources
-		this.wood += dt * this.getWoodProduction();
-		this.food += dt * this.getFoodProduction();
-		this.stone += dt * this.getStoneProduction();
+		this.wood += deltaTime * this.getWoodProduction();
+		this.food += deltaTime * this.getFoodProduction();
+		this.stone += deltaTime * this.getStoneProduction();
 
 		this.displayPopups(); // Defined in tutorial.js
 	}
 
-	updateUpgrades(dt) {
+	updateUpgrades(deltaTime) {
 		for (let i in this.upgradeList) {
 			if (!this.dom.upgrades[i]) continue;
 
@@ -229,7 +229,7 @@ class Game {
 						? this.getCraftSpeedup()
 						: this.getResearchSpeedup();
 				this.upgrades[i].progress +=
-					dt / (this.upgradeList[i].duration * 1000 * speedup);
+					deltaTime / (this.upgradeList[i].duration * 1000 * speedup);
 				if (this.upgrades[i].progress >= 1) {
 					this.completeUpgrade(i);
 				} else {
