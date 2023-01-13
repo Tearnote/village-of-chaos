@@ -53,7 +53,7 @@ The expandable log window allows the player to see the latest events that happen
 -   CSS3
     -   Layout with Flexbox and border-box sizing,
     -   Media queries for responsive design, sometimes drastically changing interface elements for a more fitting design,
-    -   CSS variables and calc() used to organize common values,
+    -   CSS variables and `calc()` used to organize common values,
     -   Sizing with rem values whenever applicable,
 -   Javascript
     -   Scripts are loaded with defer attribute,
@@ -89,11 +89,11 @@ For the purpose of this project, the [live version](https://tearnote.github.io/v
 
 The game has a few minor issues remaining, they will be documented below.
 
--   **Flicker after an upgrade is bought**
+-   **Flicker after an upgrade is bought**  
     This is caused by the code clearing the upgrade tab before filling it back up with available upgrades. A possible solution would be add and remove only the upgrades that need changing. Impact is very low, as the flicker is hardly noticeable. This could be fixed with more time with the project.
--   **Background image breaks when screen DPI changes**
+-   **Background image breaks when screen DPI changes**  
     This affects primarily responsiveness testing via the Inspector, as real devices don't tend to change their DPI. A workaround is to refresh the page after changing the "device" used for testing. As this affects only the developer, this is low priority.
--   **Code breaks entirely when loading an incompatible savefile**
+-   **Code breaks entirely when loading an incompatible savefile**  
     If the game gets updated with more upgrades, an array length mismatch will halt all Javascript from executing. This cannot happen during normal play, but must be taken into account if the game gets updated in the future so that people don't lose their progress. Until then, this could be worked around by resetting the savefile if it's detected invalid. Judged low priority, as it doesn't affect the end product in the present.
 
 ## Attribution
