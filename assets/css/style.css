@@ -265,7 +265,13 @@ button:active {
 #professor-1-img {
 	display: var(--professor-display);
 	left: 338px;
-	top: 428px;
+	top: 430px;
+}
+
+#professor-2-img {
+	display: var(--professor-display);
+	left: 218px;
+	top: 424px;
 }
 
 /* #endregion */
