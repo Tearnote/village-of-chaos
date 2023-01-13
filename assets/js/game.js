@@ -243,16 +243,16 @@ class Game {
 		}
 	}
 
-	getUpgradeCost(i) {
-		let cost = { ...this.upgradeList[i].cost };
-		let scaling = this.upgradeList[i].scaling ?? 1;
-		let costFactor = scaling ** this.upgrades[i].completed;
+	getUpgradeCost(upgradeIdx) {
+		let cost = { ...this.upgradeList[upgradeIdx].cost };
+		let scaling = this.upgradeList[upgradeIdx].scaling ?? 1;
+		let costFactor = scaling ** this.upgrades[upgradeIdx].completed;
 		for (let i in cost) cost[i] = Math.ceil(cost[i] * costFactor);
 		return cost;
 	}
 
-	canAffordUpgrade(i) {
-		let cost = this.getUpgradeCost(i);
+	canAffordUpgrade(upgradeIdx) {
+		let cost = this.getUpgradeCost(upgradeIdx);
 		if (
 			(cost.wood ?? 0) <= this.wood &&
 			(cost.food ?? 0) <= this.food &&
@@ -262,34 +262,34 @@ class Game {
 		return false;
 	}
 
-	upgradeRequirementMet(i) {
-		if (!this.upgradeList[i].requirement) return true; // No requirement
+	upgradeRequirementMet(upgradeIdx) {
+		if (!this.upgradeList[upgradeIdx].requirement) return true; // No requirement
 		if (
-			this.levels[this.upgradeList[i].requirement[0]] >=
-			this.upgradeList[i].requirement[1]
+			this.levels[this.upgradeList[upgradeIdx].requirement[0]] >=
+			this.upgradeList[upgradeIdx].requirement[1]
 		)
 			return true;
 		return false;
 	}
 
-	upgradeClicked(i) {
+	upgradeClicked(upgradeIdx) {
 		// Is it affordable?
-		if (!this.upgrades[i].available) return;
+		if (!this.upgrades[upgradeIdx].available) return;
 
 		// Pay the cost and begin
-		let cost = this.getUpgradeCost(i);
+		let cost = this.getUpgradeCost(upgradeIdx);
 		this.wood -= cost.wood ?? 0;
 		this.food -= cost.food ?? 0;
 		this.stone -= cost.stone ?? 0;
-		this.upgrades[i].started = true;
+		this.upgrades[upgradeIdx].started = true;
 	}
 
-	completeUpgrade(i) {
+	completeUpgrade(upgradeIdx) {
 		// Perform upgrade effect and update upgrade state
-		this.upgradeList[i].effect(this);
-		this.upgrades[i].completed += 1;
-		this.upgrades[i].started = false;
-		this.upgrades[i].progress = 0;
+		this.upgradeList[upgradeIdx].effect(this);
+		this.upgrades[upgradeIdx].completed += 1;
+		this.upgrades[upgradeIdx].started = false;
+		this.upgrades[upgradeIdx].progress = 0;
 
 		// Other upgrades might've been affected; refresh everything
 		this.renderUpgrades();
@@ -382,15 +382,15 @@ class Game {
 		}
 	}
 
-	createUpgradeElement(i) {
+	createUpgradeElement(upgradeIdx) {
 		let el = document.createElement("div");
 		el.classList.add("upgrade");
 
 		let html = "";
-		html += `<h3>${this.upgradeList[i].name}</h3>`;
-		html += `<p class="description">${this.upgradeList[i].description}</p>`;
+		html += `<h3>${this.upgradeList[upgradeIdx].name}</h3>`;
+		html += `<p class="description">${this.upgradeList[upgradeIdx].description}</p>`;
 		html += `<p>Cost: `;
-		let cost = this.getUpgradeCost(i);
+		let cost = this.getUpgradeCost(upgradeIdx);
 		let atLeastOne = false;
 		if (cost.wood) {
 			html += `<span class="cost-wood"><span class="cost">${cost.wood}</span> wood</span>`;
@@ -550,8 +550,7 @@ class Game {
 			this.dom.popupShroud.style.display = "block";
 			this.dom.popupText.textContent = text;
 
-			if (switchTab)
-				this.dom[switchTab + "Button"].click();
+			if (switchTab) this.dom[switchTab + "Button"].click();
 
 			if (atSelector) {
 				let target = document.querySelector(atSelector);
@@ -633,8 +632,7 @@ class Game {
 		this.dom.storyShroud.style.display = "flex";
 		this.dom.storyText.textContent = message;
 		this.dom.storyDismiss.textContent = buttonText;
-		if (callback)
-			this.dom.storyDismiss.addEventListener("click", callback);
+		if (callback) this.dom.storyDismiss.addEventListener("click", callback);
 	}
 
 	save() {
