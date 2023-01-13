@@ -535,7 +535,7 @@ Game.prototype.upgradeList = [
 		},
 		duration: 60,
 		once: true,
-		requirement: ["tent", 2],
+		requirement: ["quarry", 2],
 		effect: function (game) {
 			game.showStory(
 				`You assemble a survey party, and venture out towards the monolith.
@@ -550,6 +550,86 @@ Game.prototype.upgradeList = [
 				"Return"
 			);
 		},
+	}),
+	new Upgrade({
+		name: "Study the monolith",
+		description: "Ask your scholars to examine the distant structure.",
+		type: "research",
+		cost: {
+			food: 800,
+		},
+		duration: 240,
+		once: true,
+		requirement: ["academy", 2],
+		effect: function (game) {
+			game.showStory(
+				`You gather the finest minds of your village and venture towards the
+				monolith once again. Their measuring instruments reveal a worrying
+				result. The monolith reads as having the temperature of millions
+				of degrees, despite being pleasantly cool to the touch. All other
+				measurements fail, resulting in either zero or a value far beyond
+				the scale. By all means, this object should not exist in your reality,
+				let alone have the stability to stand there, ruthless and unchanging.
+				Keeping all its energy to itself. How dare it.`,
+				"Leave"
+			);
+		},
+	}),
+	new Upgrade({
+		name: "Destroy the monolith",
+		description: "It has plagued the horizon long enough.",
+		type: "craft",
+		cost: {
+			wood: 20000,
+			food: 20000,
+			stone: 20000,
+		},
+		duration: 1200,
+		once: true,
+		requirement: ["smithy", 5],
+		effect: function (game) {
+			game.showStory(
+				`It's a bright sunny day, and your hand-working villagers wake up and
+				head to their place of work, all the while chanting cheerful song.
+				But, today is a special day, as this evening the deed will be done.
+				As the sun sets, all gather wordlessly and traverse the long narrow
+				pathway to the structure. How fortunate that explosives, originally
+				invented for mining, can now serve the greatest purpose.`,
+				"Advance",
+				() => {
+					game.showStory(
+						`You're closer. Almost there. The horrible, eye-searing display,
+						blocking your vision wherever present, growing larger with decreasing
+						distance. Once at the threshold, the explosives are set. All is quiet.
+						The moment has come. The purpose must be fulfilled. The engineer hands
+						you the trigger. He runs, stumbles, and hits his head, splitting it open.
+						The joy of the moment proved too much to bear. Not all villagers left
+						the explosion area, but there is no time to waste.`,
+						"Trigger",
+						() => {
+							game.showStory(
+								`Shower of particles. Dust rises, then falls. Tendrils made
+								of monolith. They split, merge, charge, rejoin. It is angry.
+								There is damage. We have succeeded. One by one, thrust through
+								the heart. Thank you, Gareth. Goodbye, Kate. I'm so happy.
+								We have done it, together. Tendrils, now coordinated. Grabbing
+								my friends. Pulling them inside, where space stops. It is no
+								matter. We are but a cog in the great plan. Horrible, unbearable
+								pain. I'm so happy. What we started, others will finish. It's
+								taking me now. Infinite blackness. It is damaged, floods out.
+								Other villages will appear. Time stops, there is now only thought.
+								Others will damage further. The great work will be done.
+								The monolith must fall. The monolith must fall.`,
+								"Join",
+								() => {
+									game.gameOver();
+								}
+							);
+						}
+					)
+				}
+			);
+		}
 	}),
 
 	// Random upgrades

@@ -628,11 +628,12 @@ class Game {
 		}, 800);
 	}
 
-	showStory(message, buttonText) {
-		console.log("HI");
+	showStory(message, buttonText, callback) {
 		this.dom.storyShroud.style.display = "flex";
 		this.dom.storyText.textContent = message;
 		this.dom.storyDismiss.textContent = buttonText;
+		if (callback)
+			this.dom.storyDismiss.addEventListener("click", callback);
 	}
 
 	save() {
@@ -665,6 +666,10 @@ class Game {
 	reset() {
 		localStorage.removeItem("savegame");
 		window.location.reload();
+	}
+
+	gameOver() {
+		document.write("--");
 	}
 
 	cheat() {
