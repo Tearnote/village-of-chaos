@@ -628,6 +628,13 @@ class Game {
 		}, 800);
 	}
 
+	showStory(message, buttonText) {
+		console.log("HI");
+		this.dom.storyShroud.style.display = "flex";
+		this.dom.storyText.textContent = message;
+		this.dom.storyDismiss.textContent = buttonText;
+	}
+
 	save() {
 		let state = {};
 		for (let field of this.serializable) state[field] = this[field];
