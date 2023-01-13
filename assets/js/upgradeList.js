@@ -58,7 +58,7 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Build a pier",
-		description: "Construct a wooden pier for your villagers to fish from.",
+		description: "Construct a pier for your villagers to fish from.",
 		type: "craft",
 		cost: {
 			wood: 100,
@@ -98,7 +98,7 @@ Game.prototype.upgradeList = [
 	new Upgrade({
 		name: "Build a quarry",
 		description:
-			"Prepare a spot on the cliff for your villagers to mine for stone.",
+			"Dig into the mountainside to mine for stone.",
 		type: "craft",
 		cost: {
 			wood: 200,
@@ -118,7 +118,7 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Develop the quarry",
-		description: "Make more of the cliff surface available for mining.",
+		description: "Add another tunnel to reach new stone veins.",
 		type: "craft",
 		cost: {
 			wood: 250,
@@ -131,7 +131,7 @@ Game.prototype.upgradeList = [
 		effect: function (game) {
 			game.levels.quarry += 1;
 			game.production.miner *= 2;
-			game.logMessage("event", "Your quarry is now more efficient.");
+			game.logMessage("event", "Your quarry now reaches deeper.");
 		},
 	}),
 	new Upgrade({
@@ -176,7 +176,7 @@ Game.prototype.upgradeList = [
 	new Upgrade({
 		name: "Build an academy",
 		description:
-			"Educate your village population to help them with all aspects of life and work.",
+			"Dedicate some village space towards all kinds of research.",
 		type: "craft",
 		cost: {
 			wood: 1000,
@@ -192,13 +192,13 @@ Game.prototype.upgradeList = [
 			game.unlock("researchSpeed");
 			game.logMessage(
 				"event",
-				"Your academy is now standing, towering above all except the monolith."
+				"Your academy is now open. What will you learn?"
 			);
 		},
 	}),
 	new Upgrade({
 		name: "Grow the academy",
-		description: "Build new classrooms to advance your knowledge.",
+		description: "Advance your knowledge in new fields.",
 		type: "craft",
 		cost: {
 			wood: 1500,
@@ -213,7 +213,7 @@ Game.prototype.upgradeList = [
 			game.production.professor *= 0.75;
 			game.logMessage(
 				"event",
-				"You add another floor to the already imposing academy building."
+				"You expand your understanding of the world."
 			);
 		},
 	}),
