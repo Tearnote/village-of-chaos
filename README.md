@@ -106,27 +106,6 @@ Village images and animations created using the tilesets and spritesheets by [Pi
 
 These resources were purchased with personal funds. The purchased source files are not present in the repository.
 
-## Market research
-
-The incremental game scene is huge, and full of interesting ideas. This is a small sampling of similar browser games:
-
--   [Kittens Game](https://kittensgame.com/web/)
--   [Trimps](https://trimps.github.io)
--   [Universal Paperclips](https://www.decisionproblem.com/paperclips/index2.html)
--   [CivClicker](https://cheerfulghost.github.io/civ-clicker/index.html)
-
-All of these games start out extremely simple, hiding most of their features and mechanics at first to avoid overwhelming the player with complexity. As certain milestones are reached, the number of available interactible objects increases, letting the player grow their numbers further at the cost of having to wrap their head around more systems.
-
-The visual design is typically extremely simple, mostly text-based, with imagery limited to icons. This is because these games are created by tiny teams, often by a single person, who usually isn't a visual artist. Good UX design is valued, but attractive graphics are not needed to be successful.
-
-These methods are typically used to help present the game data to the player:
-
--   A section listing all resources, and the speeds at which they're growing,
--   Tabbed interface for switching between sections,
--   Primary method of interaction is pressing buttons to make purchases and other choices,
--   A message log, appended with in-game events as they happen,
--   Elements are hidden or greyed out if they're not relevant right now.
-
 ## User stories
 
 > _As someone with free time to spare, I want to play a browser game so that I'm entertained._
