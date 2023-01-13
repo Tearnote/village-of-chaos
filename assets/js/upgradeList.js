@@ -1,14 +1,18 @@
+// upgradeList.js
+// Holds the upgrade schema, as well as definitions of all of the game's upgrades
+// Includes the upgrades' effects as callbacks
+
 class Upgrade {
 	constructor(params = {}) {
-		this.name = params?.name;
-		this.description = params?.description;
+		this.name = params?.name; // Primary text, shown as header
+		this.description = params?.description; // Secondary text, shown as paragraph
 		this.type = params?.type; // "craft" or "research"
-		this.cost = params?.cost; // An object with keys "wood", "food", "stone"
+		this.cost = params?.cost; // An object with at least one of the keys "wood", "food", "stone"
 		this.duration = params?.duration; // Time it takes for the upgrade to complete (in seconds)
 		this.once = params?.once; // True if upgrade should disappear once bought
-		this.scaling = params.scaling; // Only required if once is false
-		this.requirement = params?.requirement; // Optional, array of fields and their minimum values for the upgrade to show up
-		this.effect = params?.effect; // Function to run on buying
+		this.scaling = params.scaling; // Optional if once=true. If once=false, cost is multiplied by this amount every completion
+		this.requirement = params?.requirement; // Optional, array of Game.levels fields and their minimum values for the upgrade to show up
+		this.effect = params?.effect; // Function to run on buy
 	}
 }
 
@@ -97,8 +101,7 @@ Game.prototype.upgradeList = [
 	}),
 	new Upgrade({
 		name: "Build a quarry",
-		description:
-			"Dig into the mountainside to mine for stone.",
+		description: "Dig into the mountainside to mine for stone.",
 		type: "craft",
 		cost: {
 			wood: 200,
@@ -528,7 +531,8 @@ Game.prototype.upgradeList = [
 	// Story upgrades
 	new Upgrade({
 		name: "Survey the monolith",
-		description: "The black shape towers over all. It compels you to examine it.",
+		description:
+			"The black shape towers over all. It compels you to examine it.",
 		type: "craft",
 		cost: {
 			food: 50,
@@ -626,10 +630,10 @@ Game.prototype.upgradeList = [
 								}
 							);
 						}
-					)
+					);
 				}
 			);
-		}
+		},
 	}),
 
 	// Random upgrades
