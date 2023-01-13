@@ -184,6 +184,7 @@ button:active {
 	top: calc(320px * (var(--scale) - 1));
 	z-index: -1000;
 	image-rendering: pixelated;
+	user-select: none;
 	transform: scale(var(--scale));
 }
 
