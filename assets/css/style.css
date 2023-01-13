@@ -81,6 +81,7 @@ body {
 	/* Controls sizing of the two main page sections */
 	--main-size: min(100vw, 100vh);
 
+	/* Default text */
 	color: var(--text-color);
 	font-family: "Alegreya", serif;
 }
@@ -93,6 +94,8 @@ h5,
 h6 {
 	font-family: "Milonga", cursive;
 }
+
+/* Main content direction */
 
 @media (orientation: landscape) {
 	body {
@@ -182,10 +185,12 @@ button:active {
 	*/
 	left: calc(320px * (var(--scale) - 1));
 	top: calc(320px * (var(--scale) - 1));
-	z-index: -1000;
 	image-rendering: pixelated;
-	user-select: none;
+	/* Transforming preserves relative positions of all layers */
 	transform: scale(var(--scale));
+	/* Purely background */
+	z-index: -1000;
+	user-select: none;
 }
 
 #world > img {
@@ -294,11 +299,16 @@ header {
 }
 
 @media (orientation: portrait) {
+	/* Pop out the header to make extra space */
 	header {
 		position: fixed;
 		top: 0;
 		right: 0;
-		background: linear-gradient(180deg, rgba(52,144,151,1) 0%, rgba(52,144,151,0.4) 100%);
+		background: linear-gradient(
+			180deg,
+			rgba(52, 144, 151, 1) 0%,
+			rgba(52, 144, 151, 0.4) 100%
+		);
 		box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 64px;
 	}
 }
@@ -330,7 +340,7 @@ header > button {
 }
 
 #warehouse {
-	flex: 0 0 auto;
+	flex: 0 0 auto; /* Never grow */
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -345,7 +355,7 @@ header > button {
 	}
 
 	#warehouse > div {
-		flex: 1 0 0;
+		flex: 1 0 0; /* Even split */
 	}
 
 	.resource > br {
@@ -430,7 +440,7 @@ header > button {
 /* #region Game control section */
 
 #controls {
-	flex: 1 0 0;
+	flex: 1 0 0; /* Take all available space */
 	overflow-y: auto;
 	display: flex;
 	flex-flow: column;
@@ -541,7 +551,7 @@ header > button {
 
 .job > h3,
 .job-details {
-	width: 50%;
+	width: 50%; /* Make sure these two elements take up a whole line together */
 }
 
 .chaos {
@@ -676,13 +686,13 @@ header > button {
 
 #log {
 	position: absolute;
-	--margin: 0.4rem;
+	--margin: 0.4rem; /* We remove margin amount from width/height below */
 	width: 20rem;
 	max-width: 32rem;
 	height: 6rem;
 	max-height: 40rem;
 	display: flex;
-	flex-flow: column-reverse; /* Keeps container scrolled down */
+	flex-flow: column-reverse; /* Keep container scrolled down as we append */
 	margin: var(--margin);
 	font-family: "Fira Mono", monospace;
 	font-size: 0.8rem;
@@ -699,20 +709,23 @@ header > button {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
 }
 
-#log-expand > p:after {
-	content: "log +";
-}
-
 #log.visible {
 	visibility: visible;
 	width: calc(100% - var(--margin) * 2);
 	height: calc(100% - var(--margin) * 2);
 }
 
+/* Setting expand button content in :after avoids needing JS to do it */
+
+#log-expand > p:after {
+	content: "log +";
+}
+
 #log.visible > #log-expand > p:after {
 	content: "log -";
 }
 
+/* Because of different layouts, we need separate breakpoints for portrait and landscape */
 @media (max-width: 600px) or ((max-width: 900px) and (orientation: landscape)) {
 	#log {
 		visibility: hidden;
@@ -762,13 +775,14 @@ header > button {
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
 	cursor: pointer;
 	user-select: none;
-	--progress: 0%;
+	--progress: 0%; /* Controlled by JS */
 }
 
 .upgrade.inactive {
 	background-color: var(--inactive-color);
 }
 
+/* Progress bar for a clicked upgrade */
 .upgrade::after {
 	content: "";
 	display: block;
@@ -814,6 +828,11 @@ header > button {
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.6);
 	user-select: none; /* Prevent accidental select by spamming the shroud */
+	/*
+	We don't set z-index on the whole shroud, because that would
+	create a stacking context and it would be impossible to
+	position the highlighted element between the shroud and the popup
+	*/
 }
 
 #popup {
