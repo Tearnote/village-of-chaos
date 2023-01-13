@@ -1,6 +1,8 @@
 // main.js
 // Entry point. Bootstraps the game loop
 
+"use strict";
+
 // Create core objects
 let dom = new DOM();
 let game = new Game(dom);

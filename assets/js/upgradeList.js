@@ -2,6 +2,8 @@
 // Holds the upgrade schema, as well as definitions of all of the game's upgrades
 // Includes the upgrades' effects as callbacks
 
+"use strict";
+
 class Upgrade {
 	constructor(params = {}) {
 		this.name = params?.name; // Primary text, shown as header

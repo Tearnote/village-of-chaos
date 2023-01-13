@@ -3,6 +3,8 @@
 // Keeps track of which pop-ups were already shown, their contents, and their
 // requirements, as well as handling the actual display
 
+"use strict";
+
 // List of all possible pop-ups
 // Value is true if shown
 Game.prototype.tutorial = {

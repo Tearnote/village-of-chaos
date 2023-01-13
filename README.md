@@ -59,6 +59,7 @@ The expandable log window allows the player to see the latest events that happen
     -   Scripts are loaded with defer attribute,
     -   No frameworks or libraries,
     -   Heavy usage of modern ES6 features,
+    -   All files have strict mode enabled,
     -   Code organized into classes and files,
     -   Game content declared in a data-driven way to allow for extension with minimal code changes,
     -   Every function and method is documented.

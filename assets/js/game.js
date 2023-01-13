@@ -2,6 +2,8 @@
 // Game class. Holds all state, performs updates and renders into the DOM
 // State can be loaded/saved via cookies
 
+"use strict";
+
 class Game {
 	// dom: An object of DOM class (dom.js)
 	constructor(dom) {

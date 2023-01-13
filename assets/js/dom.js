@@ -1,6 +1,8 @@
 // dom.js
 // Container for convenient access to relevant DOM objects from JS
 
+"use strict";
+
 class DOM {
 	constructor() {
 		// Tab buttons
