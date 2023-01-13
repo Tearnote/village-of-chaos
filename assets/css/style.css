@@ -202,6 +202,12 @@ button:active {
 	top: 361px;
 }
 
+#villager-img {
+	display: var(--assign-display);
+	left: 440px;
+	top: 402px;
+}
+
 #pier-img {
 	display: var(--fisherman-display);
 	left: 112px;
