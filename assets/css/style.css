@@ -672,11 +672,12 @@ header > button {
 /* #region Log */
 
 #log {
-	position: relative;
+	position: absolute;
 	--margin: 0.4rem;
 	width: 20rem;
 	max-width: 32rem;
 	height: 6rem;
+	max-height: 40rem;
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
 	margin: var(--margin);
@@ -684,7 +685,6 @@ header > button {
 	font-size: 0.8rem;
 	background-color: var(--active-color);
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 64px;
-	z-index: 500;
 }
 
 #log-expand {
