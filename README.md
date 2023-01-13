@@ -106,10 +106,6 @@ Village images and animations created using the tilesets and spritesheets by [Pi
 
 These resources were purchased with personal funds. The purchased source files are not present in the repository.
 
-## Motivation
-
-Ever since the the advent of [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/), incremental games have enjoyed a huge rise in popularity, topping the charts of mobile app stores. The simple gameplay makes them appealing to people less skilled in videogames, and they can be created very rapidly with little graphical content by any aspiring game designer. _Village of Chaos_ is a "management" type incremental, where workers can be assigned to automate tasks. However, the driving idea behind this game is that increasing the number of units assigned to the same task doesn't neccessarily result in a speedup, as the team becomes uncoordinated and chaotic. The player will need to research and apply management techniques to keep the team efficient and the production high.
-
 ## Market research
 
 The incremental game scene is huge, and full of interesting ideas. This is a small sampling of similar browser games:
