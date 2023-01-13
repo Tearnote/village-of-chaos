@@ -515,76 +515,84 @@ class Game {
 	}
 
 	showPopup(text, atSelector) {
-		this.dom.popupShroud.style.display = "block";
-		this.dom.popupText.textContent = text;
+		setTimeout(() => {
+			this.dom.popupShroud.style.display = "block";
+			this.dom.popupText.textContent = text;
 
-		if (atSelector) {
-			let target = document.querySelector(atSelector);
-			let targetRect = target.getBoundingClientRect();
-			let margin = parseInt(
-				window.getComputedStyle(this.dom.popup).marginTop
-			);
+			if (atSelector) {
+				let target = document.querySelector(atSelector);
+				let targetRect = target.getBoundingClientRect();
+				let margin = parseInt(
+					window.getComputedStyle(this.dom.popup).marginTop
+				);
 
-			// Determine if we're portrait or landscape
-			let portrait = window.innerWidth >= window.innerHeight;
+				// Determine if we're portrait or landscape
+				let portrait = window.innerWidth >= window.innerHeight;
 
-			let left = targetRect.left;
-			let top = targetRect.top;
+				let left = targetRect.left;
+				let top = targetRect.top;
 
-			if (portrait) {
-				// Try positioning to the right of the target,
-				// go to the left if that's off-screen
-				left += target.offsetWidth;
-				if (
-					left + margin + this.dom.popup.offsetWidth >
-					window.innerWidth
-				)
-					left =
-						targetRect.left -
-						margin * 2 -
-						this.dom.popup.offsetWidth;
+				if (portrait) {
+					// Try positioning to the right of the target,
+					// go to the left if that's off-screen
+					left += target.offsetWidth;
+					if (
+						left + margin + this.dom.popup.offsetWidth >
+						window.innerWidth
+					)
+						left =
+							targetRect.left -
+							margin * 2 -
+							this.dom.popup.offsetWidth;
+				} else {
+					// Try positioning below the target,
+					// go above if that's off-screen
+					top += target.offsetHeight;
+					if (
+						top + margin + this.dom.popup.offsetHeight >
+						window.innerHeight
+					)
+						top =
+							targetRect.top -
+							margin * 2 -
+							this.dom.popup.offsetHeight;
+				}
+
+				// Clamp pop-up position to window size, just in case
+				left = Math.max(left, 0);
+				left = Math.min(
+					left,
+					window.innerWidth - this.dom.popup.offsetWidth - margin * 2
+				);
+				top = Math.max(top, 0);
+				top = Math.min(
+					top,
+					window.innerHeight -
+						this.dom.popup.offsetHeight -
+						margin * 2
+				);
+
+				this.dom.popup.style.left = left + "px";
+				this.dom.popup.style.top = top + "px";
+
+				target.style.zIndex = 1000; // Bring above the shroud
+				target.style.pointerEvents = "none"; // Make sure target can't be interacted with while pop-up is visible
+				this.dom.popupDismiss.addEventListener("click", () => {
+					target.style.zIndex = "revert";
+					target.style.pointerEvents = "revert";
+				});
 			} else {
-				// Try positioning below the target,
-				// go above if that's off-screen
-				top += target.offsetHeight;
-				if (
-					top + margin + this.dom.popup.offsetHeight >
-					window.innerHeight
-				)
-					top =
-						targetRect.top -
-						margin * 2 -
-						this.dom.popup.offsetHeight;
+				// Default - just center it
+				this.dom.popup.style.left =
+					window.innerWidth / 2 -
+					this.dom.popup.offsetWidth / 2 +
+					"px";
+				this.dom.popup.style.top =
+					window.innerHeight / 2 -
+					this.dom.popup.offsetHeight / 2 +
+					"px";
 			}
-
-			// Clamp pop-up position to window size, just in case
-			left = Math.max(left, 0);
-			left = Math.min(
-				left,
-				window.innerWidth - this.dom.popup.offsetWidth - margin * 2
-			);
-			top = Math.max(top, 0);
-			top = Math.min(
-				top,
-				window.innerHeight - this.dom.popup.offsetHeight - margin * 2
-			);
-
-			this.dom.popup.style.left = left + "px";
-			this.dom.popup.style.top = top + "px";
-
-			target.style.zIndex = 1000; // Bring above the shroud
-			target.style.pointerEvents = "none"; // Make sure target can't be interacted with while pop-up is visible
-			this.dom.popupDismiss.addEventListener("click", () => {
-				target.style.zIndex = "revert";
-				target.style.pointerEvents = "revert";
-			});
-		} else {
-			// Default - just center it
-			this.dom.popup.style.left =
-				window.innerWidth / 2 - this.dom.popup.offsetWidth / 2 + "px";
-			this.dom.popup.style.top =
-				window.innerHeight / 2 - this.dom.popup.offsetHeight / 2 + "px";
-		}
+		}, 1000);
 	}
 
 	save() {
