@@ -83,7 +83,18 @@ The compatibility goal was all commonly used desktop and mobile browsers, update
 
 The game is served as a fully static website (no server component.) For this reason, it can be trivially deployed to any file hosting service that allows hotlinking to images, stylesheets and scripts. All asset references are relative, so the game will work in a subdirectory.
 
-For the purpose of this project, the [live version](https://tearnote.github.io/village-of-chaos/) is deployed via GitHub Pages.
+For the purpose of this project, the [live version](https://tearnote.github.io/village-of-chaos/) is deployed via GitHub Pages via this process:
+
+-   Click on the Settings tab and scroll down to the GitHub Pages section,
+-   Select the main branch source and click on the Save button.
+
+The project can be cloned locally with the following command:
+
+```
+git clone https://github.com/Tearnote/village-of-chaos.git
+```
+
+The local version can be ran straight from the filesystem by simply opening the `index.html` file in the browser, as it has no server dependencies.
 
 ## Bugs
 
