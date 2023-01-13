@@ -106,15 +106,6 @@ Village images and animations created using the tilesets and spritesheets by [Pi
 
 These resources were purchased with personal funds. The purchased source files are not present in the repository.
 
-## User stories
-
-> _As someone with free time to spare, I want to play a browser game so that I'm entertained._
-
--   What kind of game is this?
--   What do the buttons mean?
--   How do I start?
--   What's the ultimate goal?
-
 ## Scope
 
 These goals are neccessary for a MVP of the game:
