@@ -262,6 +262,12 @@ button:active {
 	top: 377px;
 }
 
+#professor-1-img {
+	display: var(--professor-display);
+	left: 338px;
+	top: 428px;
+}
+
 /* #endregion */
 
 /* #region Header and warehouse */
