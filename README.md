@@ -81,7 +81,7 @@ The compatibility goal was all commonly used desktop and mobile browsers, update
 
 ## Deployment
 
-The game is served as a fully static website (no server component.) For this reason, it can be trivially deployed to any file hosting service that allows hotlinking to images, stylesheets and scripts. All asset references are relative, so the game will work in a subdirectory.
+The game is served as a fully static website (no server component.) For this reason, it can be trivially deployed to any file hosting service that allows hotlinking to images, stylesheets and scripts. All asset references are relative, so the game will work in a subdirectory. A 404 page is not included, as this project has no links of any kind, internal or external.
 
 For the purpose of this project, the [live version](https://tearnote.github.io/village-of-chaos/) is deployed via GitHub Pages via this process:
 
