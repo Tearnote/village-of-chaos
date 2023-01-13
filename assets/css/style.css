@@ -226,6 +226,18 @@ button:active {
 	top: 130px;
 }
 
+#miner-1-img {
+	display: var(--miner-display);
+	left: 353px;
+	top: 162px;
+}
+
+#miner-2-img {
+	display: var(--miner-display);
+	left: 388px;
+	top: 178px;
+}
+
 #smithy-img {
 	display: var(--blacksmith-display);
 	left: 261px;
