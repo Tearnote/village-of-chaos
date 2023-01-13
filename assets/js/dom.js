@@ -129,6 +129,9 @@ class DOM {
 		this.popup = document.getElementById("popup");
 		this.popupText = document.getElementById("popup-text");
 		this.popupDismiss = document.getElementById("popup-dismiss");
+		this.storyShroud = document.getElementById("story-shroud");
+		this.storyText = document.getElementById("story-text");
+		this.storyDismiss = document.getElementById("story-dismiss");
 
 		// Upgrade list - dynamic
 		this.upgrades = [];

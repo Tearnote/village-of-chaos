@@ -843,3 +843,39 @@ header > button {
 }
 
 /* #endregion */
+
+/* #region Story shroud */
+
+#story-shroud {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	padding: 0.8rem;
+	display: none; /* Modified by JS */
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: white;
+}
+
+#story-text {
+	max-width: 24em;
+	font-size: x-large;
+	margin-bottom: 1rem;
+}
+
+#story-shroud > button {
+	background-color: transparent;
+	color: white;
+	border: 1px solid white;
+	padding: 0.4rem 1.2rem;
+}
+
+@media (max-width: 560px) {
+	#story-shroud > p {
+		font-size: large;
+	}
+}
+
+/* #endregion */
