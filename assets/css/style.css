@@ -542,6 +542,21 @@ header > button {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
 }
 
+@media (max-width: 500px) {
+	.job {
+		padding: 0.4rem;
+	}
+
+	.assignment {
+		padding: 0.2rem;
+	}
+
+	.assignment > .buttons > button {
+		width: 2rem;
+		height: 2rem;
+	}
+}
+
 .mentor {
 	display: var(--mentor-display);
 }
