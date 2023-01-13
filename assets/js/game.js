@@ -119,11 +119,11 @@ class Game {
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 
-		let jobs = ["fisherman", "miner", "blacksmith", "professor"];
-		let roles = ["villager", "mentor", "manager"];
+		const jobs = ["fisherman", "miner", "blacksmith", "professor"];
+		const roles = ["villager", "mentor", "manager"];
 		for (let job of jobs) {
 			for (let role of roles) {
-				let roleCap = role[0].toUpperCase() + role.slice(1);
+				const roleCap = role[0].toUpperCase() + role.slice(1);
 				this.dom[job + roleCap + "Up"].addEventListener("click", () => {
 					this.assign(job, role);
 				});
@@ -224,7 +224,7 @@ class Game {
 
 			// Advance progress
 			if (this.upgrades[i].started) {
-				let speedup =
+				const speedup =
 					this.upgradeList[i].type == "craft"
 						? this.getCraftSpeedup()
 						: this.getResearchSpeedup();
@@ -244,15 +244,15 @@ class Game {
 	}
 
 	getUpgradeCost(upgradeIdx) {
-		let cost = { ...this.upgradeList[upgradeIdx].cost };
-		let scaling = this.upgradeList[upgradeIdx].scaling ?? 1;
-		let costFactor = scaling ** this.upgrades[upgradeIdx].completed;
+		const cost = { ...this.upgradeList[upgradeIdx].cost };
+		const scaling = this.upgradeList[upgradeIdx].scaling ?? 1;
+		const costFactor = scaling ** this.upgrades[upgradeIdx].completed;
 		for (let i in cost) cost[i] = Math.ceil(cost[i] * costFactor);
 		return cost;
 	}
 
 	canAffordUpgrade(upgradeIdx) {
-		let cost = this.getUpgradeCost(upgradeIdx);
+		const cost = this.getUpgradeCost(upgradeIdx);
 		if (
 			(cost.wood ?? 0) <= this.wood &&
 			(cost.food ?? 0) <= this.food &&
@@ -277,7 +277,7 @@ class Game {
 		if (!this.upgrades[upgradeIdx].available) return;
 
 		// Pay the cost and begin
-		let cost = this.getUpgradeCost(upgradeIdx);
+		const cost = this.getUpgradeCost(upgradeIdx);
 		this.wood -= cost.wood ?? 0;
 		this.food -= cost.food ?? 0;
 		this.stone -= cost.stone ?? 0;
@@ -359,7 +359,7 @@ class Game {
 
 		// Generate upgrade tabs' DOM
 		for (let i in this.upgradeList) {
-			let upgrade = this.upgrades[i];
+			const upgrade = this.upgrades[i];
 
 			// Is it shown at all?
 			if (
@@ -390,7 +390,7 @@ class Game {
 		html += `<h3>${this.upgradeList[upgradeIdx].name}</h3>`;
 		html += `<p class="description">${this.upgradeList[upgradeIdx].description}</p>`;
 		html += `<p>Cost: `;
-		let cost = this.getUpgradeCost(upgradeIdx);
+		const cost = this.getUpgradeCost(upgradeIdx);
 		let atLeastOne = false;
 		if (cost.wood) {
 			html += `<span class="cost-wood"><span class="cost">${cost.wood}</span> wood</span>`;
@@ -412,14 +412,14 @@ class Game {
 
 	renderWorld() {
 		// Make sure world is sized correctly
-		let smallerDim = Math.min(window.innerWidth, window.innerHeight);
+		const smallerDim = Math.min(window.innerWidth, window.innerHeight);
 		this.dom.world.style.setProperty("--scale", smallerDim / 640);
 
 		// Center world display if not square
-		let isLandscape = window.innerWidth > window.innerHeight ? true : false;
+		const isLandscape = window.innerWidth > window.innerHeight ? true : false;
 		if (isLandscape) {
-			let sideWidth = document.getElementById("side").offsetWidth;
-			let worldWidth = window.innerWidth - sideWidth;
+			const sideWidth = document.getElementById("side").offsetWidth;
+			const worldWidth = window.innerWidth - sideWidth;
 
 			this.dom.world.style.marginTop = 0;
 			if (worldWidth < window.innerHeight)
@@ -428,8 +428,8 @@ class Game {
 					-(window.innerHeight - worldWidth) / 2 + "px";
 			else this.dom.world.style.marginLeft = 0;
 		} else {
-			let sideHeight = document.getElementById("side").offsetHeight;
-			let worldHeight = window.innerHeight - sideHeight;
+			const sideHeight = document.getElementById("side").offsetHeight;
+			const worldHeight = window.innerHeight - sideHeight;
 
 			this.dom.world.style.marginLeft = 0;
 			if (worldHeight < window.innerWidth)
@@ -444,21 +444,21 @@ class Game {
 	}
 
 	getFoodProduction() {
-		let contribution =
+		const contribution =
 			this.fisherman.villager +
 			this.fisherman.mentor * this.production.mentorBoost;
 		return contribution * this.production.fisherman * (1 - this.chaos.pier);
 	}
 
 	getStoneProduction() {
-		let contribution =
+		const contribution =
 			this.miner.villager +
 			this.miner.mentor * this.production.mentorBoost;
 		return this.production.miner * contribution * (1 - this.chaos.quarry);
 	}
 
 	getCraftSpeedup() {
-		let contribution =
+		const contribution =
 			this.blacksmith.villager +
 			this.blacksmith.mentor * this.production.mentorBoost;
 		return (
@@ -469,7 +469,7 @@ class Game {
 	}
 
 	getResearchSpeedup() {
-		let contribution =
+		const contribution =
 			this.professor.villager +
 			this.professor.mentor * this.production.mentorBoost;
 		return (
@@ -480,7 +480,7 @@ class Game {
 	}
 
 	getChaosLevel(job) {
-		let unpairedVillagers = Math.max(job.villager - job.mentor, 0);
+		const unpairedVillagers = Math.max(job.villager - job.mentor, 0);
 		let penalty = job.mentor + unpairedVillagers - 1;
 		penalty *= this.production.managerReduction ** job.manager;
 		return Math.max(1 - 0.8 ** penalty, 0);
@@ -512,14 +512,14 @@ class Game {
 		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
 			display = "flex";
 		if (["income", "chaos"].includes(name)) display = "inline";
-		let nameDashed = Util.kebabCase(name);
+		const nameDashed = Util.kebabCase(name);
 		document.body.style.setProperty(`--${nameDashed}-display`, display);
 		this.unlocks[name] = true;
 	}
 
 	lockEverything() {
 		for (let name in this.unlocks) {
-			let nameDashed = Util.kebabCase(name);
+			const nameDashed = Util.kebabCase(name);
 			document.body.style.setProperty(`--${nameDashed}-display`, "none");
 		}
 	}
@@ -554,18 +554,18 @@ class Game {
 
 			if (atSelector) {
 				let target = document.querySelector(atSelector);
-				let targetRect = target.getBoundingClientRect();
-				let margin = parseInt(
+				const targetRect = target.getBoundingClientRect();
+				const margin = parseInt(
 					window.getComputedStyle(this.dom.popup).marginTop
 				);
 
 				// Determine if we're portrait or landscape
-				let portrait = window.innerWidth >= window.innerHeight;
+				const isPortrait = window.innerWidth >= window.innerHeight;
 
 				let left = targetRect.left;
 				let top = targetRect.top;
 
-				if (portrait) {
+				if (isPortrait) {
 					// Try positioning to the right of the target,
 					// go to the left if that's off-screen
 					left += target.offsetWidth;
@@ -644,7 +644,7 @@ class Game {
 	}
 
 	load() {
-		let state = JSON.parse(localStorage.getItem("savegame"));
+		const state = JSON.parse(localStorage.getItem("savegame"));
 		if (!state) return false; // Nothing to load
 		for (let field of this.serializable) this[field] = state[field];
 		this.renderUpgrades();

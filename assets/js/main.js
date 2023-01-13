@@ -1,7 +1,7 @@
 // Create core game objects
-const dom = new DOM();
-const game = new Game(dom);
-const loop = new GameLoop();
+let dom = new DOM();
+let game = new Game(dom);
+let loop = new GameLoop();
 
 // Wire the game object to the main loop
 loop.onUpdate = function (dt, t) {
