@@ -541,10 +541,13 @@ class Game {
 		this.dom.messageArea.prepend(el); // Prepend instead of append because of flexbox direction
 	}
 
-	showPopup(text, atSelector) {
+	showPopup(text, atSelector, switchTab) {
 		setTimeout(() => {
 			this.dom.popupShroud.style.display = "block";
 			this.dom.popupText.textContent = text;
+
+			if (switchTab)
+				this.dom[switchTab + "Button"].click();
 
 			if (atSelector) {
 				let target = document.querySelector(atSelector);

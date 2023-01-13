@@ -28,25 +28,25 @@ Game.prototype.displayPopups = function () {
 		this.tutorial.tent = true;
 	}
 	if (this.levels.tent >= 1 && !this.tutorial.assign) {
-		this.dom.assignButton.click();
 		this.showPopup(
 			`Now that you have a tent, your village consists of two
 			lumberjacks, which you can see in the newly unlocked "Assign" tab.
 			Click on the "Craft" tab to get back to your list of available
 			upgrades, and let's see if you can manage to build a fishing
 			pier.`,
-			"#assign"
+			"#assign",
+			"assign"
 		);
 		this.tutorial.assign = true;
 	}
 	if (this.levels.pier >= 1 && !this.tutorial.pier) {
-		this.dom.assignButton.click();
 		this.showPopup(
 			`With the fishing pier built, you can now assign some of your
 			villagers to be fishermen, producing food over time. Use the "+"
 			and "-" buttons to change your assignments. Any unassigned
 			villagers will still gather wood for you.`,
-			"#assign"
+			"#assign",
+			"assign"
 		);
 		this.tutorial.pier = true;
 	}
@@ -83,18 +83,17 @@ Game.prototype.displayPopups = function () {
 		this.tutorial.smithy = true;
 	}
 	if (this.levels.academy >= 1 && !this.tutorial.academy) {
-		this.dom.researchButton.click();
 		this.showPopup(
 			`The academy is now standing! A brand new kind of upgrade has been
 			unlocked - researches, which you can access via the new "Research"
 			tab. You can now also assign professors who will speed up research
 			progress, similarly to how blacksmiths speed up crafts.`,
-			"#research"
+			"#research",
+			"research"
 		);
 		this.tutorial.academy = true;
 	}
 	if (this.unlocks.mentor && !this.tutorial.mentor) {
-		this.dom.assignButton.click();
 		this.showPopup(
 			`Congratulations, you can now assign mentors to each job! Mentors
 			are not only better at production than regular villagers, but they
@@ -102,12 +101,12 @@ Game.prototype.displayPopups = function () {
 			and villager will count as only one person for the purposes of
 			Chaos, helping you to make your workplaces bigger without inviting
 			mismanagement.`,
-			"#assign"
+			"#assign",
+			"assign"
 		);
 		this.tutorial.mentor = true;
 	}
 	if (this.unlocks.manager && !this.tutorial.manager) {
-		this.dom.assignButton.click();
 		this.showPopup(
 			`This is it - the cutting edge of team management. With managers on
 			your teams, your production will be higher than ever before! Sure,
@@ -115,7 +114,8 @@ Game.prototype.displayPopups = function () {
 			have, the lower your Chaos becomes. The sky's the limit! Soon,
 			maybe you will be able to investigate that monolith on the
 			horizon...`,
-			"#assign"
+			"#assign",
+			"assign"
 		);
 		this.tutorial.manager = true;
 	}
