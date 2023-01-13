@@ -343,6 +343,19 @@ class Game {
 		// Make sure world display is sized correctly
 		let smallerDim = Math.min(window.innerWidth, window.innerHeight);
 		this.dom.world.style.setProperty("--scale", smallerDim / 640);
+		// Center world display if not square
+		let isLandscape = window.innerWidth > window.innerHeight ? true : false;
+		if (isLandscape) {
+			let sideWidth = document.getElementById("side").offsetWidth;
+			let worldWidth = window.innerWidth - sideWidth;
+			if (worldWidth < window.innerHeight) // Not all of the world is displayed
+				this.dom.world.style.marginLeft = -(window.innerHeight - worldWidth) / 2 + "px";
+		} else {
+			let sideHeight = document.getElementById("side").offsetHeight;
+			let worldHeight = window.innerHeight - sideHeight;
+			if (worldHeight < window.innerWidth) 
+				this.dom.world.style.marginTop = -(window.innerWidth - worldHeight) / 2 + "px";
+		}
 	}
 
 	renderUpgrades() {
