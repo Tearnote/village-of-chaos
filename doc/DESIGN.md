@@ -67,3 +67,17 @@ These goals aren't neccessary, but would provide additional value:
 -   A graphical view of the village, showing the field in the forest, alongside currently built buildings,
 -   Sound effects,
 -   Particle and shaking effects.
+
+## Structure
+
+Game interaction is sorted into tabbed sections. Each section serves a single game mechanic, helping the player understand the game more easily. The first tab allows assigning of villagers to buildings, also choosing their roles. The second tab allows crafting, which generally improves production. The last tab is for research, which are late-game upgrades that improve management techniques.
+
+The resource listing, as the most important piece of information for the player, will be visible to the player at all times. A typical option is to float it at the top/bottom of the window, or at the edge of the section navigation. Different approaches might work best on desktop and on mobile. Current income (units per second) will be shown for each resource, so that the player has immedaite feedback on whether their villager assignments are working well.
+
+The player begins the game by gathering food and wood manually, by clicking buttons. This will let them build a tent, inviting their first villagers. All unassigned villagers automatically collect wood. Once assigned to a building, they generate a resource specific to that building. With enough resources, the player can erect more buildings and upgrade them to improve production.
+
+Having two or more stray villagers doing the same task increases that building's chaos meter. Chaos divides the production speed of that resource. It can be avoided by assigning mentor/apprentice pairs, as well as by introducing managers.
+
+Throughout the game, there are multiple references to a monolith looming over the village. The player can interact with the monolith using certain story-relevant upgrades. Buying the last monolith upgrade ends the game. For story-relevant reasons this tears down the DOM, making the game unplayable until the page is refreshed.
+
+Througout the player's first steps, tutorial pop-ups will appear at appropriate times. For example, once the game starts, a pop-up instructs the player to click on gathering buttons to earn resources. When the player assigns two villagers to a single job, a pop-up will let them know about the chaos system, etc.
