@@ -509,7 +509,7 @@ Game.prototype.upgradeList = [
 	new Upgrade({
 		name: "Task mastery",
 		description: "Your mentors are good, but they could be better.",
-		type: "Research",
+		type: "research",
 		cost: {
 			food: 3000,
 		},
@@ -521,6 +521,33 @@ Game.prototype.upgradeList = [
 			game.logMessage(
 				"event",
 				"After doing the same thing over and over for long enough, your mentors got better at their job."
+			);
+		},
+	}),
+
+	// Story upgrades
+	new Upgrade({
+		name: "Survey the monolith",
+		description: "The black shape towers over all. It compels you to examine it.",
+		type: "craft",
+		cost: {
+			food: 50,
+		},
+		duration: 60,
+		once: true,
+		requirement: ["tent", 2],
+		effect: function (game) {
+			game.showStory(
+				`You assemble a survey party, and venture out towards the monolith.
+				It takes you a few days just to reach it, a testament to how much
+				larger it is than it appeared to be from a distance. You are lucky
+				you prepared plenty of food. Once you arrive, it is as if reality
+				stops at the structure's border. It has the color of having your eyes
+				closed, which unsettles you deeply, and you try to look away whenever
+				possible. To the touch, its surface is perfectly smooth and cannot be
+				chipped with any tools at your disposal. What is it? Why is it here?
+				The questions remain unanswered, and your party heads back home.`,
+				"Return"
 			);
 		},
 	}),
