@@ -683,7 +683,7 @@ header > button {
 	display: flex;
 	flex-flow: column-reverse; /* Keeps container scrolled down */
 	margin: var(--margin);
-	font-family: "Courier New", Courier, monospace;
+	font-family: "Fira Mono", monospace;
 	font-size: 0.8rem;
 	background-color: var(--active-color);
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 64px;
