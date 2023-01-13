@@ -28,7 +28,7 @@ The game guides the player through the basic features as they become available, 
 
 ![Screenshot of the game's background](doc/highlights/background.png)
 
-The game's background image represents the player's village's currently erected buildings.
+The game's background image represents the player's village's currently erected buildings, manned by animated villager sprites.
 
 ![Screenshot of the game's header area](doc/highlights/header.png)
 
@@ -41,6 +41,42 @@ The tabbed interface allows for buying upgrades using collected resources, and a
 ![Screenshot of the game's log window](doc/highlights/log.png)
 
 The expandable log window allows the player to see the latest events that happened in their village.
+
+## Technologies
+
+-   HTML5
+    -   Semantic tags used whenever applicable,
+    -   [Images](#attribution) served as WebP for static content, and GIF for animations,
+    -   [Fonts](doc/DESIGN.md#design-language) from Google Fonts,
+    -   No redundant containers for styling purposes,
+    -   Favicons and WebManifest are present for PWA functionality,
+-   CSS3
+    -   Layout with Flexbox and border-box sizing,
+    -   Media queries for responsive design,
+    -   CSS variables and calc() used to organize common values,
+    -   Sizing with rem values whenever applicable,
+-   Javascript
+    -   Scripts are loaded with defer attribute,
+    -   No frameworks or libraries,
+    -   Heavy usage of modern ES6 features,
+    -   Code organized into classes and files,
+    -   Game content declared in a data-driven way to allow for extension with minimal code changes,
+    -   Every function and method is documented.
+
+The game uses no frameworks, and the only externally loaded resources are the fonts. All code and text files are formatted with [Prettier](https://prettier.io), with indentation using tabs (not spaces.) The CSS is split into sections with `#section` markers, which can be collapsed in most IDEs and code editors.
+
+The compatibility goal was all commonly used desktop and mobile browsers, updated to the latest or second-latest version. In particular, this means no compatibility with IE11, since it is [out of general support](https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge#what-is-the-lifecycle-policy-for-internet-explorer-) since June 15, 2022. The service [Can I use?](https://caniuse.com) was used to ensure that the compatibility goal is met.
+
+<details><summary>Directory structure</summary>
+
+   - `/` (root): HTML files, `README.md`, environment configuration
+   - `assets/css`: CSS files
+   - `assets/images`: WebP and GIF images served by the HTML pages
+   - `assets/js`: Javascript code used by the HTML pages
+   - `assets/js/vendor`: 3rd-party Javascript code, attributed at the top of each file,
+   - `doc`: Additional Markdown files, PNG images used by Markdown files, any additional documentation files
+
+</details>
 
 ## Motivation
 
