@@ -86,6 +86,8 @@ Througout the player's first steps, tutorial pop-ups will appear at appropriate 
 
 ![Mock-up wireframe view of the game in a desktop browser](wireframe.png)
 
+![Mock-up wireframe view of the game in a mobile browser](mobile.png)
+
 As the game evolved, the design slowly diverged from this initial wireframe into one with less floating sections and more concrete panels. This helped avoid overlap between elements at all sorts of screen sizes.
 
 In particular, the header is now floating on mobile, and part of the sidebar on desktop. The tabbed interface is always part of the sidebar. The log window is floating, but can be collapsed to save space.
