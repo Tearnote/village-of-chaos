@@ -208,6 +208,18 @@ button:active {
 	top: 304px;
 }
 
+#fisherman-1-img {
+	display: var(--fisherman-display);
+	left: 119px;
+	top: 292px;
+}
+
+#fisherman-2-img {
+	display: var(--fisherman-display);
+	left: 136px;
+	top: 336px;
+}
+
 #quarry-img {
 	display: var(--miner-display);
 	left: 337px;
