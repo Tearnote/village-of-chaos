@@ -161,28 +161,28 @@ class Game {
 		// Pre-select a tab
 		this.dom.craftButton.click();
 
-		// Add some flavor text
-		this.logMessage(
-			"story",
-			`It's a bright sunny day, and you are standing in the middle of a
-			forest clearing. To your left is a glistening river full of fish,
-			and the cliffs promise to provide bountiful building material. What
-			attracted you to this place? Was it the prospect of escaping the
-			hustle of city life? Or maybe you were curious about the giant
-			black structure in the distance? Regardless of your reasons, you
-			disembark. It's time to begin work on your settlement.`
-		);
-		this.logMessage("info", "Welcome to Village of Chaos!");
-		this.showPopup(
-			`Welcome to Village of Chaos! In this game you will collect
-			resources, invite villagers and build new structures. To start
-			with, use these buttons to collect 10 units of food and wood,
-			allowing you to build a tent for your first villagers.`,
-			"#gathering"
-		);
-
 		// Load savefile if exists, and save the game periodically
-		this.load();
+		if (!this.load()) {
+			// New game - print out some flavor text
+			this.logMessage(
+				"story",
+				`It's a bright sunny day, and you are standing in the middle of a
+				forest clearing. To your left is a glistening river full of fish,
+				and the cliffs promise to provide bountiful building material. What
+				attracted you to this place? Was it the prospect of escaping the
+				hustle of city life? Or maybe you were curious about the giant
+				black structure in the distance? Regardless of your reasons, you
+				disembark. It's time to begin work on your settlement.`
+			);
+			this.logMessage("info", "Welcome to Village of Chaos!");
+			this.showPopup(
+				`Welcome to Village of Chaos! In this game you will collect
+				resources, invite villagers and build new structures. To start
+				with, use these buttons to collect 10 units of food and wood,
+				allowing you to build a tent for your first villagers.`,
+				"#gathering"
+			);
+		}
 		setInterval(() => {
 			this.save();
 		}, 1000 * 60 * 5); // 5 minutes
@@ -632,7 +632,7 @@ class Game {
 
 	load() {
 		let state = JSON.parse(localStorage.getItem("savegame"));
-		if (!state) return; // Nothing to load
+		if (!state) return false; // Nothing to load
 		for (let field of this.serializable) this[field] = state[field];
 		this.renderUpgrades();
 
@@ -646,6 +646,7 @@ class Game {
 
 		this.dom.messageArea.replaceChildren(); // We don't restore log entries
 		this.logMessage("info", "Game loaded.");
+		return true;
 	}
 
 	reset() {
