@@ -95,6 +95,17 @@ The game has a few minor issues remaining, they will be documented below.
 -   **Code breaks entirely when loading an incompatible savefile**
     If the game gets updated with more upgrades, an array length mismatch will halt all Javascript from executing. This cannot happen during normal play, but must be taken into account if the game gets updated in the future so that people don't lose their progress. Until then, this could be worked around by resetting the savefile if it's detected invalid. Judged low priority, as it doesn't affect the end product in the present.
 
+## Attribution
+
+All external code is attributed inline, or is in a "vendor" directory.
+
+Village images and animations created using the tilesets and spritesheets by [PixiVan](https://pixivan.itch.io). In particular,
+
+-   [Top Down Forest Tileset](https://pixivan.itch.io/top-down-forest-tileset),
+-   [Traders Top Down Asset Pack](https://pixivan.itch.io/traders-top-down-npc).
+
+These resources were purchased with personal funds. The purchased source files are not present in the repository.
+
 ## Motivation
 
 Ever since the the advent of [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/), incremental games have enjoyed a huge rise in popularity, topping the charts of mobile app stores. The simple gameplay makes them appealing to people less skilled in videogames, and they can be created very rapidly with little graphical content by any aspiring game designer. _Village of Chaos_ is a "management" type incremental, where workers can be assigned to automate tasks. However, the driving idea behind this game is that increasing the number of units assigned to the same task doesn't neccessarily result in a speedup, as the team becomes uncoordinated and chaotic. The player will need to research and apply management techniques to keep the team efficient and the production high.
