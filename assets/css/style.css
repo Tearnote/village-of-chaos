@@ -863,18 +863,24 @@ header > button {
 #story-text {
 	max-width: 24em;
 	font-size: x-large;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 
 #story-shroud > button {
 	background-color: transparent;
+	font-size: x-large;
 	color: white;
 	border: 1px solid white;
 	padding: 0.4rem 1.2rem;
 }
 
 @media (max-width: 560px) {
-	#story-shroud > p {
+	#story-text > p {
+		font-size: large;
+	margin-bottom: 1rem;
+	}
+
+	#story-shroud > button {
 		font-size: large;
 	}
 }
