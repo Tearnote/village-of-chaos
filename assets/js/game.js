@@ -179,7 +179,7 @@ class Game {
 				"Begin"
 			);
 			this.logMessage("info", "Welcome to Village of Chaos!");
-			this.showPopup(
+			this.showPopup( // Defined in tutorial.js
 				`Welcome to Village of Chaos! In this game you will collect
 				resources, invite villagers and build new structures. To start
 				with, use these buttons to collect 10 units of food and wood,
@@ -206,7 +206,7 @@ class Game {
 		this.food += deltaTime * this.getFoodProduction();
 		this.stone += deltaTime * this.getStoneProduction();
 
-		this.displayPopups(); // Defined in tutorial.js
+		this.updatePopups(); // Defined in tutorial.js
 	}
 
 	updateUpgrades(deltaTime) {
@@ -543,89 +543,6 @@ class Game {
 		el.textContent = msg;
 		el.classList.add(type);
 		this.dom.messageArea.prepend(el); // Prepend instead of append because of flexbox direction
-	}
-
-	showPopup(text, atSelector, switchTab) {
-		setTimeout(() => {
-			this.dom.popupShroud.style.display = "block";
-			this.dom.popupText.textContent = text;
-
-			if (switchTab) this.dom[switchTab + "Button"].click();
-
-			if (atSelector) {
-				let target = document.querySelector(atSelector);
-				const targetRect = target.getBoundingClientRect();
-				const margin = parseInt(
-					window.getComputedStyle(this.dom.popup).marginTop
-				);
-
-				// Determine if we're portrait or landscape
-				const isPortrait = window.innerWidth >= window.innerHeight;
-
-				let left = targetRect.left;
-				let top = targetRect.top;
-
-				if (isPortrait) {
-					// Try positioning to the right of the target,
-					// go to the left if that's off-screen
-					left += target.offsetWidth;
-					if (
-						left + margin + this.dom.popup.offsetWidth >
-						window.innerWidth
-					)
-						left =
-							targetRect.left -
-							margin * 2 -
-							this.dom.popup.offsetWidth;
-				} else {
-					// Try positioning below the target,
-					// go above if that's off-screen
-					top += target.offsetHeight;
-					if (
-						top + margin + this.dom.popup.offsetHeight >
-						window.innerHeight
-					)
-						top =
-							targetRect.top -
-							margin * 2 -
-							this.dom.popup.offsetHeight;
-				}
-
-				// Clamp pop-up position to window size, just in case
-				left = Math.max(left, 0);
-				left = Math.min(
-					left,
-					window.innerWidth - this.dom.popup.offsetWidth - margin * 2
-				);
-				top = Math.max(top, 0);
-				top = Math.min(
-					top,
-					window.innerHeight -
-						this.dom.popup.offsetHeight -
-						margin * 2
-				);
-
-				this.dom.popup.style.left = left + "px";
-				this.dom.popup.style.top = top + "px";
-
-				target.style.zIndex = 1000; // Bring above the shroud
-				target.style.pointerEvents = "none"; // Make sure target can't be interacted with while pop-up is visible
-				this.dom.popupDismiss.addEventListener("click", () => {
-					target.style.zIndex = "revert";
-					target.style.pointerEvents = "revert";
-				});
-			} else {
-				// Default - just center it
-				this.dom.popup.style.left =
-					window.innerWidth / 2 -
-					this.dom.popup.offsetWidth / 2 +
-					"px";
-				this.dom.popup.style.top =
-					window.innerHeight / 2 -
-					this.dom.popup.offsetHeight / 2 +
-					"px";
-			}
-		}, 800);
 	}
 
 	showStory(message, buttonText, callback) {
