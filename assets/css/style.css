@@ -875,9 +875,9 @@ header > button {
 }
 
 @media (max-width: 560px) {
-	#story-text > p {
+	#story-text {
 		font-size: large;
-	margin-bottom: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	#story-shroud > button {
