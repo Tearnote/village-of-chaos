@@ -711,10 +711,6 @@ header > button {
 	height: 100%;
 }
 
-.upgrade > h3 {
-	margin-bottom: -0.2rem;
-}
-
 .upgrade > p > span > .cost {
 	font-weight: 700;
 }
