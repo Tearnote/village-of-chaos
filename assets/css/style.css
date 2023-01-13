@@ -244,6 +244,12 @@ button:active {
 	top: 288px;
 }
 
+#blacksmith-img {
+	display: var(--blacksmith-display);
+	left: 338px;
+	top: 322px;
+}
+
 #academy-img {
 	display: var(--professor-display);
 	left: 138px;
