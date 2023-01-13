@@ -112,6 +112,8 @@ The game has a few minor issues remaining, they will be documented below.
     This affects primarily responsiveness testing via the Inspector, as real devices don't tend to change their DPI. A workaround is to refresh the page after changing the "device" used for testing. As this affects only the developer, this is low priority.
 -   **Code breaks entirely when loading an incompatible savefile**  
     If the game gets updated with more upgrades, an array length mismatch will halt all Javascript from executing. This cannot happen during normal play, but must be taken into account if the game gets updated in the future so that people don't lose their progress. Until then, this could be worked around by resetting the savefile if it's detected invalid. Judged low priority, as it doesn't affect the end product in the present.
+-   **Layout overlap on small screens in landscape mode**  
+    The site is responsive on all sizes of large screens, and on portrait mode of small screens. Adding extra CSS for improved responsiveness of small screens in landscape mode is possible, but would take extra time. Fortunately, the vast majority of mobile users is expected to be visiting the website in portrait mode. A meta tag was also added as a workaround to prevent accidental screen orientation changes.
 
 ## Attribution
 
