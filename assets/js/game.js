@@ -622,7 +622,7 @@ class Game {
 					this.dom.popup.offsetHeight / 2 +
 					"px";
 			}
-		}, 1000);
+		}, 800);
 	}
 
 	save() {
