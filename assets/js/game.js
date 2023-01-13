@@ -170,11 +170,12 @@ class Game {
 			this.showStory(
 				`It's a bright sunny day, and you are standing in the middle of a
 				forest clearing. To your left is a glistening river full of fish,
-				and the cliffs promise to provide bountiful building material. What
-				attracted you to this place? Was it the prospect of escaping the
-				hustle of city life? Or maybe you were curious about the giant
-				black structure in the distance? Regardless of your reasons, you
-				disembark. It's time to begin work on your settlement.`,
+				and the nearby mountain promises to provide bountiful building
+				material. What attracted you to this place? Was it the prospect
+				of escaping the hustle of city life? Or maybe you were curious
+				about the giant black structure in the distance? Regardless of
+				your reasons, you disembark. It's time to begin your work on
+				the settlement.`,
 				"Begin"
 			);
 			this.logMessage("info", "Welcome to Village of Chaos!");
