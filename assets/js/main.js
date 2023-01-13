@@ -1,4 +1,7 @@
-// Create core game objects
+// main.js
+// Entry point. Bootstraps the game loop
+
+// Create core objects
 let dom = new DOM();
 let game = new Game(dom);
 let loop = new GameLoop();
@@ -11,9 +14,9 @@ loop.onRender = function (i) {
 	game.render();
 };
 loop.onPanic = function () {
-	// No lag handling at this time
+	// No lag handling at this time - truncate missed updates
 	this.timing.lag = 0;
 };
 
-// Start the game
+// Let's go!
 loop.start();
