@@ -241,7 +241,7 @@ Game.prototype.upgradeList = [
 		description: "Instead of working, make sure others are working.",
 		type: "research",
 		cost: {
-			food: 10000,
+			food: 6000,
 		},
 		duration: 12,
 		once: true,
@@ -412,7 +412,7 @@ Game.prototype.upgradeList = [
 		},
 	}),
 	new Upgrade({
-		name: "Quarry scaffolding",
+		name: "Multi-level quarry",
 		description: "Expand your quarry vertically.",
 		type: "craft",
 		cost: {
@@ -426,7 +426,7 @@ Game.prototype.upgradeList = [
 			game.production.miner *= 1.5;
 			game.logMessage(
 				"event",
-				"A multi-level quarry means more stone to mine. Villagers with a fear of heights are not pleased."
+				"A deeper quarry means more stone to mine. Demand for canaries increases."
 			);
 		},
 	}),
@@ -578,15 +578,15 @@ Game.prototype.upgradeList = [
 	new Upgrade({
 		name: "Destroy the monolith",
 		description: "It has plagued the horizon long enough.",
-		type: "craft",
+		type: "research",
 		cost: {
-			wood: 20000,
-			food: 20000,
-			stone: 20000,
+			wood: 10000,
+			food: 30000,
+			stone: 50000,
 		},
 		duration: 1200,
 		once: true,
-		requirement: ["smithy", 5],
+		requirement: ["academy", 4],
 		effect: function (game) {
 			game.showStory(
 				`It's a bright sunny day, and your hand-working villagers wake up and

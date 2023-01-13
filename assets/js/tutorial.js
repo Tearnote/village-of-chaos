@@ -114,7 +114,7 @@ Game.prototype.displayPopups = function () {
 			your teams, your production will be higher than ever before! Sure,
 			managers don't actually produce anything, but the more of them you
 			have, the lower your Chaos becomes. The sky's the limit! Soon,
-			maybe you will be able to investigate that monolith on the
+			maybe you will be able to do something about that monolith on the
 			horizon...`,
 			"#assign",
 			"assign"
