@@ -653,4 +653,10 @@ class Game {
 		localStorage.removeItem("savegame");
 		window.location.reload();
 	}
+
+	cheat() {
+		this.wood = 100000;
+		this.food = 100000;
+		this.stone = 100000;
+	}
 }
