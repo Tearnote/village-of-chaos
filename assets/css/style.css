@@ -496,10 +496,9 @@ header > button {
 	margin: 0.8rem;
 	border-radius: 4px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
-}
-
-#side > nav > button > h2 {
+	font-family: "Milonga", cursive;
 	font-size: large;
+	font-weight: 700;
 	text-shadow: 0 0 0.4rem var(--active-color);
 }
 
@@ -509,9 +508,6 @@ header > button {
 		height: 3.33rem;
 		margin: 0.4rem 0.4rem 0.4rem 0;
 		padding: 0;
-	}
-
-	#side > nav > button > h2 {
 		font-size: medium;
 	}
 }
