@@ -33,3 +33,37 @@ These methods are typically used to help present the game data to the player:
 -   What do the buttons mean?
 -   How do I start?
 -   What's the ultimate goal?
+
+## Scope
+
+These goals are neccessary for a MVP of the game:
+
+-   Resources:
+    -   Food,
+    -   Wood,
+    -   Stone,
+-   Buildings:
+    -   Tent (increases villager count),
+    -   Pier (increases food),
+    -   Quarry (increases stone),
+    -   Blacksmith (performs upgrades),
+    -   Academy (performs research),
+-   Villager roles:
+    -   Apprentice (more than one increases chaos if unmanaged),
+    -   Mentor (pairs up with an apprentice to manage them),
+    -   Manager (doesn't produce, but reduces chaos),
+-   A permanently visible listing of all owned resources,
+-   Tabbed interface for switching between sections:
+    -   A section that lists owned buildings and allows assigning villagers to them,
+    -   A section for upgrades,
+    -   A section for research,
+-   An interactive tutorial explaining the basics to the player,
+-   An upgrade which causes the player to win the game when it's complete,
+-   Modern, responsive, compliant and accessible design.
+
+These goals aren't neccessary, but would provide additional value:
+
+-   Saving and loading so that the game state survives browser refresh,
+-   A graphical view of the village, showing the field in the forest, alongside currently built buildings,
+-   Sound effects,
+-   Particle and shaking effects.

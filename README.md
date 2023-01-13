@@ -106,41 +106,6 @@ Village images and animations created using the tilesets and spritesheets by [Pi
 
 These resources were purchased with personal funds. The purchased source files are not present in the repository.
 
-## Scope
-
-These goals are neccessary for a MVP of the game:
-
--   Resources:
-    -   Food,
-    -   Wood,
-    -   Stone,
--   Buildings:
-    -   Tent (increases villager count),
-    -   Pier (increases food),
-    -   Quarry (increases stone),
-    -   Blacksmith (performs upgrades),
-    -   Academy (performs research),
--   Villager roles:
-    -   Apprentice (more than one increases chaos if unmanaged),
-    -   Mentor (pairs up with an apprentice to manage them),
-    -   Manager (doesn't produce, but reduces chaos),
-    -   CEO (improves Managers' chaos reduction),
--   A permanently visible listing of all owned resources,
--   Tabbed interface for switching between sections:
-    -   A section that lists owned buildings and allows assigning villagers to them,
-    -   A section for upgrades,
-    -   A section for research,
--   An interactive tutorial explaining the basics to the player,
--   A building which causes the player to win the game when it's built,
--   Responsive and compliant design.
-
-These goals aren't neccessary, but would provide additional value:
-
--   Saving and loading so that the game state survives browser refresh,
--   A graphical view of the village, showing the field in the forest, alongside currently built buildings,
--   Sound effects,
--   Particle and shaking effects.
-
 ## Structure
 
 As details above, game interaction is sorted into tabbed sections. Each section serves a single game mechanic, helping the player understand the game more easily. The first tab allows assigning of villagers to buildings, also choosing their roles. The second tab allows creation of new buildings, and improvement of existing ones. The last tab is for research, which are upgrades for teh way villagers work - unlocking of new roles and improving them.
