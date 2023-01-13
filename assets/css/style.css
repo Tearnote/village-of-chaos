@@ -49,6 +49,7 @@ body {
 	overflow: hidden;
 
 	display: flex;
+	background-color: black;
 
 	/* Color palette */
 	--primary-color: #768c38;
