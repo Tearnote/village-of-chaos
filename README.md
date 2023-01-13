@@ -1,5 +1,7 @@
 # Village of Chaos: a browser game
 
+![Mock-up image of the game displaying on a PC screen and a mobile device](doc/mockup.png)
+
 _Village of Chaos_ is an incremental game written in Javascript, made for [Code Institute](https://codeinstitute.net)'s 2nd submission project. The goal of the game is to build a village, bit by bit, and manage your villagers' jobs to maximize their potential.
 
 ## Motivation
