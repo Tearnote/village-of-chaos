@@ -1,8 +1,9 @@
-// Game class
-// Holds game state, is able to update it with a delta time and render state
-// into the DOM
+// game.js
+// Game class. Holds all state, performs updates and renders into the DOM
+// State can be loaded/saved via cookies
 
 class Game {
+	// dom: An object of DOM class (dom.js)
 	constructor(dom) {
 		this.dom = dom;
 
@@ -50,6 +51,7 @@ class Game {
 		};
 
 		// Balance
+		// Modified by upgrades throughout gameplay
 		this.production = {
 			lumberjack: 0.001,
 			fisherman: 0.001,
@@ -61,6 +63,10 @@ class Game {
 		};
 
 		// Unlocks
+
+		// The upgrades array holds upgrade state, as opposed to upgradeList
+		// which is immutable and holds definitions only
+		// They are related via array index: upgrade[i] is state of upgradeList[i]
 		this.upgrades = [];
 		for (let upgrade of this.upgradeList) {
 			this.upgrades.push({
@@ -71,7 +77,7 @@ class Game {
 				completed: 0, // 0 or 1 for one-time upgrades, can be above 1 for repeatable upgrades
 			});
 		}
-		this.renderUpgrades();
+		this.renderUpgrades(); // First-time run to populate the DOM
 		this.unlocks = {
 			income: false,
 			stone: false,
@@ -119,6 +125,8 @@ class Game {
 		this.dom.gatherWood.addEventListener("click", this.gatherWood);
 		this.dom.gatherFood.addEventListener("click", this.gatherFood);
 
+		// There are a lot of job assignment buttons. We shorten the code
+		// by iterating over all possible combinations
 		const jobs = ["fisherman", "miner", "blacksmith", "professor"];
 		const roles = ["villager", "mentor", "manager"];
 		for (let job of jobs) {
@@ -151,6 +159,7 @@ class Game {
 		});
 		this.dom.reset.addEventListener("click", () => {
 			if (
+				// window.confirm is safe to use - game loop can deal with the multi-second pause
 				window.confirm(
 					`Are you sure you want to reset your game? Your progress will be lost forever, and this is irreversible.`
 				)
@@ -166,7 +175,7 @@ class Game {
 
 		// Load savefile if exists, and save the game periodically
 		if (!this.load()) {
-			// New game - print out some flavor text
+			// No savefile - this is a new game, print out some flavor text
 			this.showStory(
 				`It's a bright sunny day, and you are standing in the middle of a
 				forest clearing. To your left is a glistening river full of fish,
@@ -179,7 +188,8 @@ class Game {
 				"Begin"
 			);
 			this.logMessage("info", "Welcome to Village of Chaos!");
-			this.showPopup( // Defined in tutorial.js
+			this.showPopup(
+				// Defined in tutorial.js
 				`Welcome to Village of Chaos! In this game you will collect
 				resources, invite villagers and build new structures. To start
 				with, use these buttons to collect 10 units of food and wood,
@@ -189,9 +199,12 @@ class Game {
 		}
 		setInterval(() => {
 			this.save();
-		}, 1000 * 60 * 5); // 5 minutes
+		}, 1000 * 60 * 5); // Autosave every 5 minutes
 	}
 
+	// Calculate production and other game logic, run often to keep the game
+	// responsive
+	// deltaTime: time passed since last call (in milliseconds)
 	update(deltaTime) {
 		this.updateUpgrades(deltaTime);
 
@@ -209,11 +222,13 @@ class Game {
 		this.updatePopups(); // Defined in tutorial.js
 	}
 
+	// Update the state of upgrades, run often to keep upgrade tabs responsive
+	// deltaTime: time passed since last call (in milliseconds)
 	updateUpgrades(deltaTime) {
 		for (let i in this.upgradeList) {
-			if (!this.dom.upgrades[i]) continue;
+			if (!this.dom.upgrades[i]) continue; // Not rendered, skip
 
-			// Update available state
+			// Update availability state
 			this.upgrades[i].available =
 				this.canAffordUpgrade(i) && !this.upgrades[i].started
 					? true
@@ -222,7 +237,7 @@ class Game {
 				this.dom.upgrades[i].classList.remove("inactive");
 			else this.dom.upgrades[i].classList.add("inactive");
 
-			// Advance progress
+			// Advance progress if started
 			if (this.upgrades[i].started) {
 				const speedup =
 					this.upgradeList[i].type == "craft"
@@ -243,14 +258,20 @@ class Game {
 		}
 	}
 
+	// Retrieve upgrade cost, taking scaling into account
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
+	// return value: object with at least one of keys "wood", "food", "stone"
 	getUpgradeCost(upgradeIdx) {
-		const cost = { ...this.upgradeList[upgradeIdx].cost };
+		const cost = { ...this.upgradeList[upgradeIdx].cost }; // We modify cost so need a copy
 		const scaling = this.upgradeList[upgradeIdx].scaling ?? 1;
 		const costFactor = scaling ** this.upgrades[upgradeIdx].completed;
 		for (let i in cost) cost[i] = Math.ceil(cost[i] * costFactor);
 		return cost;
 	}
 
+	// Determine if an upgrade is affordable
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
+	// return value: true if affordable, false otherwise
 	canAffordUpgrade(upgradeIdx) {
 		const cost = this.getUpgradeCost(upgradeIdx);
 		if (
@@ -262,6 +283,9 @@ class Game {
 		return false;
 	}
 
+	// Determine if upgrade requirement has been met, and the upgrade should be shown
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
+	// return value: true if available, false otherwise
 	upgradeRequirementMet(upgradeIdx) {
 		if (!this.upgradeList[upgradeIdx].requirement) return true; // No requirement
 		if (
@@ -272,6 +296,8 @@ class Game {
 		return false;
 	}
 
+	// Callback to run when an upgrade is clicked
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
 	upgradeClicked(upgradeIdx) {
 		// Is it affordable?
 		if (!this.upgrades[upgradeIdx].available) return;
@@ -284,6 +310,8 @@ class Game {
 		this.upgrades[upgradeIdx].started = true;
 	}
 
+	// Callback to run once an upgrade is completed
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
 	completeUpgrade(upgradeIdx) {
 		// Perform upgrade effect and update upgrade state
 		this.upgradeList[upgradeIdx].effect(this);
@@ -295,6 +323,7 @@ class Game {
 		this.renderUpgrades();
 	}
 
+	// Run on every viewport draw to update the DOM for the user
 	render() {
 		// Display resources
 		this.dom.wood.textContent = Math.floor(this.wood);
@@ -347,13 +376,16 @@ class Game {
 		this.renderWorld();
 	}
 
+	// Refresh the upgrade tabs to show all available upgrades
+	// Run only when required (an upgrade might've changed its availability)
+	// Running every frame causes flicker
 	renderUpgrades() {
-		// Clean up
+		// Clean up the previous upgrade list
 		this.dom.craft.replaceChildren();
 		this.dom.research.replaceChildren();
 		this.dom.upgrades.length = 0;
 
-		// Update requirements
+		// Update requirement state
 		for (let i in this.upgradeList)
 			this.upgrades[i].visible = this.upgradeRequirementMet(i);
 
@@ -382,6 +414,9 @@ class Game {
 		}
 	}
 
+	// Generate the upgrade element
+	// upgradeIdx: index into the upgrade in upgrades/upgradeList
+	// return value: a HTMLElement of the upgrade
 	createUpgradeElement(upgradeIdx) {
 		let el = document.createElement("div");
 		el.classList.add("upgrade");
@@ -410,24 +445,28 @@ class Game {
 		return el;
 	}
 
+	// Update sizing and position of the village picture
+	// Run every frame to handle window resize
 	renderWorld() {
-		// Make sure world is sized correctly
+		// Calculate world image scale
 		const smallerDim = Math.min(window.innerWidth, window.innerHeight);
-		this.dom.world.style.setProperty("--scale", smallerDim / 640);
+		this.dom.world.style.setProperty("--scale", smallerDim / 640); // 640px is the native size
 
-		// Center world display if not square
-		const isLandscape = window.innerWidth > window.innerHeight ? true : false;
+		// Center world display if area is not square
+		const isLandscape =
+			window.innerWidth > window.innerHeight ? true : false;
 		if (isLandscape) {
+			// Need to center horizontally
 			const sideWidth = document.getElementById("side").offsetWidth;
 			const worldWidth = window.innerWidth - sideWidth;
 
 			this.dom.world.style.marginTop = 0;
 			if (worldWidth < window.innerHeight)
-				// Not all of the world is displayed
 				this.dom.world.style.marginLeft =
 					-(window.innerHeight - worldWidth) / 2 + "px";
 			else this.dom.world.style.marginLeft = 0;
 		} else {
+			// Need to center vertically
 			const sideHeight = document.getElementById("side").offsetHeight;
 			const worldHeight = window.innerHeight - sideHeight;
 
@@ -439,10 +478,14 @@ class Game {
 		}
 	}
 
+	// Returns wood gain per millisecond, taking into account all modifiers
+	// return value: number
 	getWoodProduction() {
 		return this.production.lumberjack * this.lumberjack;
 	}
 
+	// Returns food gain per millisecond, taking into account all modifiers
+	// return value: number
 	getFoodProduction() {
 		const contribution =
 			this.fisherman.villager +
@@ -450,6 +493,8 @@ class Game {
 		return contribution * this.production.fisherman * (1 - this.chaos.pier);
 	}
 
+	// Returns stone gain per millisecond, taking into account all modifiers
+	// return value: number
 	getStoneProduction() {
 		const contribution =
 			this.miner.villager +
@@ -457,6 +502,8 @@ class Game {
 		return this.production.miner * contribution * (1 - this.chaos.quarry);
 	}
 
+	// Returns crafting speed multplier, taking into account all modifiers
+	// return value: number
 	getCraftSpeedup() {
 		const contribution =
 			this.blacksmith.villager +
@@ -468,6 +515,8 @@ class Game {
 		);
 	}
 
+	// Returns research speed multplier, taking into account all modifiers
+	// return value: number
 	getResearchSpeedup() {
 		const contribution =
 			this.professor.villager +
@@ -479,6 +528,10 @@ class Game {
 		);
 	}
 
+	// Returns the chaos level for a given job, which is the fraction of
+	// production that has been lost to mismanagement
+	// job: a string that's a key into the "chaos" member
+	// return value: number
 	getChaosLevel(job) {
 		const unpairedVillagers = Math.max(job.villager - job.mentor, 0);
 		let penalty = job.mentor + unpairedVillagers - 1;
@@ -486,14 +539,20 @@ class Game {
 		return Math.max(1 - 0.8 ** penalty, 0);
 	}
 
+	// Callback for manually collecting food
 	gatherFood = () => {
 		this.food += 1;
 	};
 
+	// Callback for manually collecting wood
 	gatherWood = () => {
 		this.wood += 1;
 	};
 
+	// Callback for assigning a villager to a position
+	// Handles failure silently
+	// job: string, a name of one of the assignable jobs
+	// role: string, a name of the assignable roles (keys of the "[job]" member)
 	assign(job, role) {
 		if (this.lumberjack == 0) return;
 		this.lumberjack -= 1;
@@ -501,12 +560,19 @@ class Game {
 		if (this[job][role] >= 2) game.unlock("chaos");
 	}
 
+	// Callback for unassigning a villager from a position
+	// Handles failure silently
+	// job: string, a name of one of the assignable jobs
+	// role: string, a name of the assignable roles (keys of the "[job]" member)
 	unassign(job, role) {
 		if (this[job][role] == 0) return;
 		this[job][role] -= 1;
 		this.lumberjack += 1;
 	}
 
+	// Flip a DOM flag, showing a page element to the user
+	// The list of flag names is available in the CSS on the "body" selector
+	// name: string, name of the unlock CSS variable (without leading "--" or trailing "-display")
 	unlock(name) {
 		let display = "block";
 		if (["fisherman", "miner", "blacksmith", "professor"].includes(name))
@@ -517,6 +583,7 @@ class Game {
 		this.unlocks[name] = true;
 	}
 
+	// Set all unlock DOM flags to locked again
 	lockEverything() {
 		for (let name in this.unlocks) {
 			const nameDashed = Util.kebabCase(name);
@@ -524,6 +591,8 @@ class Game {
 		}
 	}
 
+	// Callback to run on tab change
+	// tabName: string, one of the values from TABS constant below
 	changeTab(tabName) {
 		const TABS = ["assign", "craft", "research"];
 
@@ -538,13 +607,20 @@ class Game {
 		this.dom[tabName + "Button"].classList.add("active");
 	}
 
+	// Append a message to the game's log window
+	// type: string, a CSS class to set on the message paragraph
+	// msg: string, the message to add
 	logMessage(type, msg) {
 		let el = document.createElement("p");
 		el.textContent = msg;
 		el.classList.add(type);
-		this.dom.messageArea.prepend(el); // Prepend instead of append because of flexbox direction
+		this.dom.messageArea.prepend(el); // Prepend instead of append because of reverse flexbox direction
 	}
 
+	// Display a story message covering the whole screen
+	// message: string, the paragraph of text to display
+	// buttonText: string, text to show on the dismiss button
+	// callback (optional): function to run once the dismiss button is pressed
 	showStory(message, buttonText, callback) {
 		this.dom.storyShroud.style.display = "flex";
 		this.dom.storyText.textContent = message;
@@ -552,6 +628,7 @@ class Game {
 		if (callback) this.dom.storyDismiss.addEventListener("click", callback);
 	}
 
+	// Save the game state to cookies
 	save() {
 		let state = {};
 		for (let field of this.serializable) state[field] = this[field];
@@ -560,13 +637,14 @@ class Game {
 		this.logMessage("info", "Game saved.");
 	}
 
+	// Load the game state from cookies
 	load() {
 		const state = JSON.parse(localStorage.getItem("savegame"));
 		if (!state) return false; // Nothing to load
 		for (let field of this.serializable) this[field] = state[field];
 		this.renderUpgrades();
 
-		// Set unlock state in DOM
+		// Refresh unlock state in DOM
 		this.lockEverything();
 		for (let unlock in this.unlocks)
 			if (this.unlocks[unlock]) this.unlock(unlock);
@@ -579,15 +657,20 @@ class Game {
 		return true;
 	}
 
+	// Delete cookies and start a new game
 	reset() {
 		localStorage.removeItem("savegame");
 		window.location.reload();
 	}
 
+	// Apocalypse
 	gameOver() {
 		document.write("--");
 	}
 
+	// Instantly get enough resources to beat the game
+	// Not called by anything; meant to be used from web console to speed up
+	// testing. Try "game.cheat()"
 	cheat() {
 		this.wood = 100000;
 		this.food = 100000;
