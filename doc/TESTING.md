@@ -16,3 +16,23 @@ The Lighthouse report shows a green score in every category besides performance:
 The performance score drops because of layout shift during load. This is caused by the world image being shifted by the Javascript after page load. This is a false positive, because it's used purely as background content, and doesn't affect page readability
 
 The accessibility score is dropped by the "Reset" button in the header having bad contrast. This is purposeful - the button has a harsh red color as a warning, because it performs a permanently destructive operation.
+
+## Testing
+
+Check the following points to confirm that the game is working as intended:
+
+-   The layout has no overlapping elements,
+-   Text never overflows its container,
+-   Paragraphs are never too wide or too thin to be comfortably read,
+-   From a fresh start, the game opens to the story overlay, which covers the entire page and can be dismissed with the button,
+-   The background image fully covers its space, and every building and animated sprite is offset by the correct amount,
+-   Every tutorial pop-up appears at its correct time, next to the focus element, and highlights the focus element correctly with no unpleasant overlap,
+-   The tab areas all can scroll to show all content,
+-   Upgrades can only be bought if affordable and have their intended effect,
+-   The game can be saved and loaded without errors in any situation, autosaves regularly, and autoloads on page load,
+-   The log displays recent events and only overlaps the layout when manually expanded,
+-   The game can be played from start to end without errors or glitches,
+-   All the above holds true in portrait and landscape modes,
+-   All the above holds true on mobile devices.
+
+The site was tested to work properly using this procedure in latest Chrome, Firefox and Edge, as well as mobile Chrome.
