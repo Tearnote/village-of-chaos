@@ -16,6 +16,32 @@ The documentation is split across three files:
 -   [DESIGN.md](doc/DESIGN.md): UX design notes crafted during early stages of development. The design process is described entirely, from the concept and market research, through information structuring to visual design principles and color palettes.
 -   [TESTING.md](doc/TESTING.md): Testing procedures. The game has been automatically validated and manually tested with procedures noted down in this file.
 
+## Highlights
+
+![Screenshot of the game's story overlay](doc/highlights/story.png)
+
+The game begins with a story passage, which is also featured later during progression.
+
+![Screenshot of the game's tutorial pop-up](doc/highlights/tutorial.png)
+
+The game guides the player through the basic features as they become available, via tutorial pop-ups that highlight the relevant element.
+
+![Screenshot of the game's background](doc/highlights/background.png)
+
+The game's background image represents the player's village's currently erected buildings.
+
+![Screenshot of the game's header area](doc/highlights/header.png)
+
+The header display's the player's resources, as well as controls over the saving feature.
+
+![Screenshot of the game's tabbed interface](doc/highlights/tabs.png)
+
+The tabbed interface allows for buying upgrades using collected resources, and assigning villagers to jobs.
+
+![Screenshot of the game's log window](doc/highlights/log.png)
+
+The expandable log window allows the player to see the latest events that happened in their village.
+
 ## Motivation
 
 Ever since the the advent of [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/), incremental games have enjoyed a huge rise in popularity, topping the charts of mobile app stores. The simple gameplay makes them appealing to people less skilled in videogames, and they can be created very rapidly with little graphical content by any aspiring game designer. _Village of Chaos_ is a "management" type incremental, where workers can be assigned to automate tasks. However, the driving idea behind this game is that increasing the number of units assigned to the same task doesn't neccessarily result in a speedup, as the team becomes uncoordinated and chaotic. The player will need to research and apply management techniques to keep the team efficient and the production high.
