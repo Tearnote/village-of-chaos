@@ -105,7 +105,3 @@ Village images and animations created using the tilesets and spritesheets by [Pi
 -   [Traders Top Down Asset Pack](https://pixivan.itch.io/traders-top-down-npc).
 
 These resources were purchased with personal funds. The purchased source files are not present in the repository.
-
-## Wireframe
-
-![Mock-up wireframe view of the game in a desktop browser](doc/wireframe.png)

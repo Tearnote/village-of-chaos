@@ -81,3 +81,11 @@ Having two or more stray villagers doing the same task increases that building's
 Throughout the game, there are multiple references to a monolith looming over the village. The player can interact with the monolith using certain story-relevant upgrades. Buying the last monolith upgrade ends the game. For story-relevant reasons this tears down the DOM, making the game unplayable until the page is refreshed.
 
 Througout the player's first steps, tutorial pop-ups will appear at appropriate times. For example, once the game starts, a pop-up instructs the player to click on gathering buttons to earn resources. When the player assigns two villagers to a single job, a pop-up will let them know about the chaos system, etc.
+
+## Wireframe
+
+![Mock-up wireframe view of the game in a desktop browser](wireframe.png)
+
+As the game evolved, the design slowly diverged from this initial wireframe into one with less floating sections and more concrete panels. This helped avoid overlap between elements at all sorts of screen sizes.
+
+In particular, the header is now floating on mobile, and part of the sidebar on desktop. The tabbed interface is always part of the sidebar. The log window is floating, but can be collapsed to save space.
