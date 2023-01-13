@@ -713,11 +713,11 @@ header > button {
 
 /* Setting expand button content in :after avoids needing JS to do it */
 
-#log-expand > p:after {
+#log-expand:after {
 	content: "log +";
 }
 
-#log.visible > #log-expand > p:after {
+#log.visible > #log-expand:after {
 	content: "log -";
 }
 
