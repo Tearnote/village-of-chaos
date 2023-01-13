@@ -340,30 +340,7 @@ class Game {
 		this.dom.smithyChaos.textContent = Math.ceil(this.chaos.smithy * 100);
 		this.dom.academyChaos.textContent = Math.ceil(this.chaos.academy * 100);
 
-		// Make sure world display is sized correctly
-		let smallerDim = Math.min(window.innerWidth, window.innerHeight);
-		this.dom.world.style.setProperty("--scale", smallerDim / 640);
-		// Center world display if not square
-		let isLandscape = window.innerWidth > window.innerHeight ? true : false;
-		if (isLandscape) {
-			let sideWidth = document.getElementById("side").offsetWidth;
-			let worldWidth = window.innerWidth - sideWidth;
-
-			this.dom.world.style.marginTop = 0;
-			if (worldWidth < window.innerHeight) // Not all of the world is displayed
-				this.dom.world.style.marginLeft = -(window.innerHeight - worldWidth) / 2 + "px";
-			else
-				this.dom.world.style.marginLeft = 0;
-		} else {
-			let sideHeight = document.getElementById("side").offsetHeight;
-			let worldHeight = window.innerHeight - sideHeight;
-
-			this.dom.world.style.marginLeft = 0;
-			if (worldHeight < window.innerWidth)
-				this.dom.world.style.marginTop = -(window.innerWidth - worldHeight) / 2 + "px";
-			else
-				this.dom.world.style.marginTop = 0;
-		}
+		this.renderWorld();
 	}
 
 	renderUpgrades() {
@@ -427,6 +404,35 @@ class Game {
 		html += `</p>`;
 		el.innerHTML = html;
 		return el;
+	}
+
+	renderWorld() {
+		// Make sure world is sized correctly
+		let smallerDim = Math.min(window.innerWidth, window.innerHeight);
+		this.dom.world.style.setProperty("--scale", smallerDim / 640);
+
+		// Center world display if not square
+		let isLandscape = window.innerWidth > window.innerHeight ? true : false;
+		if (isLandscape) {
+			let sideWidth = document.getElementById("side").offsetWidth;
+			let worldWidth = window.innerWidth - sideWidth;
+
+			this.dom.world.style.marginTop = 0;
+			if (worldWidth < window.innerHeight)
+				// Not all of the world is displayed
+				this.dom.world.style.marginLeft =
+					-(window.innerHeight - worldWidth) / 2 + "px";
+			else this.dom.world.style.marginLeft = 0;
+		} else {
+			let sideHeight = document.getElementById("side").offsetHeight;
+			let worldHeight = window.innerHeight - sideHeight;
+
+			this.dom.world.style.marginLeft = 0;
+			if (worldHeight < window.innerWidth)
+				this.dom.world.style.marginTop =
+					-(window.innerWidth - worldHeight) / 2 + "px";
+			else this.dom.world.style.marginTop = 0;
+		}
 	}
 
 	getWoodProduction() {
