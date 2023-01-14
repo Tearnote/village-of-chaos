@@ -19,11 +19,29 @@ The accessibility score is dropped by the "Reset" button in the header having ba
 
 ## Testing
 
+The scenarios below will test the majority of the game functions:
+
+### Layout responsiveness
+
+Procedure:
+
+1.  Play through the game until all features are unlocked (the [cheat code](../README.md#important-notes) can be used to speed it up,)
+2.  Save the game,
+3.  Use the browser developer tools to preview the game at various sizes.
+
+Expected:
+
+At any supported size the game has no layout overlap or text overflow, and any containers that overflow their contents can be scrolled.
+
+Actual:
+
+![Screenshot of the website displaying at desktop size](testing/layout-desktop.png)
+![Screenshot of the website displaying at mobile size](testing/layout-mobile.png)
+
+The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
+
 Check the following points to confirm that the game is working as intended:
 
--   The layout has no overlapping elements,
--   Text never overflows its container,
--   Paragraphs are never too wide or too thin to be comfortably read,
 -   From a fresh start, the game opens to the story overlay, which covers the entire page and can be dismissed with the button,
 -   The background image fully covers its space, and every building and animated sprite is offset by the correct amount,
 -   Every tutorial pop-up appears at its correct time, next to the focus element, and highlights the focus element correctly with no unpleasant overlap,
@@ -32,8 +50,6 @@ Check the following points to confirm that the game is working as intended:
 -   The game can be saved and loaded without errors in any situation, autosaves regularly, and autoloads on page load,
 -   The log displays recent events and only overlaps the layout when manually expanded,
 -   The game can be played from start to end without errors or glitches,
--   All the above holds true in portrait and landscape modes,
--   All the above holds true on mobile devices.
 
 The site was tested to work properly using this procedure in latest Chrome, Firefox and Edge, as well as mobile Chrome.
 
