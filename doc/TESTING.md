@@ -74,6 +74,24 @@ Actual:
 
 The expected behavior happens.
 
+### Log window
+
+1.  Start the game,
+2.  Buy a few upgrades,
+3.  Observe the log window as they are bought,
+4.  Expand the log window to full size and restore it,
+5.  Repeat point 4 on a simulated mobile device.
+
+Expected:
+
+Each upgrade bought prints a line to the log. The line has a vertical separator above, distinguishing it from previous messages. The line appears at the bottom. If the log window overflows, it can be scrolled, and if scrolled entirely to the bottom, the new line is scrolled into view automatically. The log can be expanded and restored, and in expanded form it is drawn on top of all other interface elements.
+
+Actual:
+
+![Recording of the game, focused on behavior of the log window](testing/log.gif)
+
+The expected behavior happens.
+
 ### Tutorial pop-ups
 
 Procedure:
