@@ -206,6 +206,29 @@ Actual:
 
 Expected behavior happens successfully.
 
+### Saving and loading
+
+Procedure:
+
+1.  Start playing the game and wait for five minutes,
+2.  Observe the log for the game having saved,
+3.  Refresh the page,
+4.  Progress in the game, press Save manually,
+5.  Progress further, then press Load manually,
+6.  Press Reset.
+
+Expected:
+
+The game autosaves every five minutes, and confirms it in the log. Refreshing the page loads the savefile automatically, resuming the game. The game can be saved and loaded manually with header buttons. Pressing reset deletes the save file, allowing the player to start over.
+
+Actual:
+
+(Note that at the start of this GIF, the game has been running in background for about half an hour. The save button has not been manually pressed.)
+
+![Recording of testing the save and load functions, then resetting the game entirely](testing/save.gif)
+
+The expected behavior happens.
+
 ## User stories study
 
 In the design phase, we [established](DESIGN.md#user-stories) the expected user-base and what kinds of questions they might have when playing the game. We will check if their questions are answered by the finished project.
