@@ -38,6 +38,22 @@ Actual:
 
 The expected behavior happens.
 
+### Minor upgrades
+
+Procedure:
+1.  Start playing the game,
+2.  Unlock a minor upgrade - improving a job, or getting a one-time resource boost.
+
+Expected:
+
+The upgrade performs the effect that is suggested by the description, either providing a permanent boost to a building's production speed, or incrementing resources.
+
+Actual:
+
+![Screen recording of buying two upgrades - a job improvement, and a resource boost](testing/minor-upgrade.gif)
+
+The expected behavior happens.
+
 ### Layout responsiveness
 
 Procedure:
