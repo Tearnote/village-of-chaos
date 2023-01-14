@@ -21,6 +21,25 @@ The accessibility score is dropped by the "Reset" button in the header having ba
 
 The scenarios below will test the majority of the game functions:
 
+### Layout responsiveness
+
+Procedure:
+
+1.  Play through the game until all features are unlocked (the [cheat code](../README.md#important-notes) can be used to speed it up,)
+2.  Save the game,
+3.  Use the browser developer tools to preview the game at various sizes.
+
+Expected:
+
+At any supported size the game has no layout overlap or text overflow, and any containers that overflow their contents can be scrolled.
+
+Actual:
+
+![Screenshot of the website displaying at desktop size](testing/layout-desktop.png)
+![Screenshot of the website displaying at mobile size](testing/layout-mobile.png)
+
+The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
+
 ### Major upgrades
 
 Procedure:
@@ -41,6 +60,7 @@ The expected behavior happens.
 ### Minor upgrades
 
 Procedure:
+
 1.  Start playing the game,
 2.  Unlock a minor upgrade - improving a job, or getting a one-time resource boost.
 
@@ -54,26 +74,9 @@ Actual:
 
 The expected behavior happens.
 
-### Layout responsiveness
+### Tutorial pop-ups
 
 Procedure:
-
-1.  Play through the game until all features are unlocked (the [cheat code](../README.md#important-notes) can be used to speed it up,)
-2.  Save the game,
-3.  Use the browser developer tools to preview the game at various sizes.
-
-Expected:
-
-At any supported size the game has no layout overlap or text overflow, and any containers that overflow their contents can be scrolled.
-
-Actual:
-
-![Screenshot of the website displaying at desktop size](testing/layout-desktop.png)
-![Screenshot of the website displaying at mobile size](testing/layout-mobile.png)
-
-The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
-
-### Tutorial pop-ups
 
 1.  Start the game,
 2.  Trigger the first tutorial pop-up automatically at start-up,
