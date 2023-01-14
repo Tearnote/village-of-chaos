@@ -14,7 +14,7 @@ The documentation is split across three files:
 
 -   [README.md](README.md) (this file): Overview of the game. Read this to get an idea of the basic premise, technologies used and project conventions.
 -   [DESIGN.md](doc/DESIGN.md): UX design notes crafted during early stages of development. The design process is described entirely, from the concept and market research, through information structuring to visual design principles and color palettes.
--   [TESTING.md](doc/TESTING.md): Testing procedures. The game has been automatically validated and manually tested with procedures noted down in this file.
+-   [TESTING.md](doc/TESTING.md): Testing procedures. The game has been automatically validated and manually tested with procedures noted down in this file. WARNING - file contains a large amount of heavy animated GIFs.
 
 For rapid testing, the following code can be executed in the browser console to gain enough resources to beat the game extremely quickly:
 
