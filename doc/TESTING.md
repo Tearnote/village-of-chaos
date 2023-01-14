@@ -76,6 +76,8 @@ The expected behavior happens.
 
 ### Log window
 
+Procedure:
+
 1.  Start the game,
 2.  Buy a few upgrades,
 3.  Observe the log window as they are bought,
