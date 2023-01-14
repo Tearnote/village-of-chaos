@@ -21,6 +21,24 @@ The accessibility score is dropped by the "Reset" button in the header having ba
 
 The scenarios below will test the majority of the game functions:
 
+### Resource gathering
+
+Procedure:
+
+1.  Start the game,
+2.  Press the Gather wood and Gather food buttons,
+3.  Observe the effect on resource count.
+
+Expected:
+
+Pressing Gather wood increases wood amount by one, and pressing Gather food increases food amount by one.
+
+Actual:
+
+![Screen recording of pressing the gathering buttons in the game](testing/gathering.gif)
+
+The buttons behave as expected.
+
 ### Tab switching
 
 Procedure:
