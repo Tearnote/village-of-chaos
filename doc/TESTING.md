@@ -21,6 +21,24 @@ The accessibility score is dropped by the "Reset" button in the header having ba
 
 The scenarios below will test the majority of the game functions:
 
+### Tab switching
+
+Procedure:
+
+1.  Play through the game,
+2.  Once the Craft and Assign tabs are unlocked, click each tab button,
+3.  Once the Research tab is unlocked, click each tab button.
+
+Expected:
+
+Each tab button activates the relevant tab in the sidebar.
+
+Actual:
+
+![Recording of testing the tab buttons in the game](testing/tabs.gif)
+
+The buttons behave as expected.
+
 ### Layout responsiveness
 
 Procedure:
