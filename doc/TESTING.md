@@ -190,6 +190,8 @@ The expected behavior happens successfully.
 
 ### Story shroud
 
+Procedure:
+
 1.  Start the game,
 2.  Play until the first monolith upgrade is available,
 3.  Buy and complete the upgrade.
