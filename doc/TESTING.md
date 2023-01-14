@@ -21,6 +21,23 @@ The accessibility score is dropped by the "Reset" button in the header having ba
 
 The scenarios below will test the majority of the game functions:
 
+### Major upgrades
+
+Procedure:
+
+1.  Start playing the game,
+2.  Unlock major upgrades - building a tent, pier, quarry, smithy, academy.
+
+Expected:
+
+When crafted, these upgrades unlock the relevant part of the interface, as well as displaying the building in the game world.
+
+Actual:
+
+![Screen recording of buying the Academy upgrade and observing the effects](testing/major-upgrade.gif)
+
+The expected behavior happens.
+
 ### Layout responsiveness
 
 Procedure:
