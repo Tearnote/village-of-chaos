@@ -667,7 +667,7 @@ class Game {
 
 	// Apocalypse
 	gameOver() {
-		document.write("--");
+		document.write("== END TRANSMISSION");
 	}
 
 	// Instantly get enough resources to beat the game
