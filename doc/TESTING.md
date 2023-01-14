@@ -40,6 +40,27 @@ Actual:
 
 The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
 
+### Resource production
+
+Procedure:
+
+1.  Play through the game until you unlock all features,
+2.  Observe resource production as villagers are assigned to jobs,
+3.  Observe the effect of unassigned villagers on wood production,
+4.  Observe the difference between villager production and mentor production,
+5.  Observe the effect of chaos on production,
+6.  Assign managers to reduce chaos.
+
+Expected:
+
+All unassigned villagers produce wood. Production of the relevant resource increases as villagers are assigned. Mentors have higher production than villagers. With more than 1 villager assigned, chaos increases. It reduces the total production amount when present. Assigning managers reduces chaos, increasing production again.
+
+Actual:
+
+![A recording of villager assignment affecting resource production](testing/production.gif)
+
+The expected behavior happens.
+
 ### Major upgrades
 
 Procedure:
