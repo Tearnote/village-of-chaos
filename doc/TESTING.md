@@ -94,6 +94,25 @@ Actual:
 
 The expected behavior happens.
 
+### Job assignment
+
+Procedure:
+
+1.  Play the game until all features are unlocked,
+2.  Assign and unassign a villager to/from every possible job and role,
+3.  Try unassigning from a role with 0 assignments,
+4.  Try assigning when there are 0 villagers remaining.
+
+Expected:
+
+All assignments add one villager to the role, and all unassignments remove one villager from the role. Unassignment fails quietly if there are already 0 assigned villagers, and assignment fails quietly if there are no villagers left to assign (0 lumberjacks.)
+
+Actual:
+
+![Screen recording of testing every button in the assign tab of the game](testing/assign.gif)
+
+The expected behavior happens.
+
 ### Tutorial pop-ups
 
 Procedure:
