@@ -40,18 +40,21 @@ Actual:
 
 The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
 
-Check the following points to confirm that the game is working as intended:
+### Story shroud
 
--   From a fresh start, the game opens to the story overlay, which covers the entire page and can be dismissed with the button,
--   The background image fully covers its space, and every building and animated sprite is offset by the correct amount,
--   Every tutorial pop-up appears at its correct time, next to the focus element, and highlights the focus element correctly with no unpleasant overlap,
--   The tab areas all can scroll to show all content,
--   Upgrades can only be bought if affordable and have their intended effect,
--   The game can be saved and loaded without errors in any situation, autosaves regularly, and autoloads on page load,
--   The log displays recent events and only overlaps the layout when manually expanded,
--   The game can be played from start to end without errors or glitches,
+1.  Start the game,
+2.  Play until the first monolith upgrade is available,
+3.  Buy and complete the upgrade.
 
-The site was tested to work properly using this procedure in latest Chrome, Firefox and Edge, as well as mobile Chrome.
+Expected:
+
+At the start of the game, a story overlay shows an introduction. After buying a monolith upgrade, the same shroud appears with different text.
+
+Actual:
+
+![Screen recording of the story shroud appearing after a monolith upgrade is bought](testing/story.gif)
+
+Expected behavior happens successfully.
 
 ## User stories study
 
