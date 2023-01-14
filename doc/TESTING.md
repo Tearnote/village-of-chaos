@@ -40,6 +40,22 @@ Actual:
 
 The site is responsive, as per the screenshots above, showcasing both desktop landscape and mobile portrait mode. Desktop portrait is also working, and mobile landscape is not supported as per the related [bug](../README.md#bugs).
 
+### Tutorial pop-ups
+
+1.  Start the game,
+2.  Trigger the first tutorial pop-up automatically at start-up,
+3.  Trigger further pop-ups every time a new building or feature is unlocked.
+
+Expected:
+
+Every new feature causes a pop-up to show up on the screen, with a small delay. This covers the whole game window with a transparent overlay. The only objects above the overlay are the pop-up and a highlighted object. Only the pop-up can be interacted with; the rest of the page becomes unusable while the pop-up is shown, even the highlighted element.
+
+Actual:
+
+![Screen recording of the game triggering a tutorial pop-up, behaving as expected](testing/tutorial.gif)
+
+The expected behavior happens successfully.
+
 ### Story shroud
 
 1.  Start the game,
